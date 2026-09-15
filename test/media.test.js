@@ -1,8 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { build } from "./helpers.js";
+import { buildFixture as fixture } from "./helpers.js";
 
-const fixture = (name, env = {}) => build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : undefined, ...env });
 
 test("photo records render as lazy images with alt text and the copied path", async () => {
   const p = await fixture();

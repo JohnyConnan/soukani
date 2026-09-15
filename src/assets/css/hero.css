@@ -1,6 +1,7 @@
 /* Landing hero: concentric rings, orbiting dots and one small spider around the centred logo.
    CSS-only; every decorative node is aria-hidden and the animation stops under reduced motion. */
-.hero { position: relative; overflow: hidden; padding-block: var(--space-5) var(--space-4); }
+.hero { position: relative; overflow: hidden; padding-block: var(--space-4) var(--space-3); }
+@media (min-width: 900px) { .hero { padding-block: var(--space-5) var(--space-4); } }
 .hero-inner { display: grid; gap: var(--space-4); align-items: center; }
 @media (min-width: 900px) { .hero-inner { grid-template-columns: 1.1fr 1fr; } }
 .hero-text h1 { font-size: var(--step-4); margin-bottom: var(--space-2); }
@@ -8,7 +9,8 @@
 .hero-dates { font-size: var(--step-2); font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--space-3); }
 .hero-dates .place { font-weight: 400; color: var(--ink-soft); }
 
-.rings { position: relative; width: min(100%, 26rem); aspect-ratio: 1; margin-inline: auto; }
+.rings { position: relative; width: min(100%, 18rem); aspect-ratio: 1; margin-inline: auto; }
+@media (min-width: 600px) { .rings { width: min(100%, 26rem); } }
 .ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0.35; }
 .ring.r2 { inset: 12%; opacity: 0.5; }
 .ring.r3 { inset: 24%; opacity: 0.7; border-color: var(--accent); border-width: 2px; }

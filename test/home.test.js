@@ -1,8 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { build } from "./helpers.js";
+import { buildFixture as fixture } from "./helpers.js";
 
-const fixture = (name) => build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : undefined });
 
 test("seed (call announced, no URL): CTA links to the About page's #call anchor", async () => {
   const p = await fixture();

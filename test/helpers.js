@@ -31,3 +31,8 @@ export async function build(env = {}) {
     }
   }
 }
+
+/** Builds with a fixture directory from test/fixtures/ (or the seed when `name` is null) and no path prefix. */
+export function buildFixture(name = null, env = {}) {
+  return build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : undefined, ...env });
+}

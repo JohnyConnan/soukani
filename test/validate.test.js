@@ -65,7 +65,6 @@ test("photo file problems name path, size and allowed formats", () => {
   assertProblem(seed((r) => (r.photos[0].file = "assets/photos/2025/missing.jpg")), /photos\.yaml/, /missing\.jpg/, /not found|does not exist/i);
   const tmp = mkdtempSync(join(tmpdir(), "soukani-"));
   writeFileSync(join(tmp, "big.jpg"), Buffer.alloc(401 * 1024));
-  const oversized = validate(structuredClone(base), { srcDir: tmp });
   const raw = structuredClone(base); raw.photos[0].file = "big.jpg";
   assertProblem(validate(raw, { srcDir: tmp }).filter((p) => p.id === "2025-01"), /photos\.yaml/, /400 KB/i, /big\.jpg/);
   rmSync(tmp, { recursive: true });

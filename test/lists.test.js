@@ -1,8 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { build } from "./helpers.js";
+import { buildFixture as fixture } from "./helpers.js";
 
-const fixture = (name) => build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : undefined });
 
 test("AE2: with no 2027 groups the Groups page explains and names the month, with no list markup", async () => {
   const p = await fixture();

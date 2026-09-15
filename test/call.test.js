@@ -4,9 +4,8 @@ import { mkdtempSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import YAML from "yaml";
-import { build } from "./helpers.js";
+import { build, buildFixture as fixture } from "./helpers.js";
 
-const fixture = (name) => build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : undefined });
 const callSection = (html) => html.slice(html.indexOf('id="call"'), html.indexOf("</section>", html.indexOf('id="call"')));
 
 /** Writes a one-off fixture with the 2027 record changed. */
