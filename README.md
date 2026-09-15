@@ -184,6 +184,23 @@ When the IT admin has the DNS records ready at Forpsi:
 
 The domain must be live before the poster goes to print and before the AITA/IATA listing is submitted.
 
+## Hero photographs
+
+The three circles in the landing hero each hold a stage photograph from `src/assets/hero/`, cropped
+square, turned greyscale and flattened at the black end so the dark stage disappears into the accent
+colour. The CSS blends them with `soft-light`, so only the lit figures surface and the orange keeps its
+hue. One dial controls how far forward they come: `--stage-fade` in `hero.css` (0.5 on desktop, lowered
+under 900 px, where the circles cover much more of the band).
+
+`stage-01/03/04.jpg` are cut from `01/03/04.jpg` of the 2025 shoot and hang in the bottom-right,
+bottom-left and top-right circle. Each circle sits mostly off the edge of the band, so the crops are
+composed for the slice that is actually on screen: d1 shows its lower left, d2 its upper right, d3 only
+its top. The figures therefore sit off-centre in the files — centring them would push them out of view.
+`stage-04.jpg` is also mirrored, so its figure looks into the page rather than off it, and padded with
+black at the top to carry him down into the visible arc; black costs nothing under the blend. Recropping
+is a matter of re-exporting a square JPEG under the same name; nothing but `hero.css` refers to them.
+Together they add about 160 KB to the landing page and nothing to any other page.
+
 ## Partner logos
 
 The footer shows logos in two groups. Each record in `content/partners.yaml` carries a `tier`:

@@ -1,15 +1,33 @@
 /* Landing hero, after the Claude Design draft: full-bleed accent band with ink text, two large outline
-   circles and one soft disc off the edges, and the rings composition around the centred logo:
+   circles and one soft disc off the edges, each holding a stage photograph, and the rings composition
+   around the centred logo:
    four concentric rings (dashed, solid, dotted, dashed), two orbits carrying dots and one carrying a
    spider that changes ring. Every decorative node is aria-hidden and everything, the spider included,
    holds still under reduced motion. The only script involved is the spider hop in the base layout. */
-.hero { position: relative; overflow: hidden; background: var(--accent); color: var(--on-accent); padding-block: var(--space-5) var(--space-6); }
+/* isolation keeps the photographs' blend inside the hero: they tint the accent band and nothing below it. */
+.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--accent); color: var(--on-accent); padding-block: var(--space-5) var(--space-6); }
 @media (min-width: 900px) { .hero { padding-block: 4.75rem 6.5rem; } }
 .hero-deco { position: absolute; inset: 0; pointer-events: none; }
-.deco { position: absolute; border-radius: 50%; border: 3px solid var(--ink); opacity: 0.3; }
+/* Each circle carries one stage photograph, square-cropped to the circle and greyscaled with its blacks
+   crushed, so `soft-light` lets the dark stage sink into the accent and only the lit figures surface.
+   The blend keeps the orange hue — the photograph reads as texture in the band, not as a picture
+   competing with the headline. --stage-fade is the single dial: raise it to pull the figures forward,
+   lower it to take them back into the orange. The border opacity used to sit on .deco itself; it moved
+   into the border colour because opacity on the parent would isolate the blend from the accent. */
+.deco { --stage-fade: 0.5; position: absolute; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--ink) 30%, transparent); }
+.deco::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background-position: center; background-size: cover; mix-blend-mode: soft-light; opacity: var(--stage-fade); }
+/* Each crop is composed for the slice of its circle that is actually on screen — the rest of the circle
+   sits off the edge. d1 shows its lower left, d2 its upper right, d3 only its top. That is why the
+   figures sit off-centre in the files: centring them would push them out of view. */
 .deco.d1 { right: -180px; top: -160px; width: 620px; height: 620px; }
+.deco.d1::before { background-image: url("../hero/stage-04.jpg"); }
 .deco.d2 { left: -200px; bottom: -280px; width: 520px; height: 520px; }
-.deco.d3 { right: 60px; bottom: -200px; width: 380px; height: 380px; border: 0; background: var(--cream); opacity: 0.35; }
+.deco.d2::before { background-image: url("../hero/stage-03.jpg"); }
+.deco.d3 { right: 60px; bottom: -200px; width: 380px; height: 380px; }
+.deco.d3::before { background-image: url("../hero/stage-01.jpg"); }
+/* The circles keep their pixel sizes on a phone, so they cover far more of the band and sit right
+   behind the headline; the photographs step back there. */
+@media (max-width: 899px) { .deco { --stage-fade: 0.28; } }
 
 .hero-inner { position: relative; display: grid; gap: var(--space-5); align-items: center; }
 @media (min-width: 900px) { .hero-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 3rem; } }
