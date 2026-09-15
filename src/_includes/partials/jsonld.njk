@@ -1,0 +1,29 @@
+{#- Structured data derived from the current edition and organizer records. Never typed twice. -#}
+{%- set org = db.site.organizer -%}
+{%- set organization = {
+  "@type": "Organization",
+  "name": org.name | t(lang),
+  "alternateName": org.shortName,
+  "url": org.url,
+  "address": { "@type": "PostalAddress", "streetAddress": org.street, "postalCode": org.city | truncate(6, true, ""), "addressLocality": "Ostrov", "addressCountry": "CZ" },
+  "sameAs": [db.site.facebook]
+} -%}
+<script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "Organization", "name": organization.name, "alternateName": organization.alternateName, "url": organization.url, "address": organization.address, "sameAs": organization.sameAs } | dump | safe }}</script>
+{%- if (pageKey == 'home' or pageKey == 'programme') and edition.dateFrom %}
+{%- set event = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": db.site.name + " " + edition.year,
+  "description": metaDescription,
+  "startDate": edition.dateFrom,
+  "endDate": edition.dateTo,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": { "@type": "Place", "name": db.site.venue.name, "address": { "@type": "PostalAddress", "streetAddress": db.site.venue.street, "postalCode": db.site.venue.city | truncate(6, true, ""), "addressLocality": "Ostrov", "addressCountry": "CZ" } },
+  "organizer": organization,
+  "inLanguage": db.languages,
+  "image": build.absoluteUrl('/' + (edition.poster or edition.logo.color)),
+  "url": build.absoluteUrl(db.pageUrl('home', lang))
+} -%}
+<script type="application/ld+json">{{ event | dump | safe }}</script>
+{%- endif %}

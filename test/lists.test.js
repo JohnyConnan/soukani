@@ -16,7 +16,7 @@ test("AE2: with no 2027 groups the Groups page explains and names the month, wit
 
 test("AE5: with no 2027 poster the Programme page shows the labelled placeholder and never the 2025 poster", async () => {
   const p = await fixture();
-  assert.match(p.get("/program/"), /class="poster-placeholder" role="img" aria-label="Plakát 2027 připravujeme"/);
+  assert.match(p.get("/program/"), /class="poster-pending" role="img" aria-label="Plakát 2027 připravujeme"/);
   assert.match(p.get("/en/programme/"), /The 2027 poster is in preparation/);
   assert.doesNotMatch(p.get("/program/"), /poster-2025/);
   assert.match(p.get("/program/"), /Program festivalu zveřejníme v dubnu 2027\./);

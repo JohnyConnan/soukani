@@ -1,0 +1,32 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+{%- set ed = db.current -%}
+{%- set org = db.site.organizer -%}
+# {{ db.site.name }}
+
+> {{ db.copy.site.tagline.en }} – {{ db.copy.hero.edition.en | fill({ n: ed.number | ordinal('en') }) }}{% if ed.dateFrom %}, {{ ed.dateFrom | range(ed.dateTo, 'en') }}{% endif %}, Ostrov, Czech Republic. Organized by {{ org.name.en }} ({{ org.street }}, {{ org.city }}).
+
+{% for p in db.copy.about.description.en %}{{ p }}
+
+{% endfor -%}
+{%- if ed.ageMin %}
+## Conditions for {{ ed.year }}
+
+{% for item in db.copy.call.conditions.en %}- {{ item | fill({ ageMin: ed.ageMin, ageMax: ed.ageMax, maxMinutes: ed.maxMinutes, maxActors: ed.maxActors, adultsMin: ed.adultsMin, adultsMax: ed.adultsMax, hosted: ed.maxActors + ed.adultsMax }) }}
+{% endfor %}{% if ed.applyDeadline %}- {{ db.copy.call.deadline.en | fill({ date: ed.applyDeadline | date('en') }) }}
+{% endif %}{% endif %}
+## Pages (English)
+
+{% for p in db.pages %}- [{{ p.label.en }}]({{ build.absoluteUrl(db.pageUrl(p.key, 'en')) }}): {{ p.description.en }}
+{% endfor %}
+## Stránky (česky)
+
+{% for p in db.pages %}- [{{ p.label.cs }}]({{ build.absoluteUrl(db.pageUrl(p.key, 'cs')) }}): {{ p.description.cs }}
+{% endfor %}
+## Contact
+
+{% for c in db.contacts %}- {{ c.name }}, {{ c.role.en }}: {{ c.email }}{% if c.phone %}, {{ c.phone }}{% endif %}
+{% endfor %}- Facebook: {{ db.site.facebook }}
+- Earlier editions (2001–2025): {{ db.site.oldSite.url }}

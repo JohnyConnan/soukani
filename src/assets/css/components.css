@@ -81,7 +81,7 @@
 
 /* Poster */
 .poster img { border-radius: var(--radius); border: 1px solid var(--line); width: 100%; max-width: 24rem; }
-.poster-placeholder { aspect-ratio: 1 / 1.414; max-width: 24rem; border: 2px dashed var(--ink-mute); border-radius: var(--radius); display: grid; place-items: center; text-align: center; padding: var(--space-3); color: var(--ink-soft); font-weight: 600; background: var(--cream-deep); }
+.poster-pending { aspect-ratio: 1 / 1.414; max-width: 24rem; border: 2px dashed var(--ink-mute); border-radius: var(--radius); display: grid; place-items: center; text-align: center; padding: var(--space-3); color: var(--ink-soft); font-weight: 600; background: var(--cream-deep); }
 
 /* Gallery */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: var(--space-2); list-style: none; padding: 0; margin: 0; }

@@ -2,6 +2,7 @@
 <html lang="{{ lang }}">
 <head>
 {% include "partials/meta.njk" %}
+{% include "partials/jsonld.njk" %}
 </head>
 <body class="page-{{ pageKey or 'plain' }}">
 <a class="skip" href="#main">{{ db.copy.nav.skip | t(lang) }}</a>
