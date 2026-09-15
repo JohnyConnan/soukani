@@ -1,0 +1,36 @@
+{#- Call for applications. Expects: edition, lang. Hidden while the festival runs or is over,
+    and when the edition record carries no conditions yet. -#}
+{%- set cc = db.copy.call -%}
+{%- if edition.ageMin and edition.status == 'upcoming' %}
+{%- set vars = { ageMin: edition.ageMin, ageMax: edition.ageMax, maxMinutes: edition.maxMinutes, maxActors: edition.maxActors, adultsMin: edition.adultsMin, adultsMax: edition.adultsMax, hosted: edition.maxActors + edition.adultsMax } %}
+<section class="wrap section" id="call">
+  <h2>{{ cc.heading | t(lang) }}</h2>
+  <p class="lede">{{ cc.intro | t(lang) | fill({ n: edition.number | ordinal(lang) }) }}</p>
+  <div class="two-col">
+    <div>
+      <h3>{{ cc.conditionsHeading | t(lang) }}</h3>
+      <ul class="conditions">
+      {%- for item in cc.conditions | t(lang) %}
+        <li>{{ item | fill(vars) }}</li>
+      {%- endfor %}
+      </ul>
+    </div>
+    <div class="callout">
+      {%- if edition.applyDeadline %}
+      <p><strong>{{ cc.deadline | t(lang) | fill({ date: edition.applyDeadline | date(lang) }) }}</strong></p>
+      {%- endif %}
+      {%- if edition.call == 'open' %}
+      <a class="button" href="{{ edition.applyUrl }}" rel="noopener">{{ cc.apply | t(lang) }}</a>
+      {%- elif edition.call == 'closed' %}
+      <p class="call-closed">{{ cc.closed | t(lang) }}</p>
+      {%- elif edition.applyOpensOn %}
+      <p class="call-opens">{{ cc.opensOn | t(lang) | fill({ date: edition.applyOpensOn | date(lang) }) }}</p>
+      {%- else %}
+      <p class="call-opens">{{ cc.opensSoon | t(lang) }}</p>
+      {%- endif %}
+      {%- set contact = db.applicationsContact %}
+      <p class="call-contact">{{ cc.contact | t(lang) }} {{ contact.name }}, <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% if contact.phone %}, <a href="tel:{{ contact.phone | replace(' ', '') }}">{{ contact.phone }}</a>{% endif %}</p>
+    </div>
+  </div>
+</section>
+{%- endif %}

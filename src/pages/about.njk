@@ -1,6 +1,35 @@
 ---
 pageKey: about
 ---
-<section class="wrap">
-  <h1>{{ registry.title | t(lang) }}</h1>
+{%- set c = db.copy.about -%}
+<section class="wrap section">
+  <h1>{{ c.heading | t(lang) }}</h1>
+  <div class="prose">
+  {%- for p in c.description | t(lang) %}
+    <p>{{ p }}</p>
+  {%- endfor %}
+  </div>
 </section>
+<section class="wrap section two-col">
+  <div class="prose">
+    <h2>{{ c.nameHeading | t(lang) }}</h2>
+    {%- for p in c.nameOrigin | t(lang) %}
+    <p>{{ p }}</p>
+    {%- endfor %}
+    <h2>{{ c.countriesHeading | t(lang) }}</h2>
+    <p>{{ c.countries | t(lang) }}</p>
+  </div>
+  <div class="prose">
+    <h2>{{ c.venuesHeading | t(lang) }}</h2>
+    <ul>
+    {%- for v in c.venues | t(lang) %}
+      <li>{{ v }}</li>
+    {%- endfor %}
+    </ul>
+    <h2>{{ c.schoolsHeading | t(lang) }}</h2>
+    {%- for p in c.schools | t(lang) %}
+    <p>{{ p }}</p>
+    {%- endfor %}
+  </div>
+</section>
+{% include "partials/call.njk" %}
