@@ -1,4 +1,4 @@
-import { writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { normalizePathPrefix } from "./lib/urls.js";
@@ -44,8 +44,10 @@ export default function (eleventyConfig) {
   eleventyConfig.setServerOptions({ watch: ["content/**/*.yaml"] });
 
   // GitHub Pages must not run Jekyll over the output.
-  eleventyConfig.on("eleventy.after", async ({ dir }) => {
-    if (dir?.output) await writeFile(join(dir.output, ".nojekyll"), "");
+  eleventyConfig.on("eleventy.after", async ({ dir, outputMode }) => {
+    if (outputMode !== "fs" || !dir?.output) return; // programmatic test builds write nothing
+    await mkdir(dir.output, { recursive: true });
+    await writeFile(join(dir.output, ".nojekyll"), "");
   });
 
   return {
