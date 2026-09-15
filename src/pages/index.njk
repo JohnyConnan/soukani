@@ -1,6 +1,30 @@
 ---
 pageKey: home
 ---
-<section class="wrap">
-  <h1>{{ db.site.name }}</h1>
+{%- set state = db.state(edition) -%}
+{%- set cta = null -%}
+{%- if state == 'announced' or state == 'archived' -%}
+  {%- if edition.ageMin -%}{%- set cta = { href: db.pageUrl('about', lang) + '#call', label: db.copy.hero.cta[state] | t(lang) } -%}{%- endif -%}
+{%- elif state == 'open' -%}
+  {%- set cta = { href: edition.applyUrl, label: db.copy.hero.cta.open | t(lang), external: true } -%}
+{%- elif state == 'closed' or state == 'groupsKnown' -%}
+  {%- set cta = { href: db.pageUrl('groups', lang), label: db.copy.hero.cta[state] | t(lang) } -%}
+{%- elif state == 'programmeOut' or state == 'running' -%}
+  {%- set cta = { href: db.pageUrl('programme', lang), label: db.copy.hero.cta[state] | t(lang) } -%}
+{%- elif state == 'past' -%}
+  {%- set cta = { href: db.pageUrl('photos', lang), label: db.copy.hero.cta.past | t(lang) } -%}
+{%- endif -%}
+{% include "partials/hero.njk" %}
+<section class="section wrap">
+  {% include "partials/facts.njk" %}
 </section>
+{%- if edition.highlight %}
+<section class="section wrap">
+  <div class="callout prose">
+    <span class="eyebrow">{{ db.copy.highlight.heading | t(lang) | fill({ year: edition.year }) }}</span>
+    <p>{{ edition.highlight | t(lang) }}</p>
+  </div>
+</section>
+{%- endif %}
+{%- set items = db.forEdition('news', edition.year) %}
+{% include "partials/news-list.njk" %}

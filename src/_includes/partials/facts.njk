@@ -1,0 +1,15 @@
+{#- Facts strip: prints only the facts present on the edition record. -#}
+{%- set c = db.copy.facts -%}
+<ul class="facts">
+  {%- if edition.dateFrom %}
+  <li class="fact"><span class="fact-label">{{ c.dates | t(lang) }}</span><span class="fact-value">{{ edition.dateFrom | range(edition.dateTo, lang) }}</span></li>
+  {%- endif %}
+  <li class="fact"><span class="fact-label">{{ c.edition | t(lang) }}</span><span class="fact-value">{{ edition.number | ordinal(lang) }}</span></li>
+  <li class="fact"><span class="fact-label">{{ c.since | t(lang) }}</span><span class="fact-value">{{ c.sinceValue | t(lang) | fill({ year: db.site.firstEditionYear }) }}</span></li>
+  {%- if edition.ageMin and edition.ageMax %}
+  <li class="fact"><span class="fact-label">{{ c.age | t(lang) }}</span><span class="fact-value">{{ c.ageValue | t(lang) | fill({ min: edition.ageMin, max: edition.ageMax }) }}</span></li>
+  {%- endif %}
+  {%- if edition.maxMinutes %}
+  <li class="fact"><span class="fact-label">{{ c.length | t(lang) }}</span><span class="fact-value">{{ c.lengthValue | t(lang) | fill({ n: edition.maxMinutes }) }}</span></li>
+  {%- endif %}
+</ul>

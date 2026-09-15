@@ -1,0 +1,24 @@
+{#- News of one edition, newest first. Expects `items`. Renders nothing when empty. -#}
+{%- if items | length %}
+<section class="section wrap" id="news">
+  <h2>{{ db.copy.news.heading | t(lang) }}</h2>
+  <ol class="news-list">
+  {%- for item in items %}
+    {%- if item.link and item.link.page %}
+      {%- set href = db.pageUrl(item.link.page, lang) + ('#' + item.link.anchor if item.link.anchor else '') %}
+      {%- set external = false %}
+    {%- elif item.link and item.link.url %}
+      {%- set href = item.link.url %}
+      {%- set external = true %}
+    {%- else %}
+      {%- set href = null %}
+    {%- endif %}
+    <li class="news-item">
+      <time class="news-date" datetime="{{ item.date }}">{{ item.date | date(lang) }}</time>
+      <h3>{% if href %}<a href="{{ href }}"{% if external %} rel="noopener"{% endif %}>{{ item.title | t(lang) }}</a>{% else %}{{ item.title | t(lang) }}{% endif %}</h3>
+      <p>{{ item.text | t(lang) }}</p>
+    </li>
+  {%- endfor %}
+  </ol>
+</section>
+{%- endif %}
