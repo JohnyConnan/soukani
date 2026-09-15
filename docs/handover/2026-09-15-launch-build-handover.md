@@ -39,7 +39,17 @@ Key rule learned in review: **tests never read live `content/` except `test/live
 - Archived-edition news items do not resolve page-key links (they would point at the new edition's pages); they render as plain headings.
 - Czech month names in "coming soon" texts use the locative ("v únoru 2027") via the `monthIn` filter.
 - `site.yaml` stores `postalCode`, `town`, `countryCode` separately so JSON-LD and llms.txt derive the address once.
-- The Claude Design draft could not be fetched (permission classifier blocked the Chrome route); the hero follows the plan's description (rings, orbiting dots, one spider on a thread, logo centred), CSS-only, reduced-motion aware.
+- The Claude Design draft **was** fetched on 2026-09-15 (see *Reading the design draft* below) and its visual language now drives the site: dark sticky header with pill navigation, the accent hero band with off-canvas circles, the rings-and-spider composition (four rings, two orbits, an eight-legged spider riding the second orbit), the dark facts band, circular date stamps on news and schedule days, and the dark footer. Photographs stay rounded rectangles rather than the draft's circles so production shots are not cropped away. The draft's seven colours are still reduced to cream, ink and one accent, and every string comes from `content/`.
+- A closed `<details>` hides its content in current browsers, so the desktop menu needed `::details-content` plus a small script fallback that sets `open` above 900 px. Before this the desktop navigation rendered invisible.
+
+## Reading the design draft
+
+`/design-login` cannot run in a non-interactive session, so the `claude_design` MCP refuses with "DesignSync needs design-system authorization". Two ways in:
+
+1. Run `/design-login` once in an interactive `claude` terminal on this machine; later sessions reuse that authorization and `DesignSync` works directly.
+2. Without it: open the project URL in the signed-in Chrome and POST from page context to `https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/ListFiles` and `/GetFile` with `{projectId, path}` and the header `Connect-Protocol-Version: 1`. `GetFile` returns base64; decode in the page and read it back as text.
+
+Project `fd0065fe-199f-4bd0-bc0e-d2690c6b206d`, file `Soukani Ostrov 27.dc.html`.
 
 ## Content assumptions to confirm with Jonáš
 

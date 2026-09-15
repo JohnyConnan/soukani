@@ -2,6 +2,7 @@
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <section class="footer-block">
+      <img class="footer-logo" src="/{{ edition.logo.negative }}" alt="" width="110" height="110" loading="lazy">
       <h2 class="footer-heading">{{ db.copy.footer.organizer | t(lang) }}</h2>
       <p class="footer-org">
         <a href="{{ site.organizer.url }}">{{ site.organizer.name | t(lang) }}</a><br>
@@ -37,4 +38,5 @@
       </ul>
     </section>
   </div>
+  <div class="wrap footer-bottom">© {{ edition.year }} {{ db.site.name }}</div>
 </footer>

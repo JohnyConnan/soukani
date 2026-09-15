@@ -11,7 +11,9 @@ test("AE4: accent and logo come from the edition record on every page", async ()
   const seed = await build({ PATH_PREFIX: undefined, CONTENT_DIR: SEED });
   for (const url of ["/", "/en/", "/dilny/", "/en/press/", "/404.html"]) {
     assert.match(seed.get(url), /--accent: #FF6B2C;/, url);
-    assert.match(seed.get(url), /src="\/assets\/identity\/2025\/logo-barevne\.png"/, url);
+    // Header and footer carry the negative logo on the dark bars, the hero and press the colour one.
+    assert.match(seed.get(url), /src="\/assets\/identity\/2025\/logo-[a-z]+\.png"/, url);
+    assert.match(seed.get(url), /href="\/assets\/identity\/2025\/logo-barevne\.png" type="image\/png"/, url);
   }
   const rolled = await build({ PATH_PREFIX: undefined, CONTENT_DIR: "test/fixtures/rollover-2029" });
   assert.match(rolled.get("/"), /--accent: #1B7F5C;/);

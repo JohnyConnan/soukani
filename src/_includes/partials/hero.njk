@@ -1,9 +1,15 @@
 {#- Landing hero. Expects: edition, lang, cta ({ href, label, external }) and dates text. -#}
 <section class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <span class="deco d1"></span>
+    <span class="deco d2"></span>
+    <span class="deco d3"></span>
+  </div>
   <div class="wrap hero-inner">
     <div class="hero-text">
+      <p class="hero-eyebrow"><span class="dot" aria-hidden="true"></span>{{ db.copy.hero.badge | t(lang) | fill({ n: edition.number | ordinal(lang) }) }}</p>
       <h1>{{ db.site.name }}</h1>
-      <p class="hero-sub">{{ db.copy.hero.edition | t(lang) | fill({ n: edition.number | ordinal(lang) }) }}</p>
+      <p class="hero-sub">{{ db.copy.hero.title | t(lang) }}</p>
       <p class="hero-dates">
         {%- if (state == 'past' or state == 'archived') and edition.dateFrom -%}
           {{ db.copy.hero.past | t(lang) | fill({ dates: edition.dateFrom | range(edition.dateTo, lang) }) }}
@@ -12,22 +18,23 @@
         {%- else -%}
           {{ db.copy.hero.datesTba | t(lang) }}
         {%- endif -%}
-        <br><span class="place">{{ db.copy.hero.place | t(lang) }}</span>
+        <span class="place">{{ db.copy.hero.place | t(lang) }}</span>
       </p>
       {%- if cta %}
       <a class="button" href="{{ cta.href }}"{% if cta.external %} rel="noopener"{% endif %}>{{ cta.label }}</a>
       {%- endif %}
     </div>
     <div class="rings" aria-hidden="true">
-      <div class="ring r1"></div>
-      <div class="ring r2"></div>
-      <div class="ring r3"></div>
       <div class="ring r4"></div>
-      <div class="orbit o1"><span class="dot"></span><span class="dot small bottom"></span></div>
-      <div class="orbit o2"><span class="dot small"></span></div>
-      <div class="orbit o3"><span class="dot"></span></div>
-      <div class="spider"></div>
-      <div class="hero-logo"><img src="/{{ edition.logo.color }}" alt="" width="200" height="200"></div>
+      <div class="ring r3"></div>
+      <div class="ring r2"></div>
+      <div class="ring r1"></div>
+      <div class="orbit o1"><span class="dot top"></span><span class="dot bottom"></span></div>
+      <div class="orbit o2">
+        <span class="dot left"></span>
+        <span class="spider"><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="body"></i><i class="head"></i></span>
+      </div>
+      <div class="hero-logo"><img src="/{{ edition.logo.color }}" alt="" width="330" height="330"></div>
     </div>
   </div>
 </section>

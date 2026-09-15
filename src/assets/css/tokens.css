@@ -1,22 +1,27 @@
-/* Design tokens. --accent is overridden per page from the edition record (see partials/meta.njk). */
+/* Design tokens. Palette from the Claude Design draft reduced to cream, ink and one edition accent;
+   --accent is overridden per page from the edition record (see partials/meta.njk). */
 :root {
-  --cream: #F6F1E7;
-  --cream-deep: #EDE5D6;
-  --ink: #1B1A17;
-  --ink-soft: #4A4741;
-  --ink-mute: #7A766E;
-  --line: rgba(27, 26, 23, 0.14);
+  --cream: #FDF4E8;
+  --cream-deep: #F0E5D6;
+  --cream-mute: #C9BDB1;
+  --ink: #14110F;
+  --ink-soft: #4A423C;
+  --ink-mute: #6B6058;
+  --line: #E0D4C4;
+  --line-dark: #3A332E;
   --accent: #FF6B2C;
   --on-accent: var(--ink);
   --white: #FFFFFF;
 
   --font: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --step--2: 0.75rem;
   --step--1: clamp(0.85rem, 0.82rem + 0.15vw, 0.95rem);
-  --step-0: clamp(1rem, 0.96rem + 0.25vw, 1.125rem);
-  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-0: clamp(1rem, 0.96rem + 0.25vw, 1.0625rem);
+  --step-1: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
   --step-2: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-  --step-3: clamp(2rem, 1.6rem + 2vw, 3rem);
-  --step-4: clamp(2.6rem, 1.8rem + 4vw, 4.5rem);
+  --step-3: clamp(2rem, 1.5rem + 2.2vw, 2.75rem);
+  --step-4: clamp(2.375rem, 1.6rem + 4vw, 4.5rem);
+  --step-5: clamp(2.875rem, 1.2rem + 7.5vw, 6.5rem);
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -25,8 +30,9 @@
   --space-5: 4rem;
   --space-6: 6rem;
 
-  --wrap: 72rem;
-  --radius: 1.25rem;
+  --wrap: 73.75rem;
+  --radius: 1.875rem;
+  --radius-sm: 0.875rem;
   --pill: 999px;
   --tap: 44px;
 }

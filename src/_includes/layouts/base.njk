@@ -17,6 +17,10 @@
   if (!nav) return;
   var summary = nav.querySelector("summary");
   var sync = function () { summary.setAttribute("aria-expanded", nav.open ? "true" : "false"); };
+  // Fallback for browsers without ::details-content: keep the menu open at desktop widths.
+  var wide = window.matchMedia("(min-width: 900px)");
+  var fit = function () { nav.open = wide.matches; };
+  wide.addEventListener("change", fit); fit();
   nav.addEventListener("toggle", sync); sync();
   nav.addEventListener("click", function (e) { if (e.target.closest("a")) nav.open = false; });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.open) { nav.open = false; summary.focus(); } });

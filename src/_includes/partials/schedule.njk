@@ -1,7 +1,11 @@
 {#- Day-grouped schedule. Expects: slots (sorted), lang. -#}
 {%- for day in slots | groupBy('day') %}
+{%- set d = day.key | dayParts(lang) %}
 <section class="day">
-  <h3><time datetime="{{ day.key }}">{{ day.key | date(lang) }}</time></h3>
+  <h3>
+    <span class="day-circle" aria-hidden="true"><b>{{ d.day }}</b>{{ d.monthShort }}</span>
+    <span class="day-label"><span class="day-weekday">{{ d.weekday }}</span><time datetime="{{ day.key }}">{{ day.key | date(lang) }}</time></span>
+  </h3>
   {%- for s in day.items %}
   {%- set g = db.groupById(s.groupId) if s.groupId else null %}
   <div class="slot">

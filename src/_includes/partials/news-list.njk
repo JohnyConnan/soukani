@@ -13,10 +13,17 @@
     {%- else %}
       {%- set href = null %}
     {%- endif %}
+    {%- set d = item.date | dayParts(lang) %}
     <li class="news-item">
-      <time class="news-date" datetime="{{ item.date }}">{{ item.date | date(lang) }}</time>
-      <h3>{% if href %}<a href="{{ href }}"{% if external %} rel="noopener"{% endif %}>{{ item.title | t(lang) }}</a>{% else %}{{ item.title | t(lang) }}{% endif %}</h3>
-      <p>{{ item.text | t(lang) }}</p>
+      <span class="news-stamp" aria-hidden="true"><b>{{ d.day }}.</b>{{ d.monthShort }}</span>
+      <div class="news-body">
+        <time class="news-date" datetime="{{ item.date }}">{{ item.date | date(lang) }}</time>
+        <h3>{% if href %}<a href="{{ href }}"{% if external %} rel="noopener"{% endif %}>{{ item.title | t(lang) }}</a>{% else %}{{ item.title | t(lang) }}{% endif %}</h3>
+        <p>{{ item.text | t(lang) }}</p>
+        {%- if href %}
+        <span class="news-more" aria-hidden="true">{{ db.copy.news.more | t(lang) }}</span>
+        {%- endif %}
+      </div>
     </li>
   {%- endfor %}
   </ol>

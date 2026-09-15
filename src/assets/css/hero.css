@@ -1,36 +1,64 @@
-/* Landing hero: concentric rings, orbiting dots and one small spider around the centred logo.
+/* Landing hero, after the Claude Design draft: full-bleed accent band with ink text, two large outline
+   circles and one soft disc off the edges, and the rings composition around the centred logo:
+   four concentric rings (dashed, solid, dotted, dashed), two orbits carrying dots and one spider.
    CSS-only; every decorative node is aria-hidden and the animation stops under reduced motion. */
-.hero { position: relative; overflow: hidden; padding-block: var(--space-4) var(--space-3); }
-@media (min-width: 900px) { .hero { padding-block: var(--space-5) var(--space-4); } }
-.hero-inner { display: grid; gap: var(--space-4); align-items: center; }
-@media (min-width: 900px) { .hero-inner { grid-template-columns: 1.1fr 1fr; } }
-.hero-text h1 { font-size: var(--step-4); margin-bottom: var(--space-2); }
-.hero-sub { font-size: var(--step-1); color: var(--ink-soft); max-width: 30em; margin-bottom: var(--space-1); }
-.hero-dates { font-size: var(--step-2); font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--space-3); }
-.hero-dates .place { font-weight: 400; color: var(--ink-soft); }
+.hero { position: relative; overflow: hidden; background: var(--accent); color: var(--on-accent); padding-block: var(--space-5) var(--space-6); }
+@media (min-width: 900px) { .hero { padding-block: 4.75rem 6.5rem; } }
+.hero-deco { position: absolute; inset: 0; pointer-events: none; }
+.deco { position: absolute; border-radius: 50%; border: 3px solid var(--ink); opacity: 0.3; }
+.deco.d1 { right: -180px; top: -160px; width: 620px; height: 620px; }
+.deco.d2 { left: -200px; bottom: -280px; width: 520px; height: 520px; }
+.deco.d3 { right: 60px; bottom: -200px; width: 380px; height: 380px; border: 0; background: var(--cream); opacity: 0.35; }
 
-.rings { position: relative; width: min(100%, 18rem); aspect-ratio: 1; margin-inline: auto; }
-@media (min-width: 600px) { .rings { width: min(100%, 26rem); } }
-.ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0.35; }
-.ring.r2 { inset: 12%; opacity: 0.5; }
-.ring.r3 { inset: 24%; opacity: 0.7; border-color: var(--accent); border-width: 2px; }
-.ring.r4 { inset: 36%; border-style: dashed; opacity: 0.4; }
-.orbit { position: absolute; inset: 0; border-radius: 50%; animation: spin 40s linear infinite; }
-.orbit.o2 { inset: 12%; animation-duration: 28s; animation-direction: reverse; }
-.orbit.o3 { inset: 24%; animation-duration: 18s; }
-.dot { position: absolute; top: -6px; left: calc(50% - 6px); width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 1.5px solid var(--ink); }
-.dot.small { width: 8px; height: 8px; top: -4px; left: calc(50% - 4px); background: var(--ink); border: 0; }
-.dot.bottom { top: auto; bottom: -6px; }
-.hero-logo { position: absolute; inset: 40%; display: grid; place-items: center; }
-.hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+.hero-inner { position: relative; display: grid; gap: var(--space-5); align-items: center; }
+@media (min-width: 900px) { .hero-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 3rem; } }
 
-/* the spider hangs on a thread from the outer ring and sways */
-.spider { position: absolute; top: 4%; left: 68%; width: 2px; height: 22%; background: var(--ink); transform-origin: top center; animation: sway 6s ease-in-out infinite; }
-.spider::after { content: ""; position: absolute; left: 50%; bottom: -12px; width: 14px; height: 12px; border-radius: 50% 50% 45% 45%; background: var(--ink); transform: translateX(-50%); box-shadow: -8px -2px 0 -4px var(--ink), 8px -2px 0 -4px var(--ink), -9px 4px 0 -4px var(--ink), 9px 4px 0 -4px var(--ink); }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--cream); font-size: var(--step--2); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 18px; border-radius: var(--pill); margin: 0; }
+.hero-eyebrow .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: none; }
+.hero-text h1 { font-size: var(--step-5); line-height: 0.88; letter-spacing: -0.035em; text-transform: uppercase; margin: 22px 0 0; max-width: 12ch; }
+.hero-sub { font-size: var(--step-1); line-height: 1.45; max-width: 34ch; margin: 18px 0 0; font-weight: 500; text-wrap: pretty; }
+.hero-dates { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 26px 0 0; }
+.hero-dates .place { display: block; font-size: var(--step-1); font-weight: 500; letter-spacing: 0; margin-top: 0.25em; }
+.hero-text .button { margin-top: 32px; }
+.hero .button { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.hero .button:hover { background: var(--cream); color: var(--ink); }
+
+/* Rings. The outer ring is the reference size; the others are placed with inset percentages
+   taken from the draft (356 / 410 / 470 / 536 px, logo 330 px). */
+.rings { position: relative; width: min(100%, 33.5rem); aspect-ratio: 1; margin-inline: auto; }
+.ring, .orbit { position: absolute; border-radius: 50%; }
+.ring { border: 2px solid var(--ink); }
+.ring.r1 { inset: 17%; border-style: dashed; opacity: 0.55; animation: spin 42s linear infinite; }
+.ring.r2 { inset: 11.75%; opacity: 0.3; }
+.ring.r3 { inset: 6.15%; border-width: 3px; border-style: dotted; opacity: 0.4; animation: spin 70s linear infinite reverse; }
+.ring.r4 { inset: 0; opacity: 0.22; animation: spin 110s linear infinite; }
+.orbit.o1 { inset: 6.15%; animation: spin 26s linear infinite; }
+.orbit.o2 { inset: 11.75%; animation: spin 34s linear infinite reverse; }
+.orbit .dot { position: absolute; border-radius: 50%; background: var(--ink); }
+.o1 .dot.top { top: -9px; left: calc(50% - 9px); width: 18px; height: 18px; }
+.o1 .dot.bottom { bottom: -7px; left: calc(50% - 7px); width: 14px; height: 14px; background: var(--cream); }
+.o2 .dot.left { top: calc(50% - 6px); left: -6px; width: 12px; height: 12px; }
+
+/* The spider rides the second orbit: eight legs from one point, a body and a head. */
+.spider { position: absolute; top: calc(50% - 11px); right: -11px; width: 22px; height: 22px; }
+.spider i { position: absolute; display: block; background: var(--ink); }
+.spider .leg { top: 11px; left: 11px; width: 12px; height: 1.5px; border-radius: 2px; transform-origin: 0 50%; }
+.spider .leg:nth-child(1) { transform: rotate(148deg); }
+.spider .leg:nth-child(2) { transform: rotate(172deg); }
+.spider .leg:nth-child(3) { transform: rotate(196deg); }
+.spider .leg:nth-child(4) { transform: rotate(220deg); }
+.spider .leg:nth-child(5) { transform: rotate(32deg); }
+.spider .leg:nth-child(6) { transform: rotate(8deg); }
+.spider .leg:nth-child(7) { transform: rotate(-16deg); }
+.spider .leg:nth-child(8) { transform: rotate(-40deg); }
+.spider .body { top: 6px; left: 5px; width: 12px; height: 10px; border-radius: 50%; }
+.spider .head { top: 3px; left: 8px; width: 6px; height: 6px; border-radius: 50%; }
+
+.hero-logo { position: absolute; inset: 19.2%; border-radius: 50%; background: var(--cream); overflow: hidden; }
+.hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .orbit, .spider { animation: none; }
+  .ring, .orbit { animation: none; }
 }

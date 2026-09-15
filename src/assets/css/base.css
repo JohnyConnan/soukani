@@ -23,21 +23,28 @@ img, svg { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
 a:hover { text-decoration-color: var(--ink); }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 var(--space-2); font-weight: 600; text-wrap: balance; }
-h1 { font-size: var(--step-3); }
-h2 { font-size: var(--step-2); }
-h3 { font-size: var(--step-1); }
+.site-header :focus-visible, .site-footer :focus-visible, .facts-band :focus-visible { outline-color: var(--cream); }
+
+h1, h2, h3 { line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 var(--space-2); font-weight: 800; text-wrap: balance; }
+h1 { font-size: var(--step-4); letter-spacing: -0.035em; }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); letter-spacing: -0.02em; line-height: 1.2; }
 p, ul, ol { margin: 0 0 var(--space-2); }
 p:last-child { margin-bottom: 0; }
 ul.plain { list-style: none; padding: 0; }
 small, .mute { color: var(--ink-mute); }
-.lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 40em; }
+.lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 40em; line-height: 1.55; text-wrap: pretty; }
 .wrap { width: min(var(--wrap), 100% - 2 * var(--space-3)); margin-inline: auto; }
+@media (min-width: 900px) { .wrap { width: min(var(--wrap), 100% - 2 * var(--space-4)); } }
 section.wrap, .section { padding-block: var(--space-5); }
 .section + .section { padding-top: 0; }
 .skip { position: absolute; left: var(--space-2); top: -100px; background: var(--ink); color: var(--cream); padding: var(--space-1) var(--space-2); border-radius: var(--pill); z-index: 100; }
 .skip:focus { top: var(--space-2); }
 main:focus { outline: none; }
 .prose { max-width: 42em; }
+.prose p { color: var(--ink-soft); line-height: 1.65; }
 .prose p + p { margin-top: var(--space-2); }
 hr { border: 0; border-top: 1px solid var(--line); margin: var(--space-4) 0; }
+
+/* Small caps label used throughout the draft */
+.eyebrow { display: inline-block; font-size: var(--step--2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-mute); margin-bottom: var(--space-1); }

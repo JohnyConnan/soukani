@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { normalizePathPrefix } from "./lib/urls.js";
-import { formatDate, formatRange, formatMonthIn, ordinal } from "./lib/dates.js";
+import { formatDate, formatRange, formatMonthIn, ordinal, dayParts } from "./lib/dates.js";
 
 export default function (eleventyConfig) {
   // Read inside the function so tests can vary the prefix per Eleventy instance.
@@ -27,6 +27,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("range", formatRange);
   eleventyConfig.addFilter("monthIn", formatMonthIn);
   eleventyConfig.addFilter("ordinal", ordinal);
+  eleventyConfig.addFilter("dayParts", dayParts);
   eleventyConfig.addFilter("groupBy", (list, key) => {
     const map = new Map();
     for (const item of list ?? []) {

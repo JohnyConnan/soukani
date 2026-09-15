@@ -9,6 +9,8 @@ nav:
   switch: { cs: English, en: Česky }
   skip: { cs: Přejít na obsah, en: Skip to content }
 hero:
+  title: { cs: Mezinárodní divadelní festival dětí a mládeže, en: International Theatre Festival of Children and Youth }
+  badge: { cs: "{n} ročník · Ostrov, ČR", en: "{n} edition · Ostrov, Czech Republic" }
   edition:
     cs: "{n} mezinárodní divadelní festival dětí a mládeže"
     en: "{n} International Theatre Festival of Children and Youth"
