@@ -1,0 +1,11 @@
+{#- One group. Expects: group, lang. -#}
+<article class="card group-card">
+  {%- if group.photo %}
+  <img src="/{{ group.photo }}" alt="{{ group.ensemble }} – {{ group.title | t(lang) }}" loading="lazy" decoding="async">
+  {%- endif %}
+  <span class="eyebrow">{{ db.countryName(group.country, lang) }} · {{ group.town | t(lang) }}</span>
+  <h3>{{ group.ensemble }}{% if group.host %} <span class="badge">{{ db.copy.groups.host | t(lang) }}</span>{% endif %}</h3>
+  <p class="slot-title">{{ group.title | t(lang) }}{% if group.titleOriginal and group.titleOriginal != (group.title | t(lang)) %} <span class="mute" lang="und">({{ group.titleOriginal }})</span>{% endif %}</p>
+  <p class="mute">{{ db.copy.groups.director | t(lang) }}: {{ group.director }}</p>
+  <p>{{ group.text | t(lang) }}</p>
+</article>

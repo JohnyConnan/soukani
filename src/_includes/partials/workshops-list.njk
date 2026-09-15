@@ -1,0 +1,23 @@
+{#- Seminars of one edition or the coming-soon text. Expects: edition, lang. -#}
+{%- set all = db.forEdition('workshops', edition.year) -%}
+{%- set cw = db.copy.workshops -%}
+{%- if all | length %}
+{%- set directors = all | where('kind', 'directors') %}
+{%- set actors = all | where('kind', 'actors') %}
+{%- if directors | length %}
+<h2>{{ cw.directors | t(lang) }}</h2>
+{%- for workshop in directors %}{% include "partials/workshop.njk" %}{% endfor %}
+{%- endif %}
+{%- if actors | length %}
+<h2>{{ cw.actors | t(lang) }}</h2>
+{%- for workshop in actors %}{% include "partials/workshop.njk" %}{% endfor %}
+{%- endif %}
+{%- elif edition.status == 'upcoming' %}
+<p class="lede coming-soon">
+  {%- if edition.announceWorkshops -%}
+    {{ cw.comingSoon | t(lang) | fill({ month: edition.announceWorkshops | monthIn(lang) }) }}
+  {%- else -%}
+    {{ cw.comingSoonNoMonth | t(lang) }}
+  {%- endif -%}
+</p>
+{%- endif %}

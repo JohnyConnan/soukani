@@ -1,6 +1,7 @@
 ---
 pageKey: programme
 ---
-<section class="wrap">
-  <h1>{{ registry.title | t(lang) }}</h1>
+<section class="wrap section">
+  <h1>{{ db.copy.programme.heading | t(lang) }} {{ edition.year }}</h1>
+  {% include "partials/programme-body.njk" %}
 </section>

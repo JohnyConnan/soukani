@@ -1,0 +1,8 @@
+{#- Poster of an edition or a labelled placeholder. Expects: edition, lang. -#}
+<div class="poster">
+{%- if edition.poster %}
+  <img src="/{{ edition.poster }}" alt="{{ db.copy.programme.posterAlt | t(lang) | fill({ year: edition.year }) }}" loading="lazy" decoding="async">
+{%- else %}
+  <div class="poster-placeholder" role="img" aria-label="{{ db.copy.programme.posterPlaceholder | t(lang) | fill({ year: edition.year }) }}">{{ db.copy.programme.posterPlaceholder | t(lang) | fill({ year: edition.year }) }}</div>
+{%- endif %}
+</div>

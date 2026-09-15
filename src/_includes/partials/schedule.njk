@@ -1,0 +1,25 @@
+{#- Day-grouped schedule. Expects: slots (sorted), lang. -#}
+{%- for day in slots | groupBy('day') %}
+<section class="day">
+  <h3><time datetime="{{ day.key }}">{{ day.key | date(lang) }}</time></h3>
+  {%- for s in day.items %}
+  {%- set g = db.groupById(s.groupId) if s.groupId else null %}
+  <div class="slot">
+    <div class="slot-time">{{ s.time }}</div>
+    <div>
+      <div class="slot-venue">{{ s.venue | t(lang) }}{% if s.type == 'side' %} · {{ db.copy.programme.side | t(lang) }}{% endif %}</div>
+      <div class="slot-title">
+        {%- if g -%}
+          {{ g.ensemble }}, {{ g.town | t(lang) }} ({{ db.countryName(g.country, lang) }}): {{ (s.title | t(lang)) if s.title else (g.title | t(lang)) }}
+        {%- else -%}
+          {{ s.title | t(lang) }}
+        {%- endif -%}
+      </div>
+      {%- if s.note %}
+      <div class="slot-note">{{ s.note | t(lang) }}</div>
+      {%- endif %}
+    </div>
+  </div>
+  {%- endfor %}
+</section>
+{%- endfor %}

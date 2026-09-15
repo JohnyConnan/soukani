@@ -1,0 +1,9 @@
+{#- One seminar. Expects: workshop, lang. -#}
+<article class="workshop">
+  <h3>{{ workshop.title | t(lang) }}</h3>
+  <p class="lecturer">{{ db.copy.workshops.lecturer | t(lang) }}: {% if workshop.lecturer %}{{ workshop.lecturer }}{% else %}{{ db.copy.workshops.lecturerTba | t(lang) }}{% endif %}</p>
+  {%- if workshop.bio %}
+  <p class="mute">{{ workshop.bio | t(lang) }}</p>
+  {%- endif %}
+  <p>{{ workshop.description | t(lang) }}</p>
+</article>

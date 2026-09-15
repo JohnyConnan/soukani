@@ -1,6 +1,7 @@
 ---
 pageKey: groups
 ---
-<section class="wrap">
-  <h1>{{ registry.title | t(lang) }}</h1>
+<section class="wrap section">
+  <h1>{{ db.copy.groups.heading | t(lang) }} {{ edition.year }}</h1>
+  {% include "partials/groups-list.njk" %}
 </section>

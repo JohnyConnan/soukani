@@ -1,6 +1,14 @@
 ---
 pageKey: workshops
 ---
-<section class="wrap">
-  <h1>{{ registry.title | t(lang) }}</h1>
+<section class="wrap section">
+  <h1>{{ db.copy.workshops.heading | t(lang) }}</h1>
+  <div class="prose">
+  {%- for p in db.copy.workshops.format | t(lang) %}
+    <p>{{ p }}</p>
+  {%- endfor %}
+  </div>
+</section>
+<section class="wrap section">
+  {% include "partials/workshops-list.njk" %}
 </section>

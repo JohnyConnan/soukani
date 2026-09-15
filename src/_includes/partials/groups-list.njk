@@ -1,0 +1,21 @@
+{#- Groups of one edition or the coming-soon text. Expects: edition, lang. -#}
+{%- set groups = db.forEdition('groups', edition.year) -%}
+{%- set cg = db.copy.groups -%}
+{%- if groups | length %}
+<div class="card-grid">
+{%- for group in groups %}
+  {% include "partials/group-card.njk" %}
+{%- endfor %}
+</div>
+{%- if not edition.groupsComplete %}
+<p class="notice groups-more">{{ cg.more | t(lang) }}</p>
+{%- endif %}
+{%- elif edition.status == 'upcoming' %}
+<p class="lede coming-soon">
+  {%- if edition.announceGroups -%}
+    {{ cg.comingSoon | t(lang) | fill({ year: edition.year, month: edition.announceGroups | monthIn(lang) }) }}
+  {%- else -%}
+    {{ cg.comingSoonNoMonth | t(lang) | fill({ year: edition.year }) }}
+  {%- endif -%}
+</p>
+{%- endif %}
