@@ -37,8 +37,9 @@
 .orbit.o1 { inset: 6.15%; animation: spin 26s linear infinite; }
 .orbit.o2 { inset: 11.75%; animation: spin 34s linear infinite reverse; }
 /* The spider rides its own orbit so it can change ring. --spider-ring holds the inset of the ring it
-   is on; the script swaps it between the three values below and the transition crawls it across. */
-.orbit.os { inset: var(--spider-ring, 6.15%); animation: spin 30s linear infinite; transition: inset 1.6s ease-in-out; }
+   is on; the script swaps it between the three values below and the transition darts it across. The
+   dwell between jumps is DWELL in the base layout's script, not here. */
+.orbit.os { inset: var(--spider-ring, 6.15%); animation: spin 30s linear infinite; transition: inset 0.55s cubic-bezier(0.3, 0, 0.15, 1); }
 .orbit .dot { position: absolute; border-radius: 50%; background: var(--ink); }
 .o1 .dot.top { top: -9px; left: calc(50% - 9px); width: 18px; height: 18px; }
 .o1 .dot.bottom { bottom: -7px; left: calc(50% - 7px); width: 14px; height: 14px; background: var(--cream); }

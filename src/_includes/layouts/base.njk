@@ -37,7 +37,7 @@
   var still = window.matchMedia("(prefers-reduced-motion: reduce)");
   var at = 0, last = 0, timer;
   var hop = function () {
-    if (still.matches || Date.now() - last < 1900) return;   // one crawl at a time
+    if (still.matches || Date.now() - last < 700) return;    // one jump at a time
     last = Date.now();
     at = (at + 1) % RINGS.length;
     orbit.style.setProperty("--spider-ring", RINGS[at]);
