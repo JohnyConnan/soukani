@@ -27,12 +27,15 @@ test("with 2027 archived and 2029 current the teaser picks 2027", async () => {
   assert.doesNotMatch(p.get("/fotogalerie/"), /Ohlédnutí za Soukáním 2025/);
 });
 
-test("old-site gallery links appear for every edition with an external archive URL", async () => {
+test("the gallery list links the old-site page that shows photos, and skips editions with none", async () => {
   const p = await fixture();
-  const links = [...p.get("/fotogalerie/").matchAll(/href="(https:\/\/hophop\.zusostrov\.cz\/soukani-\d{4}-cs\.html)" rel="noopener">Soukání (\d{4}) na stránkách/g)];
-  assert.equal(links.length, 13);
-  assert.equal(links[0][2], "2025");
-  assert.equal(links.at(-1)[2], "2001");
+  const links = [...p.get("/fotogalerie/").matchAll(/href="(https:\/\/hophop\.zusostrov\.cz\/[^"]+)" rel="noopener">Soukání (\d{4}) na stránkách/g)];
+  assert.deepEqual(links.map((m) => Number(m[2])), [2025, 2023, 2021, 2019, 2017, 2015, 2013, 2005, 2003, 2001],
+    "2011, 2009 and 2007 have no photos on the old site");
+  assert.equal(links[0][1], "https://hophop.zusostrov.cz/soukani-2025-fotogalerie-cs.html");
+  assert.equal(links[1][1], "https://hophop.zusostrov.cz/soukani-2023-fotogralerie-cs.html");
+  // The archive page still lists every edition, gallery or not.
+  assert.equal((p.get("/archiv/").match(/class="archive-external"/g) || []).length, 13);
 });
 
 test("Press lists three 2025-labelled logo variants and no poster or PDF while unset", async () => {

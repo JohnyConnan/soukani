@@ -13,7 +13,7 @@
 - id: konyvka
   name: Jonáš Konývka
   role: { cs: "přihlášky, příjezdy a odjezdy souborů", en: "applications, arrivals and departures" }
-  email: konyvka@zusostrov.cz
+  email: festivalsoukani@gmail.com
   phone: null
   applications: true
 - id: kralova

@@ -8,7 +8,7 @@
     {%- if slots | length %}
     {% include "partials/schedule.njk" %}
     {%- elif edition.status == 'upcoming' %}
-    {%- set month = edition.announceProgramme %}{%- set withMonth = cp.comingSoon %}{%- set withoutMonth = cp.comingSoonNoMonth %}{%- set vars = {} %}
+    {%- set month = edition.announceProgramme %}{%- set withMonth = cp.comingSoon %}{%- set withoutMonth = cp.comingSoonNoMonth %}{%- set vars = { year: edition.year } %}
     {% include "partials/coming-soon.njk" %}
     {%- endif %}
     {%- if edition.programmePdf or edition.tickets %}

@@ -4,10 +4,10 @@ import { rmSync } from "node:fs";
 import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 
-test("seed (call announced, no URL): CTA links to the About page's #call anchor", async () => {
+test("seed (call announced, no URL): CTA links to the Přihlášky page's #call anchor", async () => {
   const p = await fixture();
-  assert.match(p.get("/"), /<a class="button" href="\/o-festivalu\/#call">Podmínky účasti<\/a>/);
-  assert.match(p.get("/en/"), /<a class="button" href="\/en\/about\/#call">How to apply<\/a>/);
+  assert.match(p.get("/"), /<a class="button" href="\/soubory\/#call">Podmínky účasti<\/a>/);
+  assert.match(p.get("/en/"), /<a class="button" href="\/en\/groups\/#call">How to apply<\/a>/);
 });
 
 test("call open: CTA is the apply URL with rel=noopener", async () => {
@@ -51,8 +51,8 @@ test("news: newest first, two launch items with resolved links; 2025 items absen
   const first = cs.indexOf("Výzva k přihlášení na Soukání Ostrov 2027");
   const second = cs.indexOf("Soukání Ostrov 2027 se koná");
   assert.ok(first > 0 && second > first, "call item precedes announcement item");
-  assert.match(cs, /<a href="\/o-festivalu\/#call">Výzva k přihlášení/);
-  assert.match(p.get("/en/"), /<a href="\/en\/about\/#call">Call for applications/);
+  assert.match(cs, /<a href="\/soubory\/#call">Výzva k přihlášení/);
+  assert.match(p.get("/en/"), /<a href="\/en\/groups\/#call">Call for applications/);
   assert.match(cs, /datetime="2026-09-15">15\. 9\. 2026</);
   assert.match(p.get("/en/"), /15 September 2026/);
   assert.equal((cs.match(/class="news-item"/g) || []).length, 2);
@@ -64,10 +64,25 @@ test("no published news for the current edition: no news section at all", async 
   assert.doesNotMatch(p.get("/en/"), /id="news"|>News</);
 });
 
-test("highlight paragraph renders from the edition record", async () => {
+test("the highlight paragraph sits under 'other news' on the Press page, not on the home page", async () => {
   const p = await fixture();
-  assert.match(p.get("/"), /Jižní Koreje/);
-  assert.match(p.get("/en/"), /South Korea/);
+  assert.match(p.get("/pro-media/"), /id="other-news">\s*<h2>Další aktuality<\/h2>[\s\S]*?Co chystáme na rok 2027[\s\S]*?Jižní Koreje/);
+  assert.match(p.get("/en/press/"), /id="other-news">\s*<h2>Other news<\/h2>[\s\S]*?What is new in 2027[\s\S]*?South Korea/);
+  assert.doesNotMatch(p.get("/"), /Jižní Koreje|Co chystáme na rok/);
+  assert.doesNotMatch(p.get("/en/"), /South Korea|What is new in/);
+});
+
+test("news bubbles carry no 'more' line: the headline is the link", async () => {
+  const p = await fixture();
+  for (const url of ["/", "/en/"]) {
+    assert.doesNotMatch(p.get(url), /news-more/, url);
+    assert.doesNotMatch(p.get(url), />Více<|>Read more</, url);
+  }
+});
+
+test("an edition without a highlight leaves the Press page without the other-news section", async () => {
+  const p = await fixture("rollover-2029");
+  assert.doesNotMatch(p.get("/pro-media/"), /other-news|Další aktuality/);
 });
 
 test("CTA follows the matrix for closed, groups known, programme out and running", async () => {

@@ -7,50 +7,50 @@ const callSection = (html) => html.slice(html.indexOf('id="call"'), html.indexOf
 
 test("AE3: without applyUrl the call section has no empty or # link and shows the opening text", async () => {
   const p = await fixture();
-  for (const url of ["/o-festivalu/", "/en/about/"]) {
+  for (const url of ["/soubory/", "/en/groups/"]) {
     const section = callSection(p.get(url));
     assert.ok(section.length > 100, "call section present");
     assert.doesNotMatch(section, /href=""|href="#"|href="null"|href="undefined"/);
     assert.doesNotMatch(section, /class="button"/);
   }
-  assert.match(callSection(p.get("/o-festivalu/")), /Přihlašovací formulář zveřejníme na tomto místě\./);
-  assert.match(callSection(p.get("/en/about/")), /The application form will be published here\./);
+  assert.match(callSection(p.get("/soubory/")), /Přihlašovací formulář zveřejníme na tomto místě\./);
+  assert.match(callSection(p.get("/en/groups/")), /The application form will be published here\./);
 });
 
 test("call open: the apply button links to the form in both languages", async () => {
   const p = await fixture("call-open");
-  assert.match(callSection(p.get("/o-festivalu/")), /<a class="button" href="https:\/\/forms\.example\.org\/soukani-2027" rel="noopener">Vyplnit přihlášku<\/a>/);
-  assert.match(callSection(p.get("/en/about/")), /href="https:\/\/forms\.example\.org\/soukani-2027" rel="noopener">Open the application form</);
+  assert.match(callSection(p.get("/soubory/")), /<a class="button" href="https:\/\/forms\.example\.org\/soukani-2027" rel="noopener">Vyplnit přihlášku<\/a>/);
+  assert.match(callSection(p.get("/en/groups/")), /href="https:\/\/forms\.example\.org\/soukani-2027" rel="noopener">Open the application form</);
 });
 
 test("call closed: no button, closed text", async () => {
   const p = await fixture("call-closed");
-  const cs = callSection(p.get("/o-festivalu/"));
+  const cs = callSection(p.get("/soubory/"));
   assert.doesNotMatch(cs, /class="button"/);
   assert.match(cs, /Příjem přihlášek byl uzavřen\. Všechny přihlášené soubory informujeme e-mailem\./);
-  assert.match(callSection(p.get("/en/about/")), /Applications are closed\. All applicants are notified by email\./);
+  assert.match(callSection(p.get("/en/groups/")), /Applications are closed\. All applicants are notified by email\./);
 });
 
 test("conditions print the edition record's numbers and the deadline", async () => {
   const p = await fixture();
-  const cs = callSection(p.get("/o-festivalu/"));
+  const cs = callSection(p.get("/soubory/"));
   assert.match(cs, /Herci ve věku 14–18 let\./);
   assert.match(cs, /do 50 minut/);
   assert.match(cs, /nejvýše 10 herců a 2–3 dospělí/);
   assert.match(cs, /pro 13 osob \(10 herců a 3 dospělé\)/);
-  assert.match(cs, /Uzávěrka přihlášek: 31\. 12\. 2026/);
-  const en = callSection(p.get("/en/about/"));
+  assert.match(cs, /Uzávěrka přihlášek: 30\. 11\. 2026/);
+  const en = callSection(p.get("/en/groups/"));
   assert.match(en, /Actors aged 14–18\./);
   assert.match(en, /up to 50 minutes/);
-  assert.match(en, /Application deadline: 31 December 2026/);
-  assert.match(en, /konyvka@zusostrov\.cz/);
+  assert.match(en, /Application deadline: 30 November 2026/);
+  assert.match(en, /festivalsoukani@gmail\.com/);
 });
 
 test("changing maxMinutes on the record changes the conditions text", async () => {
   const dir = editionVariant((e) => (e.maxMinutes = 45));
   try {
     const p = await build({ PATH_PREFIX: undefined, CONTENT_DIR: dir });
-    assert.match(callSection(p.get("/o-festivalu/")), /do 45 minut/);
+    assert.match(callSection(p.get("/soubory/")), /do 45 minut/);
     assert.match(p.get("/"), /fact-value">45 minut</);
   } finally { rmSync(dir, { recursive: true }); }
 });
@@ -59,20 +59,24 @@ test("applyOpensOn with call announced prints the formatted date per language", 
   const dir = editionVariant((e) => (e.applyOpensOn = "2026-10-01"));
   try {
     const p = await build({ PATH_PREFIX: undefined, CONTENT_DIR: dir });
-    assert.match(callSection(p.get("/o-festivalu/")), /zveřejníme na tomto místě 1\. 10\. 2026\./);
-    assert.match(callSection(p.get("/en/about/")), /opens here on 1 October 2026\./);
+    assert.match(callSection(p.get("/soubory/")), /zveřejníme na tomto místě 1\. 10\. 2026\./);
+    assert.match(callSection(p.get("/en/groups/")), /opens here on 1 October 2026\./);
   } finally { rmSync(dir, { recursive: true }); }
 });
 
 test("the #call anchor exists in both languages and the About page carries the brief's facts", async () => {
   const p = await fixture();
-  assert.match(p.get("/o-festivalu/"), /<section class="wrap section" id="call">/);
-  assert.match(p.get("/en/about/"), /<section class="wrap section" id="call">/);
+  assert.match(p.get("/soubory/"), /<section class="wrap section" id="call">/);
+  assert.match(p.get("/en/groups/"), /<section class="wrap section" id="call">/);
+  // About keeps the festival's story; only the call moved.
+  assert.doesNotMatch(p.get("/o-festivalu/"), /id="call"/);
+  assert.doesNotMatch(p.get("/en/about/"), /id="call"/);
   for (const needle of ["Brixen", "1995", "Kulturní a kreativní centrum Ostrov", "Základní umělecká škola Ostrov", "Než půjdeme do divadla"]) assert.match(p.get("/o-festivalu/"), new RegExp(needle));
   for (const needle of ["Brixen", "1995", "Kulturní a kreativní centrum Ostrov", "Základní umělecká škola Ostrov", "Before we go to the theatre"]) assert.match(p.get("/en/about/"), new RegExp(needle));
 });
 
-test("past edition: the call section is hidden", async () => {
+test("past edition: the call section is hidden and the groups heading with it", async () => {
   const p = await fixture("past");
-  assert.doesNotMatch(p.get("/o-festivalu/"), /id="call"/);
+  assert.doesNotMatch(p.get("/soubory/"), /id="call"/);
+  assert.equal((p.get("/soubory/").match(/<h2>Soubory<\/h2>/g) || []).length, 0, "no empty sub-heading once the call is gone");
 });

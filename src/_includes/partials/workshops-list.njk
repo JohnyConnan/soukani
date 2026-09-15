@@ -13,6 +13,6 @@
 {%- for workshop in actors %}{% include "partials/workshop.njk" %}{% endfor %}
 {%- endif %}
 {%- elif edition.status == 'upcoming' %}
-{%- set month = edition.announceWorkshops %}{%- set withMonth = cw.comingSoon %}{%- set withoutMonth = cw.comingSoonNoMonth %}{%- set vars = {} %}
+{%- set month = edition.announceWorkshops %}{%- set withMonth = cw.comingSoon %}{%- set withoutMonth = cw.comingSoonNoMonth %}{%- set vars = { year: edition.year } %}
 {% include "partials/coming-soon.njk" %}
 {%- endif %}

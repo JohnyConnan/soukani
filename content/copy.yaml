@@ -37,7 +37,6 @@ facts:
   lengthValue: { cs: "{n} minut", en: "{n} minutes" }
 news:
   heading: { cs: Aktuality, en: News }
-  more: { cs: Více, en: Read more }
 highlight:
   heading: { cs: "Co chystáme na rok {year}", en: "What is new in {year}" }
 about:
@@ -165,8 +164,8 @@ groups:
     cs: "Soubory pro ročník {year} vybere umělecká komise festivalu z přihlášek a zaslaných videozáznamů po uzávěrce přihlášek. Výběr zveřejníme v {month}."
     en: "The groups for {year} will be selected by the festival's artistic committee from the applications and videos after the application deadline. The selection will be published in {month}."
   comingSoonNoMonth:
-    cs: "Soubory pro ročník {year} vybere umělecká komise festivalu z přihlášek a zaslaných videozáznamů po uzávěrce přihlášek."
-    en: "The groups for {year} will be selected by the festival's artistic committee from the applications and videos after the application deadline."
+    cs: "Soubory pro ročník {year} vybere umělecká komise festivalu z přihlášek a zaslaných videozáznamů po uzávěrce přihlášek. Výběr zveřejníme koncem roku {yearBefore}."
+    en: "The groups for {year} will be selected by the festival's artistic committee from the applications and videos after the application deadline. The selection will be published at the end of {yearBefore}."
   more: { cs: Další soubory doplníme., en: More groups to be announced. }
   host: { cs: pořádající soubor, en: host ensemble }
   director: { cs: Režie, en: Directed by }
@@ -175,7 +174,7 @@ programme:
   posterAlt: { cs: "Plakát Soukání Ostrov {year}", en: "Soukání Ostrov {year} poster" }
   posterPlaceholder: { cs: "Plakát {year} připravujeme", en: "The {year} poster is in preparation" }
   comingSoon: { cs: "Program festivalu zveřejníme v {month}.", en: "The festival programme will be published in {month}." }
-  comingSoonNoMonth: { cs: Program festivalu zveřejníme po výběru souborů., en: The festival programme will be published once the groups are selected. }
+  comingSoonNoMonth: { cs: "Program festivalu zveřejníme startem roku {year}.", en: "The festival programme will be published at the start of {year}." }
   format:
     cs: "Semináře probíhají dopoledne, představení odpoledne, večery patří doprovodnému programu. Po každém představení následuje diskuse."
     en: "Seminars take place in the mornings and performances in the afternoons; the evenings belong to the side programme. Every performance is followed by a discussion."
@@ -202,7 +201,7 @@ workshops:
         On the penultimate day of the festival the seminars present their work to the other
         participants.
   comingSoon: { cs: "Seznam seminářů a lektorů zveřejníme v {month}.", en: "The list of seminars and lecturers will be published in {month}." }
-  comingSoonNoMonth: { cs: Seznam seminářů a lektorů zveřejníme před festivalem., en: The list of seminars and lecturers will be published before the festival. }
+  comingSoonNoMonth: { cs: "Seznam seminářů a lektorů zveřejníme startem roku {year}.", en: "The list of seminars and lecturers will be published at the start of {year}." }
   directors: { cs: Seminář pro vedoucí souborů, en: Seminar for group leaders }
   actors: { cs: Semináře pro mladé herce, en: Seminars for young actors }
   lecturer: { cs: Lektor, en: Lecturer }
@@ -229,6 +228,7 @@ press:
   poster: { cs: "Plakát {year} (JPG)", en: "Poster {year} (JPG)" }
   programmePdf: { cs: "Program {year} (PDF)", en: "Programme {year} (PDF)" }
   contactHeading: { cs: Kontakt pro média, en: Media contact }
+  otherNewsHeading: { cs: Další aktuality, en: Other news }
   coverageHeading: { cs: Napsali o nás, en: Coverage }
   earlierCoverage: { cs: Starší ročníky, en: Earlier editions }
 footer:

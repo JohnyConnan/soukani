@@ -17,7 +17,7 @@ test("AE6: after archiving 2027 the home page carries no 2027 records and /archi
   assert.ok(archive, "/archiv/2027/ rendered");
   assert.match(archive, /<h1>Soukání Ostrov 2027<\/h1>/);
   assert.match(archive, /Výzva k přihlášení na Soukání Ostrov 2027/, "2027 news");
-  assert.doesNotMatch(archive, /href="\/o-festivalu\/#call"/, "archived news must not link to the 2029 call");
+  assert.doesNotMatch(archive, /href="\/soubory\/#call"/, "archived news must not link to the 2029 call");
   assert.match(archive, /<h3>Výzva k přihlášení na Soukání Ostrov 2027<\/h3>/);
   assert.match(archive, /Teatro Giovani Brixen/, "2027 group");
   assert.match(archive, /slot-time">15:00</, "2027 slot");

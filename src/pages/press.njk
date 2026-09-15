@@ -7,6 +7,15 @@ pageKey: press
   <h1>{{ cp.heading | t(lang) }}</h1>
   <p class="lede">{{ cp.intro | t(lang) }}</p>
 </section>
+{%- if edition.highlight %}
+<section class="wrap section" id="other-news">
+  <h2>{{ cp.otherNewsHeading | t(lang) }}</h2>
+  <div class="callout prose">
+    <span class="eyebrow">{{ db.copy.highlight.heading | t(lang) | fill({ year: edition.year }) }}</span>
+    <p>{{ edition.highlight | t(lang) }}</p>
+  </div>
+</section>
+{%- endif %}
 <section class="wrap section two-col">
   <div>
     <h2>{{ cp.downloadsHeading | t(lang) }}</h2>

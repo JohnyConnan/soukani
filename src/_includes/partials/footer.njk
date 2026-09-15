@@ -2,7 +2,6 @@
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <section class="footer-block">
-      <img class="footer-logo" src="/{{ edition.logo.negative }}" alt="" width="110" height="110" loading="lazy">
       <h2 class="footer-heading">{{ db.copy.footer.organizer | t(lang) }}</h2>
       <p class="footer-org">
         <a href="{{ site.organizer.url }}">{{ site.organizer.name | t(lang) }}</a><br>
@@ -33,7 +32,7 @@
       <h2 class="footer-heading">{{ db.copy.footer.partners | t(lang) }}</h2>
       <ul class="partner-list">
       {%- for p in db.partners %}
-        <li><a href="{{ p.url }}" rel="noopener"><img src="/{{ p.logo }}" alt="{{ p.name | t(lang) }}" loading="lazy" height="56"></a></li>
+        <li><a href="{{ p.url }}" rel="noopener"><img src="/{{ p.logo }}" alt="{{ p.name | t(lang) }}" loading="lazy" height="44"></a></li>
       {%- endfor %}
       </ul>
     </section>

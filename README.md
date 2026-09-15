@@ -32,13 +32,15 @@ Opens http://localhost:8080/. Editing anything under `content/` rebuilds the pag
 | File | Holds |
 |---|---|
 | `content/site.yaml` | `currentEdition`, organizer, venue, Facebook, old-site link |
-| `content/editions.yaml` | one record per edition: dates, flags, conditions, accent colour, logo, poster, PDF, tickets, film, announcement months |
+| `content/editions.yaml` | one record per edition: dates, flags, conditions, accent colour, logo, poster, PDF, tickets, film, announcement months, old-site links |
 | `content/pages.yaml` | the page registry: menu order, Czech and English slugs, titles and descriptions |
 | `content/copy.yaml` | every UI string and page paragraph as `cs`/`en` pairs |
 | `content/news.yaml`, `groups.yaml`, `workshops.yaml`, `programme.yaml`, `photos.yaml`, `coverage.yaml` | records, each tagged with `edition: <year>` |
 | `content/contacts.yaml`, `partners.yaml`, `countries.yaml` | the four contact roles, footer partners, country names |
 
-The edition record also carries `highlight: { cs, en }` (the "what is new this year" paragraph shown on the home page and later on the archive page) — set it to `null` when there is nothing to say.
+The edition record also carries `highlight: { cs, en }` (the "what is new this year" paragraph shown under *Other news* on the Press page and later on the archive page) — set it to `null` when there is nothing to say.
+
+Two of its fields point at the old HOP-HOP site: `externalArchiveUrl` is the edition's page there, listed in the archive; `externalPhotosUrl` is the page there that actually **shows photos** of that edition, listed on the Photos page. Set `externalPhotosUrl: null` when that edition has no photos online — the edition then simply does not appear in the gallery list (2011, 2009 and 2007 are in that state).
 
 Images and files live under `src/assets/…` and are referenced from the YAML by their path relative to `src/` (for example `assets/photos/2027/opening.jpg`).
 
@@ -90,6 +92,10 @@ Append to `content/groups.yaml` (the file has a commented example):
 ```
 
 While `groupsComplete: false` on the edition record, the Groups page adds "more groups to be announced". Flip it to `true` when the list is final.
+
+### The Groups page while the call runs
+
+The call for applications lives on this page, above the groups, and the page is therefore labelled **Přihlášky / Applications** in `content/pages.yaml`. When the call closes, change that page's `label`, `title` and `description` back to *Soubory / Groups*; the slugs (`soubory`, `groups`) never change, so no link or bookmark breaks. The "Soubory" sub-heading above the list appears only while the call section is there.
 
 ## Add press coverage
 
@@ -145,11 +151,11 @@ All page states are flags on the edition record; nothing changes by itself with 
 | `applyUrl`, `applyOpensOn`, `applyDeadline` | URL / dates or null | button target, "form opens on", deadline line |
 | `status` | `upcoming` → `running` → `past` → `archived` | hides the call while running, retrospective hero and Photos CTA when past |
 | `groupsComplete` | true/false | hides "more groups to be announced" |
-| `announceGroups`, `announceProgramme`, `announceWorkshops` | `YYYY-MM` or null | the month named on empty pages |
+| `announceGroups`, `announceProgramme`, `announceWorkshops` | `YYYY-MM` or null | the month named on empty pages; with `null` the page promises the selection at the end of the year before the festival and the programme at the start of the festival year |
 
 Groups, programme and workshops pages switch from "coming soon" to lists as soon as the first record exists. While `call: open` the home page button always leads to the form, even after groups or a poster appear.
 
-When the festival starts (`status: running`) the call section disappears from the About page, so set `published: false` on the "call for applications" news item at the same time — its `#call` link would otherwise point at nothing.
+When the festival starts (`status: running`) the call section disappears from the Groups page, so set `published: false` on the "call for applications" news item at the same time — its `#call` link would otherwise point at nothing.
 
 ## Archive an edition (2029 rollover)
 

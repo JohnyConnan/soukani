@@ -11,6 +11,6 @@
 <p class="notice groups-more">{{ cg.more | t(lang) }}</p>
 {%- endif %}
 {%- elif edition.status == 'upcoming' %}
-{%- set month = edition.announceGroups %}{%- set withMonth = cg.comingSoon %}{%- set withoutMonth = cg.comingSoonNoMonth %}{%- set vars = { year: edition.year } %}
+{%- set month = edition.announceGroups %}{%- set withMonth = cg.comingSoon %}{%- set withoutMonth = cg.comingSoonNoMonth %}{%- set vars = { year: edition.year, yearBefore: edition.year - 1 } %}
 {% include "partials/coming-soon.njk" %}
 {%- endif %}

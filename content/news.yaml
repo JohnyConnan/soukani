@@ -10,15 +10,15 @@
   text:
     cs: >-
       Zveme divadelní soubory mladých lidí ve věku 14–18 let z celého světa, aby se přihlásily
-      na 16. ročník festivalu. Přihlášky s videozáznamem inscenace přijímáme do konce prosince 2026.
+      na 16. ročník festivalu. Přihlášky s videozáznamem inscenace přijímáme do 30. listopadu 2026.
     en: >-
       We invite theatre groups of young people aged 14–18 from all over the world to apply
       for the 16th edition of the festival. Applications with a video of the production are
-      accepted until the end of December 2026.
-  link: { page: about, anchor: call }
+      accepted until 30 November 2026.
+  link: { page: groups, anchor: call }
 - id: 2026-announcement-2027
   edition: 2027
-  date: 2026-09-14
+  date: 2026-06-25
   published: true
   title:
     cs: Soukání Ostrov 2027 se koná 5.–9. května 2027

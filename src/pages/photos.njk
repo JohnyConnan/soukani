@@ -29,8 +29,8 @@ pageKey: photos
 <section class="wrap section">
   <h2>{{ cp.oldSiteHeading | t(lang) }}</h2>
   <ul class="edition-list old-site-links">
-  {%- for e in db.externalEditions %}
-    <li><span class="edition-year">{{ e.year }}</span> <a href="{{ e.externalArchiveUrl }}" rel="noopener">{{ cp.oldSiteLink | t(lang) | fill({ year: e.year }) }}</a></li>
+  {%- for e in db.photoEditions %}
+    <li><span class="edition-year">{{ e.year }}</span> <a href="{{ e.externalPhotosUrl }}" rel="noopener">{{ cp.oldSiteLink | t(lang) | fill({ year: e.year }) }}</a></li>
   {%- endfor %}
   </ul>
   <p class="mute">{{ cp.credit | t(lang) }}</p>

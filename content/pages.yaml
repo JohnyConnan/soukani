@@ -15,14 +15,17 @@
   description:
     cs: Co je Soukání Ostrov, jak vznikl jeho název, kde se hraje a jak se přihlásit.
     en: What Soukání Ostrov is, where its name comes from, where it takes place and how to apply.
+# While the call for applications runs, this page is labelled "Přihlášky" / "Call for
+# applications" and carries the call; switch label, title and description back to Soubory /
+# Groups once the call closes. The slug never changes, so no link ever breaks.
 - key: groups
   inMenu: true
   slug: { cs: soubory, en: groups }
-  label: { cs: Soubory, en: Groups }
-  title: { cs: Soubory, en: Groups }
+  label: { cs: Přihlášky, en: Applications }
+  title: { cs: Přihlášky, en: Applications }
   description:
-    cs: Divadelní soubory vybrané uměleckou komisí na aktuální ročník festivalu Soukání Ostrov.
-    en: Theatre groups selected by the artistic committee for the current Soukání Ostrov festival.
+    cs: Podmínky účasti a přihláška na festival Soukání Ostrov a divadelní soubory vybrané uměleckou komisí.
+    en: Conditions, the application form for the Soukání Ostrov festival and the theatre groups selected by the artistic committee.
 - key: programme
   inMenu: true
   slug: { cs: program, en: programme }

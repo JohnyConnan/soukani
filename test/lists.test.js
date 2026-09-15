@@ -4,11 +4,11 @@ import { rmSync } from "node:fs";
 import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 
-test("AE2: with no 2027 groups the Groups page explains and names the month, with no list markup", async () => {
+test("AE2: with no 2027 groups the Přihlášky page explains when the selection comes, with no list markup", async () => {
   const p = await fixture();
   const cs = p.get("/soubory/"), en = p.get("/en/groups/");
-  assert.match(cs, /vybere umělecká komise festivalu[\s\S]*Výběr zveřejníme v únoru 2027\./);
-  assert.match(en, /The selection will be published in February 2027\./);
+  assert.match(cs, /vybere umělecká komise festivalu[\s\S]*Výběr zveřejníme koncem roku 2026\./);
+  assert.match(en, /The selection will be published at the end of 2026\./);
   for (const html of [cs, en]) {
     assert.doesNotMatch(html, /class="card-grid"|group-card|lorem/i);
   }
@@ -19,23 +19,24 @@ test("AE5: with no 2027 poster the Programme page shows the labelled placeholder
   assert.match(p.get("/program/"), /class="poster-pending" role="img" aria-label="Plakát 2027 připravujeme"/);
   assert.match(p.get("/en/programme/"), /The 2027 poster is in preparation/);
   assert.doesNotMatch(p.get("/program/"), /poster-2025/);
-  assert.match(p.get("/program/"), /Program festivalu zveřejníme v dubnu 2027\./);
-  assert.match(p.get("/en/programme/"), /will be published in April 2027\./);
+  assert.match(p.get("/program/"), /Program festivalu zveřejníme startem roku 2027\./);
+  assert.match(p.get("/en/programme/"), /will be published at the start of 2027\./);
   assert.doesNotMatch(p.get("/program/"), /class="day"|programme-extras/);
 });
 
 test("workshops without records explain the format and the month", async () => {
   const p = await fixture();
-  assert.match(p.get("/dilny/"), /každé dopoledne[\s\S]*Seznam seminářů a lektorů zveřejníme v březnu 2027\./);
-  assert.match(p.get("/en/workshops/"), /will be published in March 2027\./);
+  assert.match(p.get("/dilny/"), /každé dopoledne[\s\S]*Seznam seminářů a lektorů zveřejníme startem roku 2027\./);
+  assert.match(p.get("/en/workshops/"), /will be published at the start of 2027\./);
 });
 
-test("null announce months fall back to the deadline wording", async () => {
-  const p = await fixture("null-dates");
-  assert.match(p.get("/soubory/"), /po uzávěrce přihlášek\.<\/p>/);
-  assert.doesNotMatch(p.get("/soubory/"), /Výběr zveřejníme v/);
-  assert.match(p.get("/program/"), /Program festivalu zveřejníme po výběru souborů\./);
-  assert.match(p.get("/en/workshops/"), /will be published before the festival\./);
+test("an announce month, when one is set, names that month instead", async () => {
+  const p = await fixture("call-open");
+  assert.match(p.get("/soubory/"), /Výběr zveřejníme v únoru 2027\./);
+  assert.match(p.get("/en/groups/"), /The selection will be published in February 2027\./);
+  assert.match(p.get("/program/"), /Program festivalu zveřejníme v dubnu 2027\./);
+  assert.match(p.get("/en/workshops/"), /will be published in March 2027\./);
+  assert.doesNotMatch(p.get("/soubory/"), /koncem roku/);
 });
 
 test("groups render country names from the code table, original titles and the host badge", async () => {

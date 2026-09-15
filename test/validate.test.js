@@ -41,6 +41,11 @@ test("editions rendered by the site need an accent and all three logo variants",
   assert.deepEqual(messages(seed((r) => { e2023(r).externalArchiveUrl = null; e2023(r).accent = "#123456"; e2023(r).logo = structuredClone(r.editions[0].logo); })), []);
 });
 
+test("old-site links must be full https addresses; a missing gallery is null, not an error", () => {
+  assertProblem(seed((r) => { r.editions.find((e) => e.year === 2023).externalPhotosUrl = "hophop.zusostrov.cz/x.html"; }), /editions\.yaml/, /2023/, /externalPhotosUrl/, /https/);
+  assert.deepEqual(messages(seed((r) => { r.editions.find((e) => e.year === 2023).externalPhotosUrl = null; })), []);
+});
+
 test("participation conditions are all-or-nothing", () => {
   assertProblem(seed((r) => { r.editions[0].adultsMax = null; }), /editions\.yaml/, /2027/, /adultsMax/, /together/);
   assert.deepEqual(messages(seed((r) => { for (const f of ["ageMin", "ageMax", "maxMinutes", "maxActors", "adultsMin", "adultsMax"]) r.editions[0][f] = null; })), []);

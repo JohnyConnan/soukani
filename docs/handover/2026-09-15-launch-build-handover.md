@@ -12,7 +12,7 @@ origin: docs/brainstorms/2026-09-14-soukani-2027-website-requirements.md
 - **Repo:** https://github.com/JohnyConnan/soukani (public, `main` deploys via GitHub Actions to GitHub Pages).
 - **Live (team review):** https://johnyconnan.github.io/soukani/ – Czech at the root, English under `/en/`. Carries `<meta name="robots" content="noindex">` until `SITE_URL` points at `soukani.cz`.
 - **Plan status:** all ten implementation units U1–U10 shipped (16 commits). A Tier 2 code review (six reviewer personas, run id `20260915-095351-ad7eaff0`) found 5 P1 and 16 P2/P3 findings; all applied in commit `342e1bc`. Nothing actionable is open.
-- **Tests:** `npm test` → 112 passing. The deploy workflow runs them before building.
+- **Tests:** `npm test` → 115 passing. The deploy workflow runs them before building.
 - **Repository variables (already set):** `PATH_PREFIX=/soukani/`, `SITE_URL=https://johnyconnan.github.io`.
 
 ## How the project is organised (short)
@@ -78,6 +78,43 @@ reload (⌘⇧R). Fingerprinting the assets would remove the window for good.
 2. Without it: open the project URL in the signed-in Chrome and POST from page context to `https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/ListFiles` and `/GetFile` with `{projectId, path}` and the header `Connect-Protocol-Version: 1`. `GetFile` returns base64; decode in the page and read it back as text.
 
 Project `fd0065fe-199f-4bd0-bc0e-d2690c6b206d`, file `Soukani Ostrov 27.dc.html`.
+
+## Editorial revision (2026-09-15, after the launch build)
+
+Ten changes requested by Jonáš once the launch build was live. All ten shipped; `npm test` → 115 passing.
+
+- **The call for applications moved from About to the Groups page**, which is now labelled *Přihlášky /
+  Applications* (the direct equivalent; "Call for applications" in the title would have repeated the
+  section heading right below it, and is long in the menu bar). The slugs stay `soubory` / `groups`, so the hero CTA, the news item's `#call`
+  link and every bookmark keep working; when the call closes, only `label`, `title` and `description`
+  of that record in `pages.yaml` go back to *Soubory / Groups*.
+- **The "Co chystáme na rok 2027" highlight left the home page** for a new *Další aktuality / Other news*
+  section on the Press page (`press.otherNewsHeading` in `copy.yaml`). It is still the edition record's
+  `highlight` field, so an edition without one renders no section.
+- **The news bubbles lost their "Více" line** — the headline is the link. `news.more` and `.news-more`
+  are gone with it.
+- **The announcement news item is dated 2026-06-25**; the call item keeps 2026-09-15 and still sorts first.
+- **Applications e-mail** for the call and the footer: `festivalsoukani@gmail.com` (was
+  `konyvka@zusostrov.cz`). This settles assumption 5 below for Jonáš's address.
+- **`applyDeadline` is 2026-11-30** (was 2026-12-31). The call news item's text was changed to match —
+  it promised "do konce prosince 2026" and would otherwise have contradicted the deadline line.
+- **The announce months are `null` for 2027** and the no-month copy now carries the promise instead:
+  groups "Výběr zveřejníme koncem roku {yearBefore}", programme and workshops "…startem roku {year}".
+  `{yearBefore}` is `edition.year - 1`, passed by `groups-list.njk`: the groups are selected after the
+  deadline, which falls in the year *before* the festival, so 2027 prints "koncem roku 2026" and the
+  sentence stays right for every later edition. Setting an `announce*` month again switches that page
+  back to "v únoru 2027" wording; the `call-open` fixture covers that path.
+- **The footer lost the logo**, so *Pořadatel*, *Kontakty* and *Partneři* now start on the same line;
+  the type dropped to `--step--2`, the spacing tightened and partner logos to 44 px. Desktop footer
+  height 316 px.
+- **`externalPhotosUrl`** is a new edition field: the old-site page that actually shows photos of that
+  edition, used by the *Fotogalerie starších ročníků* list. `externalArchiveUrl` keeps its old job on
+  the archive page. Checked page by page against hophop.zusostrov.cz: 2025 and 2023 use the gallery
+  pages Jonáš named (2023's is spelled `fotogralerie`), 2017 and 2015 their galleries, 2021 and 2019
+  their *soubory* pages (production photos; those editions have no gallery), 2013 its edition page
+  (poster and programme scans), 2005/2003/2001 their edition pages (8–11 photos each). **2011, 2009 and
+  2007 carry `null`** — their gallery pages on the old site are empty and 2007's external link
+  (soukani.wz.cz) is a dead domain — so they are listed in the archive but not in the gallery list.
 
 ## Content assumptions to confirm with Jonáš
 

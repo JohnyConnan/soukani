@@ -1,7 +1,17 @@
 ---
 pageKey: groups
 ---
+{#- While the call runs this page is the call: the registry title leads ("Přihlášky"), the call
+    section follows and the selected groups sit under it. Once the call closes call.njk renders
+    nothing, the "Soubory" sub-heading drops away and the page is the groups list again. -#}
+{%- set callShown = edition.ageMin and edition.status == 'upcoming' -%}
 <section class="wrap section">
-  <h1>{{ db.copy.groups.heading | t(lang) }} {{ edition.year }}</h1>
+  <h1>{{ registry.title | t(lang) }} {{ edition.year }}</h1>
+</section>
+{% include "partials/call.njk" %}
+<section class="wrap section">
+  {%- if callShown %}
+  <h2>{{ db.copy.groups.heading | t(lang) }}</h2>
+  {%- endif %}
   {% include "partials/groups-list.njk" %}
 </section>
