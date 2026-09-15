@@ -1,0 +1,34 @@
+/* Landing hero: concentric rings, orbiting dots and one small spider around the centred logo.
+   CSS-only; every decorative node is aria-hidden and the animation stops under reduced motion. */
+.hero { position: relative; overflow: hidden; padding-block: var(--space-5) var(--space-4); }
+.hero-inner { display: grid; gap: var(--space-4); align-items: center; }
+@media (min-width: 900px) { .hero-inner { grid-template-columns: 1.1fr 1fr; } }
+.hero-text h1 { font-size: var(--step-4); margin-bottom: var(--space-2); }
+.hero-sub { font-size: var(--step-1); color: var(--ink-soft); max-width: 30em; margin-bottom: var(--space-1); }
+.hero-dates { font-size: var(--step-2); font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--space-3); }
+.hero-dates .place { font-weight: 400; color: var(--ink-soft); }
+
+.rings { position: relative; width: min(100%, 26rem); aspect-ratio: 1; margin-inline: auto; }
+.ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0.35; }
+.ring.r2 { inset: 12%; opacity: 0.5; }
+.ring.r3 { inset: 24%; opacity: 0.7; border-color: var(--accent); border-width: 2px; }
+.ring.r4 { inset: 36%; border-style: dashed; opacity: 0.4; }
+.orbit { position: absolute; inset: 0; border-radius: 50%; animation: spin 40s linear infinite; }
+.orbit.o2 { inset: 12%; animation-duration: 28s; animation-direction: reverse; }
+.orbit.o3 { inset: 24%; animation-duration: 18s; }
+.dot { position: absolute; top: -6px; left: calc(50% - 6px); width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 1.5px solid var(--ink); }
+.dot.small { width: 8px; height: 8px; top: -4px; left: calc(50% - 4px); background: var(--ink); border: 0; }
+.dot.bottom { top: auto; bottom: -6px; }
+.hero-logo { position: absolute; inset: 40%; display: grid; place-items: center; }
+.hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+/* the spider hangs on a thread from the outer ring and sways */
+.spider { position: absolute; top: 4%; left: 68%; width: 2px; height: 22%; background: var(--ink); transform-origin: top center; animation: sway 6s ease-in-out infinite; }
+.spider::after { content: ""; position: absolute; left: 50%; bottom: -12px; width: 14px; height: 12px; border-radius: 50% 50% 45% 45%; background: var(--ink); transform: translateX(-50%); box-shadow: -8px -2px 0 -4px var(--ink), 8px -2px 0 -4px var(--ink), -9px 4px 0 -4px var(--ink), 9px 4px 0 -4px var(--ink); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit, .spider { animation: none; }
+}
