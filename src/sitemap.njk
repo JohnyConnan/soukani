@@ -1,0 +1,25 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for p in db.pages %}
+{%- for lang in db.languages %}
+  <url>
+    <loc>{{ build.absoluteUrl(db.pageUrl(p.key, lang)) }}</loc>
+    {%- for l in db.languages %}
+    <xhtml:link rel="alternate" hreflang="{{ l }}" href="{{ build.absoluteUrl(db.pageUrl(p.key, l)) }}"/>
+    {%- endfor %}
+  </url>
+{%- endfor %}
+{%- endfor %}
+{%- for ap in db.archivePages %}
+  <url>
+    <loc>{{ build.absoluteUrl(db.archiveEditionUrl(ap.edition.year, ap.lang)) }}</loc>
+    {%- for l in db.languages %}
+    <xhtml:link rel="alternate" hreflang="{{ l }}" href="{{ build.absoluteUrl(db.archiveEditionUrl(ap.edition.year, l)) }}"/>
+    {%- endfor %}
+  </url>
+{%- endfor %}
+</urlset>

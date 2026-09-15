@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}">
+{%- if build.isTemporaryHost %}
+<meta name="robots" content="noindex">
+{%- endif %}
+<link rel="canonical" href="{{ build.absoluteUrl(page.url) }}">
+{%- if alternates %}
+{%- for l, url in alternates %}
+<link rel="alternate" hreflang="{{ l }}" href="{{ build.absoluteUrl(url) }}">
+{%- endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ build.absoluteUrl(alternates.en) }}">
+{%- endif %}
+{%- set ogImage = edition.poster or edition.logo.color %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ db.site.name }}">
+<meta property="og:title" content="{{ metaTitle }}">
+<meta property="og:description" content="{{ metaDescription }}">
+<meta property="og:url" content="{{ build.absoluteUrl(page.url) }}">
+<meta property="og:image" content="{{ build.absoluteUrl('/' + ogImage) }}">
+<meta property="og:locale" content="{{ 'cs_CZ' if lang == 'cs' else 'en_GB' }}">
+<meta name="theme-color" content="{{ edition.accent }}">
+<link rel="icon" href="/{{ edition.logo.color }}" type="image/png">
+<link rel="apple-touch-icon" href="/{{ edition.logo.color }}">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>:root { --accent: {{ edition.accent }}; }</style>

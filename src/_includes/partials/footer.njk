@@ -1,0 +1,40 @@
+{%- set site = db.site -%}
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <section class="footer-block">
+      <h2 class="footer-heading">{{ db.copy.footer.organizer | t(lang) }}</h2>
+      <p class="footer-org">
+        <a href="{{ site.organizer.url }}">{{ site.organizer.name | t(lang) }}</a><br>
+        {{ site.organizer.street }}, {{ site.organizer.city }}<br>
+        {{ db.copy.footer.ico | t(lang) }} {{ site.organizer.ico }}
+      </p>
+      {%- if site.coOrganizer %}
+      <p class="footer-co">{{ db.copy.footer.coOrganizer | t(lang) }} {{ site.coOrganizer.name }}{% if site.coOrganizer.ico %}, {{ db.copy.footer.ico | t(lang) }} {{ site.coOrganizer.ico }}{% endif %}</p>
+      {%- endif %}
+      <p class="footer-links">
+        <a href="{{ site.facebook }}" rel="noopener">{{ db.copy.footer.facebook | t(lang) }}</a><br>
+        <a href="{{ db.pageUrl('archive', lang) }}">{{ db.copy.footer.archive | t(lang) }}</a><br>
+        <a href="{{ site.oldSite.url }}" rel="noopener">{{ db.copy.footer.oldSite | t(lang) }}</a>
+      </p>
+    </section>
+    <section class="footer-block">
+      <h2 class="footer-heading">{{ db.copy.footer.contacts | t(lang) }}</h2>
+      <ul class="contact-list">
+      {%- for c in db.contacts %}
+        <li>
+          <strong>{{ c.name }}</strong> <span class="contact-role">– {{ c.role | t(lang) }}</span><br>
+          <a href="mailto:{{ c.email }}">{{ c.email }}</a>{% if c.phone %}, <a href="tel:{{ c.phone | replace(' ', '') }}">{{ c.phone }}</a>{% endif %}
+        </li>
+      {%- endfor %}
+      </ul>
+    </section>
+    <section class="footer-block footer-partners">
+      <h2 class="footer-heading">{{ db.copy.footer.partners | t(lang) }}</h2>
+      <ul class="partner-list">
+      {%- for p in db.partners %}
+        <li><a href="{{ p.url }}" rel="noopener"><img src="/{{ p.logo }}" alt="{{ p.name | t(lang) }}" loading="lazy" height="56"></a></li>
+      {%- endfor %}
+      </ul>
+    </section>
+  </div>
+</footer>

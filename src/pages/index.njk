@@ -1,16 +1,6 @@
 ---
-pagination:
-  data: languages
-  size: 1
-  alias: lang
-languages: ["cs", "en"]
-permalink: "{{ '/' if lang == 'cs' else '/en/' }}"
+pageKey: home
 ---
-<!doctype html>
-<html lang="{{ lang }}">
-<head><meta charset="utf-8"><title>Soukání Ostrov 2027</title></head>
-<body>
-<p>{{ "Web festivalu Soukání Ostrov 2027 připravujeme." if lang == "cs" else "The Soukání Ostrov 2027 festival website is coming soon." }}</p>
-<a href="{{ '/en/' if lang == 'cs' else '/' }}">{{ "EN" if lang == "cs" else "CZ" }}</a>
-</body>
-</html>
+<section class="wrap">
+  <h1>{{ db.site.name }}</h1>
+</section>

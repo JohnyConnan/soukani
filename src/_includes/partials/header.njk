@@ -1,0 +1,20 @@
+{%- set other = db.otherLang(lang) -%}
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="{{ db.pageUrl('home', lang) }}" aria-label="{{ db.site.name }} – {{ db.copy.hero.place | t(lang) }}">
+      <img class="brand-logo" src="/{{ edition.logo.color }}" alt="" width="40" height="40">
+      <span class="brand-name">{{ db.site.name }}</span>
+    </a>
+    <details class="nav">
+      <summary class="nav-toggle" aria-expanded="false"><span class="nav-toggle-label">{{ db.copy.nav.menu | t(lang) }}</span><span class="nav-toggle-icon" aria-hidden="true"></span></summary>
+      <nav class="menu" aria-label="{{ db.copy.nav.menu | t(lang) }}">
+        <ul>
+        {%- for item in db.menu %}
+          <li><a href="{{ db.pageUrl(item.key, lang) }}"{% if item.key == pageKey %} aria-current="page"{% endif %}>{{ item.label | t(lang) }}</a></li>
+        {%- endfor %}
+        </ul>
+      </nav>
+    </details>
+    <a class="lang-switch" href="{{ alternates[other] if alternates else db.pageUrl('home', other) }}" hreflang="{{ other }}" lang="{{ other }}" rel="alternate">{{ db.copy.nav.switch | t(lang) }}</a>
+  </div>
+</header>

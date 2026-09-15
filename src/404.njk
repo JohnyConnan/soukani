@@ -1,11 +1,16 @@
 ---
+layout: layouts/base.njk
 permalink: /404.html
+lang: cs
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  edition: "{{ db.current }}"
+  metaTitle: "{{ db.copy.notFound.heading.cs }} / {{ db.copy.notFound.heading.en }} – {{ db.site.name }}"
+  metaDescription: "{{ db.copy.notFound.text.cs }} {{ db.copy.notFound.text.en }}"
 ---
-<!doctype html>
-<html lang="cs">
-<head><meta charset="utf-8"><title>404</title></head>
-<body>
-<p>Stránka nenalezena. <a href="/">Úvod</a></p>
-<p>Page not found. <a href="/en/">Home</a></p>
-</body>
-</html>
+<section class="wrap not-found">
+  <h1>{{ db.copy.notFound.heading.cs }}</h1>
+  <p>{{ db.copy.notFound.text.cs }} <a href="{{ db.pageUrl('home', 'cs') }}">{{ db.copy.notFound.home.cs }}</a></p>
+  <h2 lang="en">{{ db.copy.notFound.heading.en }}</h2>
+  <p lang="en">{{ db.copy.notFound.text.en }} <a href="{{ db.pageUrl('home', 'en') }}">{{ db.copy.notFound.home.en }}</a></p>
+</section>
