@@ -1,6 +1,56 @@
 ---
 pageKey: press
 ---
-<section class="wrap">
-  <h1>{{ registry.title | t(lang) }}</h1>
+{%- set cp = db.copy.press -%}
+{%- set logoYear = edition.logoYear or edition.year -%}
+<section class="wrap section">
+  <h1>{{ cp.heading | t(lang) }}</h1>
+  <p class="lede">{{ cp.intro | t(lang) }}</p>
+</section>
+<section class="wrap section two-col">
+  <div>
+    <h2>{{ cp.downloadsHeading | t(lang) }}</h2>
+    <div class="logo-preview" aria-hidden="true">
+      <span class="light"><img src="/{{ edition.logo.color }}" alt=""></span>
+      <span class="dark"><img src="/{{ edition.logo.white }}" alt=""></span>
+      <span class="light"><img src="/{{ edition.logo.negative }}" alt=""></span>
+    </div>
+    <ul class="downloads">
+      <li><a href="/{{ edition.logo.color }}" download>{{ cp.logoColor | t(lang) | fill({ year: logoYear }) }}</a></li>
+      <li><a href="/{{ edition.logo.white }}" download>{{ cp.logoWhite | t(lang) | fill({ year: logoYear }) }}</a></li>
+      <li><a href="/{{ edition.logo.negative }}" download>{{ cp.logoNegative | t(lang) | fill({ year: logoYear }) }}</a></li>
+      {%- if edition.poster %}
+      <li><a href="/{{ edition.poster }}" download>{{ cp.poster | t(lang) | fill({ year: edition.year }) }}</a></li>
+      {%- endif %}
+      {%- if edition.programmePdf %}
+      <li><a href="/{{ edition.programmePdf }}" download>{{ cp.programmePdf | t(lang) | fill({ year: edition.year }) }}</a></li>
+      {%- endif %}
+    </ul>
+  </div>
+  <div>
+    {%- set m = db.mediaContact %}
+    <h2>{{ cp.contactHeading | t(lang) }}</h2>
+    <p class="media-contact"><strong>{{ m.name }}</strong>, {{ m.role | t(lang) }}<br>
+      <a href="mailto:{{ m.email }}">{{ m.email }}</a>{% if m.phone %}<br><a href="tel:{{ m.phone | replace(' ', '') }}">{{ m.phone }}</a>{% endif %}</p>
+    {%- set current = db.forEdition('coverage', edition.year) %}
+    {%- set earlier = db.notEdition('coverage', edition.year) %}
+    {%- if current | length or earlier | length %}
+    <h2>{{ cp.coverageHeading | t(lang) }}</h2>
+    {%- if current | length %}
+    <ul class="coverage">
+    {%- for c in current %}
+      <li><a href="{{ c.url }}" rel="noopener">{{ c.title | t(lang) }}</a> <span class="mute">– {{ c.outlet }}, {{ c.date | year }}</span></li>
+    {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if earlier | length %}
+    <h3>{{ cp.earlierCoverage | t(lang) }}</h3>
+    <ul class="coverage">
+    {%- for c in earlier %}
+      <li><a href="{{ c.url }}" rel="noopener">{{ c.title | t(lang) }}</a> <span class="mute">– {{ c.outlet }}, {{ c.date | year }}</span></li>
+    {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- endif %}
+  </div>
 </section>

@@ -1,6 +1,37 @@
 ---
 pageKey: photos
 ---
-<section class="wrap">
-  <h1>{{ registry.title | t(lang) }}</h1>
+{%- set cp = db.copy.photos -%}
+{%- set current = db.forEdition('photos', edition.year) -%}
+<section class="wrap section">
+  <h1>{{ cp.heading | t(lang) }} {{ edition.year }}</h1>
+  {%- if current | length %}
+  {%- set photos = current %}{%- set photoEdition = edition %}
+  {% include "partials/gallery.njk" %}
+  {%- if edition.filmUrl %}
+  <p><a class="button ghost" href="{{ edition.filmUrl }}" rel="noopener">{{ cp.film | t(lang) | fill({ year: edition.year }) }}</a></p>
+  {%- endif %}
+  {%- else %}
+  <p class="lede photos-empty">{{ cp.currentEmpty | t(lang) | fill({ year: edition.year }) }}</p>
+  {%- endif %}
+</section>
+{%- set teaser = db.previousWithPhotos %}
+{%- if teaser %}
+<section class="wrap section photos-teaser">
+  <h2>{{ cp.teaserHeading | t(lang) | fill({ year: teaser.year }) }}</h2>
+  {%- set photos = db.forEdition('photos', teaser.year) %}{%- set photoEdition = teaser %}
+  {% include "partials/gallery.njk" %}
+  {%- if teaser.filmUrl %}
+  <p><a class="button ghost" href="{{ teaser.filmUrl }}" rel="noopener">{{ cp.film | t(lang) | fill({ year: teaser.year }) }}</a></p>
+  {%- endif %}
+</section>
+{%- endif %}
+<section class="wrap section">
+  <h2>{{ cp.oldSiteHeading | t(lang) }}</h2>
+  <ul class="edition-list old-site-links">
+  {%- for e in db.externalEditions %}
+    <li><span class="edition-year">{{ e.year }}</span> <a href="{{ e.externalArchiveUrl }}" rel="noopener">{{ cp.oldSiteLink | t(lang) | fill({ year: e.year }) }}</a></li>
+  {%- endfor %}
+  </ul>
+  <p class="mute">{{ cp.credit | t(lang) }}</p>
 </section>

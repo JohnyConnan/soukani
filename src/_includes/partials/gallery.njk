@@ -1,0 +1,14 @@
+{#- Photo grid. Expects: photos, photoEdition (edition record), lang. Same file for grid and full view. -#}
+<ul class="gallery">
+{%- for ph in photos %}
+  {%- set alt = (ph.caption | t(lang)) if ph.caption else (db.copy.photos.altFallback | t(lang) | fill({ year: photoEdition.year })) %}
+  <li>
+    <figure>
+      <a href="/{{ ph.file }}"><img src="/{{ ph.file }}" alt="{{ alt }}" loading="lazy" decoding="async"{% if ph.width and ph.height %} width="{{ ph.width }}" height="{{ ph.height }}"{% endif %}></a>
+      {%- if ph.caption %}
+      <figcaption>{{ ph.caption | t(lang) }}</figcaption>
+      {%- endif %}
+    </figure>
+  </li>
+{%- endfor %}
+</ul>
