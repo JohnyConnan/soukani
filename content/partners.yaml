@@ -1,13 +1,23 @@
 # Footer partner logos. Only confirmed partners; paths relative to src/.
-- id: zus-ostrov
-  name: { cs: Základní umělecká škola Ostrov, en: Základní umělecká škola Ostrov }
-  url: https://www.zusostrov.cz
-  logo: assets/partners/zus-ostrov.png
+# tier: funding = "Finančně podpořili", partner = "Partneři". ZUŠ Ostrov is the organizer,
+# named in the first footer column, so it carries no logo here.
 - id: mesto-ostrov
+  tier: funding
   name: { cs: Město Ostrov, en: Town of Ostrov }
   url: https://www.ostrov.cz
   logo: assets/partners/mesto-ostrov.svg
+- id: karlovarsky-kraj
+  tier: funding
+  name: { cs: Karlovarský kraj, en: Karlovy Vary Region }
+  url: https://www.kr-karlovarsky.cz
+  logo: assets/partners/karlovarsky-kraj.png
 - id: kkc-ostrov
+  tier: partner
   name: { cs: Kulturní a kreativní centrum Ostrov, en: Kulturní a kreativní centrum Ostrov }
   url: https://kkc-ostrov.cz
   logo: assets/partners/kkc-ostrov.svg
+- id: mddm-ostrov
+  tier: partner
+  name: { cs: Městský dům dětí a mládeže Ostrov, en: Městský dům dětí a mládeže Ostrov }
+  url: https://www.mddmostrov.cz
+  logo: assets/partners/mddm-ostrov.png

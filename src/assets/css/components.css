@@ -151,9 +151,11 @@
 .site-footer strong { color: var(--cream); }
 .contact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-1); }
 .contact-role { color: var(--cream-mute); }
+.footer-partners { display: grid; gap: var(--space-2); align-content: start; }
 .partner-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.partner-list a { display: inline-flex; background: var(--white); border-radius: var(--radius-sm); padding: 0.45rem 0.7rem; }
-.partner-list img { height: 44px; width: auto; max-width: 9rem; object-fit: contain; }
+.partner-list a { display: inline-flex; background: var(--white); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; }
+/* 48px keeps the Karlovarský kraj mark above the 27 x 11.5 mm floor its manual sets. */
+.partner-list img { height: 48px; width: auto; max-width: 10.5rem; object-fit: contain; }
 .footer-bottom { border-top: 1px solid var(--line-dark); margin-top: var(--space-3); padding-top: var(--space-2); color: var(--ink-mute); }
 
 /* Archive list */

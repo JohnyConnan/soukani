@@ -51,14 +51,16 @@ test("menu order follows R6 in both languages", () => {
   assert.deepEqual(labels(pages.get("/en/")), ["Home", "About", "Applications", "Programme", "Workshops", "Photos", "Press"]);
 });
 
-test("footer holds IČO, four contact roles, Facebook, three partner logos and the old-site link", () => {
+test("footer holds IČO, four contact roles, Facebook, both logo tiers and the old-site link", () => {
   const html = pages.get("/o-festivalu/");
   const footer = html.slice(html.indexOf('<footer'));
   assert.doesNotMatch(footer, /footer-logo/, "the festival logo is not repeated in the footer");
   assert.match(footer, /IČO 49753606/);
   assert.equal((footer.match(/class="contact-role"/g) || []).length, 4);
   assert.match(footer, /https:\/\/www\.facebook\.com\/SoukaniOstrov/);
-  assert.equal((footer.match(/<img src="\/assets\/partners\//g) || []).length, 3);
+  assert.equal((footer.match(/<img src="\/assets\/partners\//g) || []).length, 4);
+  assert.match(footer, /Finančně podpořili[\s\S]*mesto-ostrov[\s\S]*karlovarsky-kraj[\s\S]*Partneři[\s\S]*kkc-ostrov[\s\S]*mddm-ostrov/);
+  assert.doesNotMatch(footer, /assets\/partners\/zus-ostrov/, "ZUŠ Ostrov is the organizer, not a footer logo");
   assert.match(footer, /https:\/\/hophop\.zusostrov\.cz\/soukani-cs\.html/);
   assert.match(footer, /href="\/archiv\/"/);
   assert.match(pages.get("/en/about/"), /href="\/en\/archive\/"/);

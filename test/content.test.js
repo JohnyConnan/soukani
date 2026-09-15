@@ -12,7 +12,7 @@ const htmlPages = () => [...pages].filter(([u]) => u.endsWith("/") || u.endsWith
 
 test("no design leftovers or invented facts in any output", () => {
   for (const [url, html] of htmlPages()) {
-    for (const needle of ["lorem", "TODO", "placeholder", "MDDM", "JAMU", "28. 4.", "12–20", "šapitó"]) {
+    for (const needle of ["lorem", "TODO", "placeholder", "JAMU", "28. 4.", "12–20", "šapitó"]) {
       assert.ok(!html.toLowerCase().includes(needle.toLowerCase()), `${url} contains "${needle}"`);
     }
   }
@@ -28,7 +28,8 @@ test("every page has a non-empty title and description in both languages", () =>
 test("footer IČO matches the public registry and partner logos exist on disk", () => {
   assert.match(pages.get("/"), /IČO 49753606/);
   const partners = YAML.parse(readFileSync("content/partners.yaml", "utf8"));
-  assert.equal(partners.length, 3);
+  assert.equal(partners.length, 4);
+  assert.deepEqual(partners.map((p) => p.tier), ["funding", "funding", "partner", "partner"]);
   for (const p of partners) assert.ok(existsSync(`src/${p.logo}`), p.logo);
 });
 

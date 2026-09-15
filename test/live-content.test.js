@@ -24,7 +24,7 @@ test("live content builds and every page has a title, description, accent and lo
 
 test("live content has no leftovers, broken anchors or non-https external links", () => {
   for (const [url, html] of htmlPages()) {
-    for (const needle of ["lorem", "TODO", "placeholder", "MDDM", "JAMU"]) assert.ok(!html.toLowerCase().includes(needle.toLowerCase()), `${url} contains "${needle}"`);
+    for (const needle of ["lorem", "TODO", "placeholder", "JAMU"]) assert.ok(!html.toLowerCase().includes(needle.toLowerCase()), `${url} contains "${needle}"`);
     for (const m of html.matchAll(/href="([^"]+)"/g)) {
       const href = m[1];
       if (href.startsWith("/") || href.startsWith("mailto:") || href.startsWith("tel:")) continue;

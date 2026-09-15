@@ -29,12 +29,19 @@
       </ul>
     </section>
     <section class="footer-block footer-partners">
-      <h2 class="footer-heading">{{ db.copy.footer.partners | t(lang) }}</h2>
-      <ul class="partner-list">
-      {%- for p in db.partners %}
-        <li><a href="{{ p.url }}" rel="noopener"><img src="/{{ p.logo }}" alt="{{ p.name | t(lang) }}" loading="lazy" height="44"></a></li>
+      {%- for tier in [{ key: 'funding', heading: db.copy.footer.funding }, { key: 'partner', heading: db.copy.footer.partners }] %}
+      {%- set logos = db.partners | where('tier', tier.key) %}
+      {%- if logos.length %}
+      <div class="partner-tier">
+        <h2 class="footer-heading">{{ tier.heading | t(lang) }}</h2>
+        <ul class="partner-list">
+        {%- for p in logos %}
+          <li><a href="{{ p.url }}" rel="noopener"><img src="/{{ p.logo }}" alt="{{ p.name | t(lang) }}" loading="lazy" height="48"></a></li>
+        {%- endfor %}
+        </ul>
+      </div>
+      {%- endif %}
       {%- endfor %}
-      </ul>
     </section>
   </div>
   <div class="wrap footer-bottom">© {{ edition.year }} {{ db.site.name }}</div>

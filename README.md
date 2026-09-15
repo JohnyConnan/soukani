@@ -186,7 +186,17 @@ The domain must be live before the poster goes to print and before the AITA/IATA
 
 ## Partner logos
 
-`src/assets/partners/` holds the best public versions of the ZUŠ Ostrov, Město Ostrov and KKC Ostrov logos, downloaded from their websites for the launch. Replace them with official files when the partners supply them; the paths are set in `content/partners.yaml`. Add a partner only when confirmed for the edition.
+The footer shows logos in two groups. Each record in `content/partners.yaml` carries a `tier`:
+`funding` puts it under **Finančně podpořili** (Město Ostrov, Karlovarský kraj), `partner` under **Partneři**
+(KKC Ostrov, Městský dům dětí a mládeže Ostrov). A missing or mistyped tier stops the build.
+ZUŠ Ostrov has no logo here — it is the organizer, named in the first footer column.
+
+`src/assets/partners/` holds the best public versions of those logos, downloaded from the partners' own
+websites. Replace them with official files when the partners supply them. The Karlovarský kraj mark is
+bound by the [region's graphic manual](https://www.kr-karlovarsky.cz/system/files/2024-08/Graficky_manual_KK_2021_0.pdf):
+colour version on a light background (the footer puts every logo on a white chip), never recoloured or
+distorted, and no smaller than 27 × 11.5 mm — hence the 48 px logo height in `components.css`. Add a partner
+only when confirmed for the edition.
 
 ## Development notes
 
