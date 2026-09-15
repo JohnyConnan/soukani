@@ -10,7 +10,7 @@ nav:
   skip: { cs: Přejít na obsah, en: Skip to content }
 hero:
   edition:
-    cs: "{n}. mezinárodní divadelní festival dětí a mládeže"
+    cs: "{n} mezinárodní divadelní festival dětí a mládeže"
     en: "{n} International Theatre Festival of Children and Youth"
   place: { cs: "Ostrov, Česká republika", en: "Ostrov, Czech Republic" }
   datesTba: { cs: termín upřesníme, en: dates to be announced }
@@ -27,7 +27,6 @@ hero:
 facts:
   dates: { cs: Termín, en: Dates }
   edition: { cs: Ročník, en: Edition }
-  ordinal: { cs: "{n}.", en: "{n}" }
   since: { cs: Bienále, en: Biennial }
   sinceValue: { cs: "od roku {year}", en: "since {year}" }
   age: { cs: Herci ve věku, en: Actors aged }
@@ -129,7 +128,7 @@ call:
   heading: { cs: Výzva k přihlášení, en: Call for applications }
   intro:
     cs: >-
-      Zveme divadelní soubory mladých lidí z celého světa, aby se přihlásily na {n}. ročník
+      Zveme divadelní soubory mladých lidí z celého světa, aby se přihlásily na {n} ročník
       festivalu Soukání Ostrov. Soubory vybírá umělecká komise festivalu na základě přihlášky
       a videozáznamu inscenace.
     en: >-
@@ -243,10 +242,10 @@ archive:
   intro:
     cs: "Festival Soukání Ostrov se koná od roku 1995 jako bienále. Starší ročníky jsou zdokumentovány na stránkách souboru HOP-HOP."
     en: "Soukání Ostrov has been held every two years since 1995. Earlier editions are documented on the HOP-HOP ensemble site."
-  edition: { cs: "{n}. ročník", en: "{n} edition" }
+  edition: { cs: "{n} ročník", en: "{n} edition" }
   external: { cs: na stránkách HOP-HOP, en: on the HOP-HOP site }
   title: { cs: "Soukání Ostrov {year}", en: "Soukání Ostrov {year}" }
-  description: { cs: "Soubory, program, semináře a fotografie z {n}. ročníku festivalu Soukání Ostrov.", en: "Groups, programme, seminars and photos from the {n} edition of Soukání Ostrov." }
+  description: { cs: "Soubory, program, semináře a fotografie z {n} ročníku festivalu Soukání Ostrov.", en: "Groups, programme, seminars and photos from the {n} edition of Soukání Ostrov." }
 notFound:
   heading: { cs: Stránka nenalezena, en: Page not found }
   text: { cs: Tato stránka neexistuje nebo byla přesunuta., en: This page does not exist or has moved. }

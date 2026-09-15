@@ -1,0 +1,23 @@
+---
+pageKey: archive
+---
+{%- set ca = db.copy.archive -%}
+<section class="wrap section">
+  <h1>{{ ca.heading | t(lang) }}</h1>
+  <p class="lede">{{ ca.intro | t(lang) }}</p>
+  <ul class="edition-list">
+  {%- for e in db.editions %}
+    <li>
+      <span class="edition-year">{{ e.year }}</span>
+      <span class="mute">{{ ca.edition | t(lang) | fill({ n: e.number | ordinal(lang) }) }}{% if e.dateFrom %}, {{ e.dateFrom | range(e.dateTo, lang) }}{% endif %}</span>
+      {%- if e.status == 'archived' and not e.externalArchiveUrl %}
+      <a class="archive-local" href="{{ db.archiveEditionUrl(e.year, lang) }}">{{ ca.title | t(lang) | fill({ year: e.year }) }}</a>
+      {%- elif e.externalArchiveUrl %}
+      <a class="archive-external" href="{{ e.externalArchiveUrl }}" rel="noopener">{{ ca.title | t(lang) | fill({ year: e.year }) }} ({{ ca.external | t(lang) }})</a>
+      {%- else %}
+      <a class="archive-current" href="{{ db.pageUrl('home', lang) }}">{{ ca.title | t(lang) | fill({ year: e.year }) }}</a>
+      {%- endif %}
+    </li>
+  {%- endfor %}
+  </ul>
+</section>

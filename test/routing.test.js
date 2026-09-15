@@ -21,7 +21,7 @@ test("AE1: the Czech workshops page switches to the English workshops page and b
 test("every registry page produces exactly its two permalinks", () => {
   for (const [key, urls] of Object.entries(EXPECTED)) for (const url of urls) assert.ok(pages.has(url), `${key} → ${url}`);
   const htmlPages = [...pages.keys()].filter((u) => u.endsWith("/") || u.endsWith(".html"));
-  assert.equal(htmlPages.length, 14 + 1, "seven pages × two languages + 404");
+  assert.equal(htmlPages.length, 16 + 1, "eight registry pages × two languages + 404");
 });
 
 test("each output carries lang, one canonical, two hreflang alternates and x-default → English", () => {

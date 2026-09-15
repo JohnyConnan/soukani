@@ -1,0 +1,40 @@
+{%- set ca = db.copy.archive -%}
+<section class="wrap section archive-edition">
+  <span class="eyebrow">{{ ca.heading | t(lang) }}</span>
+  <h1>{{ ca.title | t(lang) | fill({ year: edition.year }) }}</h1>
+  <p class="lede">{{ db.copy.hero.edition | t(lang) | fill({ n: edition.number | ordinal(lang) }) }}{% if edition.dateFrom %}, {{ edition.dateFrom | range(edition.dateTo, lang) }}{% endif %}, {{ db.copy.hero.place | t(lang) }}</p>
+  {% include "partials/facts.njk" %}
+</section>
+{%- if edition.highlight %}
+<section class="wrap section"><div class="callout prose"><p>{{ edition.highlight | t(lang) }}</p></div></section>
+{%- endif %}
+{%- set items = db.forEdition('news', edition.year) %}
+{% include "partials/news-list.njk" %}
+{%- if db.forEdition('groups', edition.year) | length %}
+<section class="wrap section">
+  <h2>{{ db.copy.groups.heading | t(lang) }}</h2>
+  {% include "partials/groups-list.njk" %}
+</section>
+{%- endif %}
+{%- if db.forEdition('programme', edition.year) | length or edition.poster %}
+<section class="wrap section">
+  <h2>{{ db.copy.programme.heading | t(lang) }}</h2>
+  {% include "partials/programme-body.njk" %}
+</section>
+{%- endif %}
+{%- if db.forEdition('workshops', edition.year) | length %}
+<section class="wrap section">
+  <h2>{{ db.copy.workshops.heading | t(lang) }}</h2>
+  {% include "partials/workshops-list.njk" %}
+</section>
+{%- endif %}
+{%- set photos = db.forEdition('photos', edition.year) %}
+{%- if photos | length or edition.filmUrl %}
+<section class="wrap section">
+  <h2>{{ db.copy.photos.heading | t(lang) }}</h2>
+  {%- if photos | length %}{%- set photoEdition = edition %}{% include "partials/gallery.njk" %}{%- endif %}
+  {%- if edition.filmUrl %}
+  <p><a class="button ghost" href="{{ edition.filmUrl }}" rel="noopener">{{ db.copy.photos.film | t(lang) | fill({ year: edition.year }) }}</a></p>
+  {%- endif %}
+</section>
+{%- endif %}
