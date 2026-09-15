@@ -26,6 +26,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Check repository variables
+        run: |
+          if [ -z "$SITE_URL" ] || [ -z "$PATH_PREFIX" ]; then
+            echo "Set the SITE_URL and PATH_PREFIX repository variables (Settings → Secrets and variables → Actions → Variables). See README.md › First-time setup."
+            exit 1
+          fi
+        env:
+          PATH_PREFIX: ${{ vars.PATH_PREFIX }}
+          SITE_URL: ${{ vars.SITE_URL }}
       - name: Build site
         run: npm run build
         env:

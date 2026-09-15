@@ -7,6 +7,11 @@ test("same-month range", () => {
   assert.equal(formatRange("2027-05-05", "2027-05-09", "en"), "5–9 May 2027");
 });
 
+test("cross-year range", () => {
+  assert.equal(formatRange("2026-12-30", "2027-01-02", "cs"), "30. 12. 2026–2. 1. 2027");
+  assert.equal(formatRange("2026-12-30", "2027-01-02", "en"), "30 December 2026–2 January 2027");
+});
+
 test("cross-month range", () => {
   assert.equal(formatRange("2025-04-30", "2025-05-03", "cs"), "30. 4.–3. 5. 2025");
   assert.equal(formatRange("2025-04-30", "2025-05-03", "en"), "30 April–3 May 2025");

@@ -1,21 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import YAML from "yaml";
-import { build, buildFixture as fixture } from "./helpers.js";
+import { rmSync } from "node:fs";
+import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 const callSection = (html) => html.slice(html.indexOf('id="call"'), html.indexOf("</section>", html.indexOf('id="call"')));
-
-/** Writes a one-off fixture with the 2027 record changed. */
-function editionVariant(mutate) {
-  const dir = mkdtempSync(join(tmpdir(), "soukani-call-"));
-  const editions = YAML.parse(readFileSync("content/editions.yaml", "utf8"));
-  mutate(editions.find((e) => e.year === 2027));
-  writeFileSync(join(dir, "editions.yaml"), YAML.stringify(editions));
-  return dir;
-}
 
 test("AE3: without applyUrl the call section has no empty or # link and shows the opening text", async () => {
   const p = await fixture();

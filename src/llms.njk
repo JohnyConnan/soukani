@@ -6,7 +6,7 @@ eleventyExcludeFromCollections: true
 {%- set org = db.site.organizer -%}
 # {{ db.site.name }}
 
-> {{ db.copy.site.tagline.en }} – {{ db.copy.hero.edition.en | fill({ n: ed.number | ordinal('en') }) }}{% if ed.dateFrom %}, {{ ed.dateFrom | range(ed.dateTo, 'en') }}{% endif %}, Ostrov, Czech Republic. Organized by {{ org.name.en }} ({{ org.street }}, {{ org.city }}).
+> {{ db.copy.site.tagline.en }} – {{ db.copy.hero.edition.en | fill({ n: ed.number | ordinal('en') }) }}{% if ed.dateFrom %}, {{ ed.dateFrom | range(ed.dateTo, 'en') }}{% endif %}, {{ org.town }}, {{ org.country.en }}. Organized by {{ org.name.en }} ({{ org.street }}, {{ org.postalCode }} {{ org.town }}).
 
 {% for p in db.copy.about.description.en %}{{ p }}
 

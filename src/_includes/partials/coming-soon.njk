@@ -1,0 +1,8 @@
+{#- "What and when" text for an empty list. Expects: month (YYYY-MM or null), withMonth and withoutMonth copy pairs, vars. -#}
+<p class="lede coming-soon">
+  {%- if month -%}
+    {{ withMonth | t(lang) | fill(vars | merge({ month: month | monthIn(lang) })) }}
+  {%- else -%}
+    {{ withoutMonth | t(lang) | fill(vars) }}
+  {%- endif -%}
+</p>

@@ -8,13 +8,8 @@
     {%- if slots | length %}
     {% include "partials/schedule.njk" %}
     {%- elif edition.status == 'upcoming' %}
-    <p class="lede coming-soon">
-      {%- if edition.announceProgramme -%}
-        {{ cp.comingSoon | t(lang) | fill({ month: edition.announceProgramme | monthIn(lang) }) }}
-      {%- else -%}
-        {{ cp.comingSoonNoMonth | t(lang) }}
-      {%- endif -%}
-    </p>
+    {%- set month = edition.announceProgramme %}{%- set withMonth = cp.comingSoon %}{%- set withoutMonth = cp.comingSoonNoMonth %}{%- set vars = {} %}
+    {% include "partials/coming-soon.njk" %}
     {%- endif %}
     {%- if edition.programmePdf or edition.tickets %}
     <div class="callout programme-extras">

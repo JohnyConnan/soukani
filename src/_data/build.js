@@ -6,12 +6,17 @@ import { normalizePathPrefix, normalizeSiteUrl, absoluteUrl, isTemporaryHost } f
  */
 export default function () {
   const pathPrefix = normalizePathPrefix(process.env.PATH_PREFIX);
-  const url = normalizeSiteUrl(process.env.SITE_URL);
+  const rawUrl = (process.env.SITE_URL ?? "").trim();
+  if (rawUrl && !/^https:\/\/[^/\s?#]+\/?$/.test(rawUrl)) {
+    throw new Error(`SITE_URL must be an https origin without a path, e.g. https://soukani.cz (got "${rawUrl}")`);
+  }
+  const url = normalizeSiteUrl(rawUrl);
   return {
     url,
     pathPrefix,
     isTemporaryHost: isTemporaryHost(url),
-    absoluteUrl: (path) => absoluteUrl(url, pathPrefix, path),
+    // Without an origin the plugin still applies the prefix to root-relative hrefs, so emit the bare path.
+    absoluteUrl: (path) => (url ? absoluteUrl(url, pathPrefix, path) : absoluteUrl("", "/", path)),
     time: new Date().toISOString(),
   };
 }

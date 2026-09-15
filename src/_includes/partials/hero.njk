@@ -5,7 +5,7 @@
       <h1>{{ db.site.name }}</h1>
       <p class="hero-sub">{{ db.copy.hero.edition | t(lang) | fill({ n: edition.number | ordinal(lang) }) }}</p>
       <p class="hero-dates">
-        {%- if state == 'past' or state == 'archived' and edition.dateFrom -%}
+        {%- if (state == 'past' or state == 'archived') and edition.dateFrom -%}
           {{ db.copy.hero.past | t(lang) | fill({ dates: edition.dateFrom | range(edition.dateTo, lang) }) }}
         {%- elif edition.dateFrom -%}
           {{ edition.dateFrom | range(edition.dateTo, lang) }}

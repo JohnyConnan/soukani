@@ -1,0 +1,34 @@
+# News items, newest first is not required – the site sorts by date descending.
+# link: either { page: <pages.yaml key>, anchor: <optional id> } or { url: https://... }
+- id: 2026-call-2027
+  edition: 2027
+  date: 2026-09-15
+  published: true
+  title:
+    cs: Výzva k přihlášení na Soukání Ostrov 2027
+    en: Call for applications – Soukání Ostrov 2027
+  text:
+    cs: >-
+      Zveme divadelní soubory mladých lidí ve věku 14–18 let z celého světa, aby se přihlásily
+      na 16. ročník festivalu. Přihlášky s videozáznamem inscenace přijímáme do konce prosince 2026.
+    en: >-
+      We invite theatre groups of young people aged 14–18 from all over the world to apply
+      for the 16th edition of the festival. Applications with a video of the production are
+      accepted until the end of December 2026.
+  link: { page: about, anchor: call }
+- id: 2026-announcement-2027
+  edition: 2027
+  date: 2026-09-14
+  published: true
+  title:
+    cs: Soukání Ostrov 2027 se koná 5.–9. května 2027
+    en: Soukání Ostrov 2027 takes place on 5–9 May 2027
+  text:
+    cs: >-
+      Šestnáctý ročník mezinárodního divadelního festivalu dětí a mládeže pořádá Základní umělecká
+      škola Ostrov. Představení se hrají v Kulturním a kreativním centru Ostrov, semináře v ZUŠ.
+    en: >-
+      The sixteenth edition of the international theatre festival of children and youth is
+      organized by Základní umělecká škola Ostrov. Performances take place at the Ostrov
+      Cultural and Creative Centre, seminars at the school.
+  link: { page: about }

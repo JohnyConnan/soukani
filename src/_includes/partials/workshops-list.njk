@@ -13,11 +13,6 @@
 {%- for workshop in actors %}{% include "partials/workshop.njk" %}{% endfor %}
 {%- endif %}
 {%- elif edition.status == 'upcoming' %}
-<p class="lede coming-soon">
-  {%- if edition.announceWorkshops -%}
-    {{ cw.comingSoon | t(lang) | fill({ month: edition.announceWorkshops | monthIn(lang) }) }}
-  {%- else -%}
-    {{ cw.comingSoonNoMonth | t(lang) }}
-  {%- endif -%}
-</p>
+{%- set month = edition.announceWorkshops %}{%- set withMonth = cw.comingSoon %}{%- set withoutMonth = cw.comingSoonNoMonth %}{%- set vars = {} %}
+{% include "partials/coming-soon.njk" %}
 {%- endif %}

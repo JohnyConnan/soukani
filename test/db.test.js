@@ -3,11 +3,14 @@ import assert from "node:assert/strict";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadDb } from "../lib/db.js";
+import { mkdtempSync, cpSync, writeFileSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const opts = { srcDir: join(root, "src") };
-const seed = () => loadDb(join(root, "content"), opts);
-const fixture = (name) => loadDb(join(root, "test/fixtures", name), { ...opts, fallbackDir: join(root, "content") });
+const seedDir = join(root, "test/fixtures/seed");
+const seed = () => loadDb(seedDir, opts);
+const fixture = (name) => loadDb(join(root, "test/fixtures", name), { ...opts, fallbackDir: seedDir });
 
 test("seed data loads with 2027 current and empty 2027 records", () => {
   const db = seed();
@@ -30,7 +33,24 @@ test("fixture directory overrides seed files without touching the rest", () => {
   assert.equal(db.current.call, "open");
   assert.equal(db.state(db.current), "open");
   assert.equal(db.current.applyUrl, "https://forms.example.org/soukani-2027");
-  assert.equal(db.news.length, 2, "news.yaml falls back to content/");
+  assert.equal(db.forEdition("news", 2027).length, 4, "the fixture's own news.yaml is used");
+  assert.equal(db.contacts.length, 4, "files missing from the fixture fall back to the seed");
+});
+
+test("an open call owns the state even once a poster or groups exist", () => {
+  const db = fixture("call-open");
+  assert.equal(db.state({ ...db.current, poster: "assets/posters/poster-2025.jpg" }), "open");
+});
+
+test("loadDb is not memoised: a changed file is read on the next call", () => {
+  const dir = mkdtempSync(join(tmpdir(), "soukani-cache-"));
+  cpSync(seedDir, dir, { recursive: true });
+  const first = loadDb(dir, opts);
+  writeFileSync(join(dir, "site.yaml"), readFileSync(join(dir, "site.yaml"), "utf8").replace("name: Soukání Ostrov", "name: Soukání Test"));
+  const second = loadDb(dir, opts);
+  rmSync(dir, { recursive: true });
+  assert.equal(first.site.name, "Soukání Ostrov");
+  assert.equal(second.site.name, "Soukání Test");
 });
 
 test("state derivation follows the matrix", () => {
@@ -62,7 +82,7 @@ test("null dates are accepted for an upcoming edition", () => {
 });
 
 test("broken content throws one readable error listing every problem", () => {
-  assert.throws(() => loadDb(join(root, "test/fixtures/broken"), { ...opts, fallbackDir: join(root, "content") }), (err) => {
+  assert.throws(() => loadDb(join(root, "test/fixtures/broken"), { ...opts, fallbackDir: seedDir }), (err) => {
     assert.match(err.message, /Content validation failed/);
     assert.match(err.message, /groups\.yaml › it-broken › text\.en/);
     assert.match(err.message, /country code "XY"/);

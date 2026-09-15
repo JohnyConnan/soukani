@@ -17,6 +17,8 @@ test("AE6: after archiving 2027 the home page carries no 2027 records and /archi
   assert.ok(archive, "/archiv/2027/ rendered");
   assert.match(archive, /<h1>Soukání Ostrov 2027<\/h1>/);
   assert.match(archive, /Výzva k přihlášení na Soukání Ostrov 2027/, "2027 news");
+  assert.doesNotMatch(archive, /href="\/o-festivalu\/#call"/, "archived news must not link to the 2029 call");
+  assert.match(archive, /<h3>Výzva k přihlášení na Soukání Ostrov 2027<\/h3>/);
   assert.match(archive, /Teatro Giovani Brixen/, "2027 group");
   assert.match(archive, /slot-time">15:00</, "2027 slot");
   assert.match(archive, /Lektor: Marek K\./, "2027 workshop");
@@ -55,10 +57,12 @@ test("an archived edition with zero records renders facts only, no empty list ma
   const editions = YAML.parse(readFileSync(join(dir, "editions.yaml"), "utf8"));
   const e2023 = editions.find((e) => e.year === 2023);
   e2023.externalArchiveUrl = null;
-  e2023.accent = "#123456";
-  e2023.logo = { color: "assets/identity/2025/logo-barevne.png", white: "assets/identity/2025/logo-bile.png", negative: "assets/identity/2025/logo-negativ.png" };
   writeFileSync(join(dir, "editions.yaml"), YAML.stringify(editions));
   try {
+    await assert.rejects(() => build({ PATH_PREFIX: undefined, CONTENT_DIR: dir }), /2023 › accent/, "a locally rendered edition without identity fails the build");
+    e2023.accent = "#123456";
+    e2023.logo = { color: "assets/identity/2025/logo-barevne.png", white: "assets/identity/2025/logo-bile.png", negative: "assets/identity/2025/logo-negativ.png" };
+    writeFileSync(join(dir, "editions.yaml"), YAML.stringify(editions));
     const p = await build({ PATH_PREFIX: undefined, CONTENT_DIR: dir });
     const html = p.get("/archiv/2023/");
     assert.ok(html, "/archiv/2023/ rendered");

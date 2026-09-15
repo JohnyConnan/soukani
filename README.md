@@ -38,6 +38,8 @@ Opens http://localhost:8080/. Editing anything under `content/` rebuilds the pag
 | `content/news.yaml`, `groups.yaml`, `workshops.yaml`, `programme.yaml`, `photos.yaml`, `coverage.yaml` | records, each tagged with `edition: <year>` |
 | `content/contacts.yaml`, `partners.yaml`, `countries.yaml` | the four contact roles, footer partners, country names |
 
+The edition record also carries `highlight: { cs, en }` (the "what is new this year" paragraph shown on the home page and later on the archive page) — set it to `null` when there is nothing to say.
+
 Images and files live under `src/assets/…` and are referenced from the YAML by their path relative to `src/` (for example `assets/photos/2027/opening.jpg`).
 
 **The build validates everything.** A missing English text, a wrong edition year, a mistyped country code, a photo that is too large or a group id that does not exist stops the build with a message naming the file, the record and the field:
@@ -89,6 +91,14 @@ Append to `content/groups.yaml` (the file has a commented example):
 
 While `groupsComplete: false` on the edition record, the Groups page adds "more groups to be announced". Flip it to `true` when the list is final.
 
+## Add press coverage
+
+Append to `content/coverage.yaml`: `id`, `edition`, `date` (YYYY-MM-DD), `outlet`, `title: { cs, en }` and the `url`. Items of the current edition list first on the Press page; older ones under "Earlier editions". Links only, never quotes.
+
+## Change a contact
+
+`content/contacts.yaml` holds the four roles (`id`, `name`, `role: { cs, en }`, `email`, `phone` or `null`). Exactly one contact carries `media: true` (the Press page contact) and exactly one `applications: true` (named in the call for applications); the build refuses zero or two.
+
 ## Add a workshop
 
 Append to `content/workshops.yaml`. `kind` is `directors` (the analysis seminar) or `actors`. `lecturer` and `bio` may stay `null` until confirmed; the page then prints "lecturer TBA".
@@ -131,7 +141,9 @@ All page states are flags on the edition record; nothing changes by itself with 
 | `groupsComplete` | true/false | hides "more groups to be announced" |
 | `announceGroups`, `announceProgramme`, `announceWorkshops` | `YYYY-MM` or null | the month named on empty pages |
 
-Groups, programme and workshops pages switch from "coming soon" to lists as soon as the first record exists.
+Groups, programme and workshops pages switch from "coming soon" to lists as soon as the first record exists. While `call: open` the home page button always leads to the form, even after groups or a poster appear.
+
+When the festival starts (`status: running`) the call section disappears from the About page, so set `published: false` on the "call for applications" news item at the same time — its `#call` link would otherwise point at nothing.
 
 ## Archive an edition (2029 rollover)
 
@@ -166,7 +178,7 @@ The domain must be live before the poster goes to print and before the AITA/IATA
 
 ## Development notes
 
-- `npm test` builds the site programmatically against `content/` and the fixtures in `test/fixtures/` (each fixture overrides only the files it changes; `CONTENT_DIR` points at it).
+- `npm test` builds the site programmatically against a **frozen copy of the launch content** in `test/fixtures/seed/` plus one fixture per lifecycle scenario (each fixture overrides only the files it changes and falls back to the seed; `CONTENT_DIR` points at it). Live `content/` is only checked for generic invariants (valid data, no broken links or leftovers), so editing content never breaks the deploy. Fixtures may carry their own `assets/` for files that should not ship (see `test/fixtures/programme-out/`).
 - `eleventy.config.js` and `src/_data/build.js` read `PATH_PREFIX` and `SITE_URL` inside their functions so tests can vary them.
 - No image pipeline, no native dependencies: photos are committed pre-sized; the validator guards size and format.
 - No cookies, trackers or third-party requests. Fonts (Geist, OFL) are self-hosted under `src/assets/fonts/`.

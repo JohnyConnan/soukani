@@ -1,14 +1,15 @@
-{#- Structured data derived from the current edition and organizer records. Never typed twice. -#}
+{#- Structured data derived from the organizer, venue and current edition records. Nothing typed twice. -#}
 {%- set org = db.site.organizer -%}
+{%- set venue = db.site.venue -%}
 {%- set organization = {
   "@type": "Organization",
   "name": org.name | t(lang),
   "alternateName": org.shortName,
   "url": org.url,
-  "address": { "@type": "PostalAddress", "streetAddress": org.street, "postalCode": org.city | truncate(6, true, ""), "addressLocality": "Ostrov", "addressCountry": "CZ" },
+  "address": { "@type": "PostalAddress", "streetAddress": org.street, "postalCode": org.postalCode, "addressLocality": org.town, "addressCountry": org.countryCode },
   "sameAs": [db.site.facebook]
 } -%}
-<script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "Organization", "name": organization.name, "alternateName": organization.alternateName, "url": organization.url, "address": organization.address, "sameAs": organization.sameAs } | dump | safe }}</script>
+<script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": organization["@type"], "name": organization.name, "alternateName": organization.alternateName, "url": organization.url, "address": organization.address, "sameAs": organization.sameAs } | dump | safe }}</script>
 {%- if (pageKey == 'home' or pageKey == 'programme') and edition.dateFrom %}
 {%- set event = {
   "@context": "https://schema.org",
@@ -19,7 +20,7 @@
   "endDate": edition.dateTo,
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "location": { "@type": "Place", "name": db.site.venue.name, "address": { "@type": "PostalAddress", "streetAddress": db.site.venue.street, "postalCode": db.site.venue.city | truncate(6, true, ""), "addressLocality": "Ostrov", "addressCountry": "CZ" } },
+  "location": { "@type": "Place", "name": venue.name, "url": venue.url, "address": { "@type": "PostalAddress", "streetAddress": venue.street, "postalCode": venue.postalCode, "addressLocality": venue.town, "addressCountry": venue.countryCode } },
   "organizer": organization,
   "inLanguage": db.languages,
   "image": build.absoluteUrl('/' + (edition.poster or edition.logo.color)),

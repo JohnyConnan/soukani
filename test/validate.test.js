@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const srcDir = join(root, "src");
-const base = loadContent(join(root, "content"));
+const base = loadContent(join(root, "test/fixtures/seed"));
 
 function seed(mutate) {
   const raw = structuredClone(base);
@@ -28,8 +28,28 @@ const group = {
   title: { cs: "Nit", en: "Thread" }, text: { cs: "Text.", en: "Text." }, photo: null, host: false,
 };
 
-test("valid seed content has no problems", () => {
+test("valid seed content and the live content/ have no problems", () => {
   assert.deepEqual(messages(seed()), []);
+  assert.deepEqual(messages(validate(loadContent(join(root, "content")), { srcDir })), []);
+});
+
+test("editions rendered by the site need an accent and all three logo variants", () => {
+  assertProblem(seed((r) => { r.editions[0].accent = null; }), /editions\.yaml/, /2027/, /accent/, /missing/);
+  assertProblem(seed((r) => { delete r.editions[0].logo.white; }), /editions\.yaml/, /2027/, /logo\.white/);
+  const e2023 = (r) => r.editions.find((e) => e.year === 2023);
+  assertProblem(seed((r) => { e2023(r).externalArchiveUrl = null; }), /editions\.yaml/, /2023/, /accent/, /logo\.color/);
+  assert.deepEqual(messages(seed((r) => { e2023(r).externalArchiveUrl = null; e2023(r).accent = "#123456"; e2023(r).logo = structuredClone(r.editions[0].logo); })), []);
+});
+
+test("participation conditions are all-or-nothing", () => {
+  assertProblem(seed((r) => { r.editions[0].adultsMax = null; }), /editions\.yaml/, /2027/, /adultsMax/, /together/);
+  assert.deepEqual(messages(seed((r) => { for (const f of ["ageMin", "ageMax", "maxMinutes", "maxActors", "adultsMin", "adultsMax"]) r.editions[0][f] = null; })), []);
+});
+
+test("asset paths must be relative to src/ without a leading slash", () => {
+  assertProblem(seed((r) => (r.photos[0].file = "/assets/photos/2025/soukani-2025-01.jpg")), /photos\.yaml/, /leading slash/);
+  assertProblem(seed((r) => (r.editions[0].poster = "/assets/posters/poster-2025.jpg")), /editions\.yaml/, /poster/, /leading slash/);
+  assertProblem(seed((r) => (r.partners[0].logo = "../content/site.yaml")), /partners\.yaml/, /leading slash|relative/);
 });
 
 test("group with text.en missing names groups.yaml, id and field", () => {

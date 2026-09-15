@@ -1,0 +1,13 @@
+# Footer partner logos. Only confirmed partners; paths relative to src/.
+- id: zus-ostrov
+  name: { cs: Základní umělecká škola Ostrov, en: Základní umělecká škola Ostrov }
+  url: https://www.zusostrov.cz
+  logo: assets/partners/zus-ostrov.png
+- id: mesto-ostrov
+  name: { cs: Město Ostrov, en: Town of Ostrov }
+  url: https://www.ostrov.cz
+  logo: assets/partners/mesto-ostrov.svg
+- id: kkc-ostrov
+  name: { cs: Kulturní a kreativní centrum Ostrov, en: Kulturní a kreativní centrum Ostrov }
+  url: https://kkc-ostrov.cz
+  logo: assets/partners/kkc-ostrov.svg

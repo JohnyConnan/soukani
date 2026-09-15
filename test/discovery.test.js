@@ -1,10 +1,10 @@
 import { test, before } from "node:test";
 import assert from "node:assert/strict";
-import { build } from "./helpers.js";
+import { build, SEED } from "./helpers.js";
 
 let pages;
 before(async () => {
-  pages = await build({ PATH_PREFIX: "/soukani/", SITE_URL: "https://johnyconnan.github.io" });
+  pages = await build({ PATH_PREFIX: "/soukani/", SITE_URL: "https://johnyconnan.github.io", CONTENT_DIR: SEED });
 });
 
 test("sitemap lists every registry page in both languages with absolute URLs and alternates", () => {

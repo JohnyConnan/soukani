@@ -14,8 +14,10 @@ pageKey: archive
       <a class="archive-local" href="{{ db.archiveEditionUrl(e.year, lang) }}">{{ ca.title | t(lang) | fill({ year: e.year }) }}</a>
       {%- elif e.externalArchiveUrl %}
       <a class="archive-external" href="{{ e.externalArchiveUrl }}" rel="noopener">{{ ca.title | t(lang) | fill({ year: e.year }) }} ({{ ca.external | t(lang) }})</a>
-      {%- else %}
+      {%- elif e.year == db.current.year %}
       <a class="archive-current" href="{{ db.pageUrl('home', lang) }}">{{ ca.title | t(lang) | fill({ year: e.year }) }}</a>
+      {%- else %}
+      <span class="archive-pending">{{ ca.title | t(lang) | fill({ year: e.year }) }}</span>
       {%- endif %}
     </li>
   {%- endfor %}

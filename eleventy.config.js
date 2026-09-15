@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { normalizePathPrefix } from "./lib/urls.js";
-import { formatDate, formatRange, formatMonth, formatMonthIn, ordinal } from "./lib/dates.js";
+import { formatDate, formatRange, formatMonthIn, ordinal } from "./lib/dates.js";
 
 export default function (eleventyConfig) {
   // Read inside the function so tests can vary the prefix per Eleventy instance.
@@ -19,13 +19,12 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("fill", (text, vars = {}) =>
     String(text ?? "").replace(/\{(\w+)\}/g, (m, k) => {
-      if (!(k in vars)) throw new Error(`No value for token {${k}} in "${text}"`);
+      if (!(k in vars) || vars[k] == null) throw new Error(`No value for token {${k}} in "${text}"`);
       return vars[k];
     }),
   );
   eleventyConfig.addFilter("date", formatDate);
   eleventyConfig.addFilter("range", formatRange);
-  eleventyConfig.addFilter("month", formatMonth);
   eleventyConfig.addFilter("monthIn", formatMonthIn);
   eleventyConfig.addFilter("ordinal", ordinal);
   eleventyConfig.addFilter("groupBy", (list, key) => {
@@ -37,6 +36,7 @@ export default function (eleventyConfig) {
     }
     return [...map.entries()].map(([k, items]) => ({ key: k, items }));
   });
+  eleventyConfig.addFilter("merge", (a, b) => ({ ...(a ?? {}), ...(b ?? {}) }));
   eleventyConfig.addFilter("where", (list, key, value) => (list ?? []).filter((i) => i[key] === value));
   eleventyConfig.addFilter("year", (iso) => String(iso ?? "").slice(0, 4));
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });

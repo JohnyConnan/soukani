@@ -1,0 +1,17 @@
+# Participating groups. Add one record per group once the committee selects it.
+# Example (remove the leading "# " on every line to use it):
+# - id: it-brixen-example
+#   edition: 2027
+#   published: true
+#   country: IT                      # code from countries.yaml
+#   town: { cs: Brixen, en: Bressanone }
+#   ensemble: Teatro Giovani
+#   director: Anna Rossi
+#   titleOriginal: Il filo             # title in the original language, or null
+#   title: { cs: Nit, en: The Thread }
+#   text:
+#     cs: Krátký text o souboru a inscenaci.
+#     en: A short text about the group and the production.
+#   photo: assets/photos/2027/it-brixen.jpg   # or null
+#   host: false                      # true only for the organizing ensemble HOP-HOP
+[]

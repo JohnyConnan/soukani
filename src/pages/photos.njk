@@ -12,7 +12,7 @@ pageKey: photos
   <p><a class="button ghost" href="{{ edition.filmUrl }}" rel="noopener">{{ cp.film | t(lang) | fill({ year: edition.year }) }}</a></p>
   {%- endif %}
   {%- else %}
-  <p class="lede photos-empty">{{ cp.currentEmpty | t(lang) | fill({ year: edition.year }) }}</p>
+  <p class="lede photos-empty">{{ (cp.pastEmpty if edition.status == 'past' else cp.currentEmpty) | t(lang) | fill({ year: edition.year }) }}</p>
   {%- endif %}
 </section>
 {%- set teaser = db.previousWithPhotos %}

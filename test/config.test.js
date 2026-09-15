@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import buildData from "../src/_data/build.js";
 import { absoluteUrl, normalizePathPrefix, normalizeSiteUrl, isTemporaryHost } from "../lib/urls.js";
-import { build } from "./helpers.js";
+import { build, SEED } from "./helpers.js";
 
 test("pathPrefix defaults to / when PATH_PREFIX is unset", () => {
   delete process.env.PATH_PREFIX;
@@ -37,7 +37,7 @@ test("temporary host detection drives the noindex guard", () => {
 });
 
 test("with PATH_PREFIX=/soukani/ a root-relative link is rewritten in output", async () => {
-  const pages = await build({ PATH_PREFIX: "/soukani/", SITE_URL: "https://johnyconnan.github.io" });
+  const pages = await build({ PATH_PREFIX: "/soukani/", SITE_URL: "https://johnyconnan.github.io", CONTENT_DIR: SEED });
   const home = pages.get("/");
   assert.ok(home, "home page rendered");
   assert.match(home, /href="\/soukani\/en\/"/);
@@ -45,7 +45,19 @@ test("with PATH_PREFIX=/soukani/ a root-relative link is rewritten in output", a
 });
 
 test("without PATH_PREFIX links stay root-relative", async () => {
-  const pages = await build({ PATH_PREFIX: undefined, SITE_URL: undefined });
+  const pages = await build({ PATH_PREFIX: undefined, SITE_URL: undefined, CONTENT_DIR: SEED });
   assert.match(pages.get("/"), /href="\/en\/"/);
   assert.ok(pages.has("/404.html"));
+});
+
+test("with PATH_PREFIX set and SITE_URL unset, alternates are prefixed exactly once", async () => {
+  const pages = await build({ PATH_PREFIX: "/soukani/", SITE_URL: undefined, CONTENT_DIR: SEED });
+  const html = pages.get("/dilny/");
+  assert.doesNotMatch(html, /soukani\/soukani/);
+  assert.match(html, /hreflang="en" href="\/soukani\/en\/workshops\/"/);
+});
+
+test("a SITE_URL with a path or without https fails the build with a readable message", async () => {
+  await assert.rejects(() => build({ PATH_PREFIX: undefined, SITE_URL: "https://soukani.cz/web", CONTENT_DIR: SEED }), /SITE_URL must be an https origin/);
+  await assert.rejects(() => build({ PATH_PREFIX: undefined, SITE_URL: "soukani.cz", CONTENT_DIR: SEED }), /SITE_URL must be an https origin/);
 });

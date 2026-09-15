@@ -1,0 +1,44 @@
+# ISO 3166-1 alpha-2 code → country name pair. Add a code here before using it on a group.
+AT: { cs: Rakousko, en: Austria }
+AU: { cs: Austrálie, en: Australia }
+BE: { cs: Belgie, en: Belgium }
+BG: { cs: Bulharsko, en: Bulgaria }
+BY: { cs: Bělorusko, en: Belarus }
+CA: { cs: Kanada, en: Canada }
+CH: { cs: Švýcarsko, en: Switzerland }
+CN: { cs: Čína, en: China }
+CZ: { cs: Česká republika, en: Czech Republic }
+DE: { cs: Německo, en: Germany }
+DK: { cs: Dánsko, en: Denmark }
+EE: { cs: Estonsko, en: Estonia }
+ES: { cs: Španělsko, en: Spain }
+FI: { cs: Finsko, en: Finland }
+FR: { cs: Francie, en: France }
+GB: { cs: Spojené království, en: United Kingdom }
+GR: { cs: Řecko, en: Greece }
+HR: { cs: Chorvatsko, en: Croatia }
+HU: { cs: Maďarsko, en: Hungary }
+IE: { cs: Irsko, en: Ireland }
+IL: { cs: Izrael, en: Israel }
+IN: { cs: Indie, en: India }
+IT: { cs: Itálie, en: Italy }
+JP: { cs: Japonsko, en: Japan }
+KR: { cs: Jižní Korea, en: South Korea }
+LT: { cs: Litva, en: Lithuania }
+LV: { cs: Lotyšsko, en: Latvia }
+MX: { cs: Mexiko, en: Mexico }
+NL: { cs: Nizozemsko, en: Netherlands }
+NO: { cs: Norsko, en: Norway }
+NP: { cs: Nepál, en: Nepal }
+PL: { cs: Polsko, en: Poland }
+PT: { cs: Portugalsko, en: Portugal }
+RO: { cs: Rumunsko, en: Romania }
+RS: { cs: Srbsko, en: Serbia }
+RU: { cs: Rusko, en: Russia }
+SE: { cs: Švédsko, en: Sweden }
+SI: { cs: Slovinsko, en: Slovenia }
+SK: { cs: Slovensko, en: Slovakia }
+TR: { cs: Turecko, en: Türkiye }
+TW: { cs: Tchaj-wan, en: Taiwan }
+UA: { cs: Ukrajina, en: Ukraine }
+US: { cs: Spojené státy, en: United States }

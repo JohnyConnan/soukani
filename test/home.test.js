@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixture as fixture } from "./helpers.js";
+import { rmSync } from "node:fs";
+import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 
 test("seed (call announced, no URL): CTA links to the About page's #call anchor", async () => {
@@ -67,4 +68,29 @@ test("highlight paragraph renders from the edition record", async () => {
   const p = await fixture();
   assert.match(p.get("/"), /Jižní Koreje/);
   assert.match(p.get("/en/"), /South Korea/);
+});
+
+test("CTA follows the matrix for closed, groups known, programme out and running", async () => {
+  assert.match((await fixture("call-closed")).get("/"), /<a class="button" href="\/soubory\/">Přihlášené soubory<\/a>/);
+  assert.match((await fixture("groups-partial")).get("/en/"), /<a class="button" href="\/en\/groups\/">Selected groups<\/a>/);
+  assert.match((await fixture("programme-out")).get("/"), /<a class="button" href="\/program\/">Program festivalu<\/a>/);
+  const dir = editionVariant((e) => { e.status = "running"; e.call = "closed"; });
+  try {
+    assert.match((await build({ PATH_PREFIX: undefined, CONTENT_DIR: dir })).get("/en/"), /<a class="button" href="\/en\/programme\/">Festival programme<\/a>/);
+  } finally { rmSync(dir, { recursive: true }); }
+});
+
+test("an open call keeps the form button even when a poster already exists", async () => {
+  const dir = editionVariant((e) => { e.call = "open"; e.applyUrl = "https://forms.example.org/x"; e.poster = "assets/posters/poster-2025.jpg"; });
+  try {
+    assert.match((await build({ PATH_PREFIX: undefined, CONTENT_DIR: dir })).get("/"), /href="https:\/\/forms\.example\.org\/x" rel="noopener">Přihlásit soubor</);
+  } finally { rmSync(dir, { recursive: true }); }
+});
+
+test("news items with an external link and with no link render correctly", async () => {
+  const p = await fixture("call-open");
+  const cs = p.get("/");
+  assert.match(cs, /<a href="https:\/\/www\.facebook\.com\/SoukaniOstrov\/posts\/1" rel="noopener">Nový plakát na Facebooku<\/a>/);
+  assert.match(cs, /<h3>Bez odkazu<\/h3>/);
+  assert.equal((cs.match(/class="news-item"/g) || []).length, 4);
 });

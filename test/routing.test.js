@@ -1,10 +1,10 @@
 import { test, before } from "node:test";
 import assert from "node:assert/strict";
-import { build } from "./helpers.js";
+import { build, SEED } from "./helpers.js";
 
 let pages;
 before(async () => {
-  pages = await build({ PATH_PREFIX: undefined, SITE_URL: "https://johnyconnan.github.io" });
+  pages = await build({ PATH_PREFIX: undefined, SITE_URL: "https://johnyconnan.github.io", CONTENT_DIR: SEED });
 });
 
 const EXPECTED = {
@@ -78,13 +78,13 @@ test("404 links to both homepages", () => {
 
 test("noindex is emitted on the github.io host only", async () => {
   for (const url of Object.values(EXPECTED).flat()) assert.match(pages.get(url), /<meta name="robots" content="noindex">/, url);
-  const live = await build({ PATH_PREFIX: undefined, SITE_URL: "https://soukani.cz" });
+  const live = await build({ PATH_PREFIX: undefined, SITE_URL: "https://soukani.cz", CONTENT_DIR: SEED });
   for (const url of Object.values(EXPECTED).flat()) assert.doesNotMatch(live.get(url), /noindex/, url);
   assert.match(live.get("/"), /rel="canonical" href="https:\/\/soukani\.cz\/"/);
 });
 
 test("with PATH_PREFIX the menu, assets and switch are prefixed", async () => {
-  const prefixed = await build({ PATH_PREFIX: "/soukani/", SITE_URL: "https://johnyconnan.github.io" });
+  const prefixed = await build({ PATH_PREFIX: "/soukani/", SITE_URL: "https://johnyconnan.github.io", CONTENT_DIR: SEED });
   const html = prefixed.get("/dilny/");
   assert.match(html, /href="\/soukani\/en\/workshops\/"/);
   assert.match(html, /href="\/soukani\/assets\/css\/site\.css"/);

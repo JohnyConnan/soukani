@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixture as fixture } from "./helpers.js";
+import { rmSync } from "node:fs";
+import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 
 test("AE2: with no 2027 groups the Groups page explains and names the month, with no list markup", async () => {
@@ -50,6 +51,7 @@ test("groups render country names from the code table, original titles and the h
   assert.match(cs, /class="notice groups-more">Další soubory doplníme\./);
   assert.match(cs, /Režie: Anna Rossi/);
   assert.match(cs, /<img src="\/assets\/photos\/2025\/soukani-2025-06\.jpg" alt="HOP-HOP – Pavouček" loading="lazy"/);
+  assert.equal((cs.match(/<img src="\/assets\/photos/g) || []).length, 1, "the group without a photo renders a text-only card");
   assert.doesNotMatch(cs, /coming-soon/);
 });
 
@@ -72,6 +74,8 @@ test("programme out: day headings in order, times ascending, group and side slot
   assert.match(cs, /<img src="\/assets\/posters\/poster-2025\.jpg" alt="Plakát Soukání Ostrov 2027"/);
   assert.match(cs, /href="\/assets\/downloads\/programme-test\.pdf">Program ke stažení \(PDF\)/);
   assert.match(cs, /<h3>Vstupenky<\/h3>\s*<p>Vstupné 100 Kč/);
+  assert.match(cs, /slot-note">Zahajovací představení\.</);
+  assert.equal((cs.match(/slot-note/g) || []).length, 2, "the side slot without a note has no note element");
   assert.match(cs, /href="https:\/\/kkc-ostrov\.cz" rel="noopener">Předprodej vstupenek/);
   assert.doesNotMatch(cs, /coming-soon/);
 });
@@ -85,4 +89,26 @@ test("workshops: directors first, lecturer TBA text, unpublished hidden", async 
   assert.match(cs, /Lektor: Jana Nováková/);
   assert.doesNotMatch(cs, /Skryté/);
   assert.equal((cs.match(/class="workshop"/g) || []).length, 2);
+});
+
+test("PDF and tickets render independently", async () => {
+  const pdfOnly = editionVariant((e) => { e.programmePdf = "assets/downloads/programme-test.pdf"; }, "test/fixtures/programme-out");
+  const ticketsOnly = editionVariant((e) => { e.programmePdf = null; }, "test/fixtures/programme-out");
+  try {
+    const a = (await build({ PATH_PREFIX: undefined, CONTENT_DIR: pdfOnly })).get("/program/");
+    const b = (await build({ PATH_PREFIX: undefined, CONTENT_DIR: ticketsOnly })).get("/program/");
+    assert.match(b, /<h3>Vstupenky<\/h3>/);
+    assert.doesNotMatch(b, /Program ke stažení/);
+    assert.match(a, /<h3>Vstupenky<\/h3>/);
+  } finally { rmSync(pdfOnly, { recursive: true }); rmSync(ticketsOnly, { recursive: true }); }
+});
+
+test("a past edition without records shows no future-tense placeholders", async () => {
+  const dir = editionVariant((e) => { e.status = "past"; e.call = "closed"; e.groupsComplete = false; });
+  try {
+    const p = await build({ PATH_PREFIX: undefined, CONTENT_DIR: dir });
+    assert.doesNotMatch(p.get("/soubory/"), /coming-soon|groups-more/);
+    assert.doesNotMatch(p.get("/program/"), /poster-pending|coming-soon/);
+    assert.match(p.get("/fotogalerie/"), /Fotografie z ročníku 2027 připravujeme\./);
+  } finally { rmSync(dir, { recursive: true }); }
 });

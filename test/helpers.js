@@ -1,6 +1,9 @@
 import Eleventy from "@11ty/eleventy";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { cpSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import YAML from "yaml";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -32,7 +35,19 @@ export async function build(env = {}) {
   }
 }
 
-/** Builds with a fixture directory from test/fixtures/ (or the seed when `name` is null) and no path prefix. */
+export const SEED = "test/fixtures/seed";
+
+/** Builds with a fixture directory from test/fixtures/ (the frozen seed when `name` is null) and no path prefix. */
 export function buildFixture(name = null, env = {}) {
-  return build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : undefined, ...env });
+  return build({ PATH_PREFIX: undefined, CONTENT_DIR: name ? `test/fixtures/${name}` : SEED, ...env });
+}
+
+/** Writes a temporary fixture whose 2027 record is changed by `mutate`; returns its path (caller removes it). */
+export function editionVariant(mutate, base = SEED) {
+  const dir = mkdtempSync(join(tmpdir(), "soukani-variant-"));
+  cpSync(join(root, base), dir, { recursive: true }); // carry the fixture's own files and test assets along
+  const editions = YAML.parse(readFileSync(join(root, base, "editions.yaml"), "utf8"));
+  mutate(editions.find((e) => e.year === 2027), editions);
+  writeFileSync(join(dir, "editions.yaml"), YAML.stringify(editions));
+  return dir;
 }

@@ -1,13 +1,3 @@
----
-layout: layouts/base.njk
-permalink: /404.html
-lang: cs
-eleventyExcludeFromCollections: true
-eleventyComputed:
-  edition: "{{ db.current }}"
-  metaTitle: "{{ db.copy.notFound.heading.cs }} / {{ db.copy.notFound.heading.en }} – {{ db.site.name }}"
-  metaDescription: "{{ db.copy.notFound.text.cs }} {{ db.copy.notFound.text.en }}"
----
 <section class="wrap not-found">
   <h1>{{ db.copy.notFound.heading.cs }}</h1>
   <p>{{ db.copy.notFound.text.cs }} <a href="{{ db.pageUrl('home', 'cs') }}">{{ db.copy.notFound.home.cs }}</a></p>

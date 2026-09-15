@@ -1,0 +1,29 @@
+# Test fixture – news with a page link, an external link and no link.
+- id: 2026-call-2027
+  edition: 2027
+  date: 2026-09-15
+  title: { cs: Výzva k přihlášení na Soukání Ostrov 2027, en: Call for applications – Soukání Ostrov 2027 }
+  text: { cs: Přihlášky přijímáme do konce prosince 2026., en: Applications are accepted until the end of December 2026. }
+  link: { page: about, anchor: call }
+- id: 2026-poster
+  edition: 2027
+  date: 2026-09-10
+  title: { cs: Nový plakát na Facebooku, en: New poster on Facebook }
+  text: { cs: Podívejte se na první návrh plakátu., en: See the first poster draft. }
+  link: { url: https://www.facebook.com/SoukaniOstrov/posts/1 }
+- id: 2026-nolink
+  edition: 2027
+  date: 2026-09-01
+  title: { cs: Bez odkazu, en: Without a link }
+  text: { cs: Krátká zpráva bez odkazu., en: A short note without a link. }
+- id: 2025-old
+  edition: 2025
+  date: 2025-05-03
+  title: { cs: Soukání 2025 skončilo, en: Soukání 2025 is over }
+  text: { cs: Děkujeme všem., en: Thank you all. }
+- id: 2026-announcement-2027
+  edition: 2027
+  date: 2026-09-14
+  title: { cs: Soukání Ostrov 2027 se koná 5.–9. května 2027, en: Soukání Ostrov 2027 takes place on 5–9 May 2027 }
+  text: { cs: Šestnáctý ročník pořádá ZUŠ Ostrov., en: The sixteenth edition is organized by ZUŠ Ostrov. }
+  link: { page: about }

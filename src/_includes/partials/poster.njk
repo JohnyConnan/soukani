@@ -2,7 +2,7 @@
 <div class="poster">
 {%- if edition.poster %}
   <img src="/{{ edition.poster }}" alt="{{ db.copy.programme.posterAlt | t(lang) | fill({ year: edition.year }) }}" loading="lazy" decoding="async">
-{%- else %}
+{%- elif edition.status == 'upcoming' or edition.status == 'running' %}
   <div class="poster-pending" role="img" aria-label="{{ db.copy.programme.posterPlaceholder | t(lang) | fill({ year: edition.year }) }}">{{ db.copy.programme.posterPlaceholder | t(lang) | fill({ year: edition.year }) }}</div>
 {%- endif %}
 </div>

@@ -1,0 +1,13 @@
+# Seminars and workshops. kind: directors (analysis seminar for group leaders) | actors
+# Example:
+# - id: 2027-directors
+#   edition: 2027
+#   published: true
+#   kind: directors
+#   title: { cs: Rozborový seminář, en: Analysis seminar }
+#   lecturer: null                    # name, or null while not confirmed
+#   bio: null                         # { cs: ..., en: ... } or null
+#   description:
+#     cs: Popis semináře.
+#     en: Description of the seminar.
+[]

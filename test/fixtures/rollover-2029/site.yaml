@@ -8,7 +8,9 @@ organizer:
     en: Základní umělecká škola Ostrov (Ostrov School of Arts)
   shortName: ZUŠ Ostrov
   street: Masarykova 717
-  city: 363 01 Ostrov
+  postalCode: "363 01"
+  town: Ostrov
+  countryCode: CZ
   country:
     cs: Česká republika
     en: Czech Republic
@@ -21,7 +23,9 @@ coOrganizer:
 venue:
   name: Kulturní a kreativní centrum Ostrov
   street: Mírové nám. 733
-  city: 363 01 Ostrov
+  postalCode: "363 01"
+  town: Ostrov
+  countryCode: CZ
   url: https://kkc-ostrov.cz
 facebook: https://www.facebook.com/SoukaniOstrov
 aitaUrl: https://www.aitaiata.net

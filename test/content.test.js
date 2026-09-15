@@ -2,11 +2,11 @@ import { test, before } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import YAML from "yaml";
-import { build } from "./helpers.js";
+import { build, SEED } from "./helpers.js";
 
 let pages;
 before(async () => {
-  pages = await build({ PATH_PREFIX: undefined, SITE_URL: "https://soukani.cz" });
+  pages = await build({ PATH_PREFIX: undefined, SITE_URL: "https://soukani.cz", CONTENT_DIR: SEED });
 });
 const htmlPages = () => [...pages].filter(([u]) => u.endsWith("/") || u.endsWith(".html"));
 
@@ -51,6 +51,8 @@ test("home carries one JSON-LD Event with the 2027 facts and an Organization blo
   assert.equal(ev.startDate, "2027-05-05");
   assert.equal(ev.endDate, "2027-05-09");
   assert.equal(ev.location.name, "Kulturní a kreativní centrum Ostrov");
+  assert.deepEqual(ev.location.address, { "@type": "PostalAddress", streetAddress: "Mírové nám. 733", postalCode: "363 01", addressLocality: "Ostrov", addressCountry: "CZ" });
+  assert.equal(ev.organizer.address.streetAddress, "Masarykova 717");
   assert.match(ev.organizer.name, /Základní umělecká škola Ostrov/);
   assert.equal(ev.image, "https://soukani.cz/assets/identity/2025/logo-barevne.png");
   assert.equal(ev.url, "https://soukani.cz/");
@@ -76,4 +78,5 @@ test("llms.txt names the festival, the dates and the About and Programme URLs in
   assert.match(txt, /https:\/\/soukani\.cz\/en\/programme\//);
   assert.match(txt, /https:\/\/soukani\.cz\/program\//);
   assert.match(txt, /Actors aged 14–18/);
+  assert.match(txt, /Ostrov, Czech Republic\. Organized by/);
 });

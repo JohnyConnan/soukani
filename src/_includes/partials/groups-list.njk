@@ -7,15 +7,10 @@
   {% include "partials/group-card.njk" %}
 {%- endfor %}
 </div>
-{%- if not edition.groupsComplete %}
+{%- if not edition.groupsComplete and edition.status == 'upcoming' %}
 <p class="notice groups-more">{{ cg.more | t(lang) }}</p>
 {%- endif %}
 {%- elif edition.status == 'upcoming' %}
-<p class="lede coming-soon">
-  {%- if edition.announceGroups -%}
-    {{ cg.comingSoon | t(lang) | fill({ year: edition.year, month: edition.announceGroups | monthIn(lang) }) }}
-  {%- else -%}
-    {{ cg.comingSoonNoMonth | t(lang) | fill({ year: edition.year }) }}
-  {%- endif -%}
-</p>
+{%- set month = edition.announceGroups %}{%- set withMonth = cg.comingSoon %}{%- set withoutMonth = cg.comingSoonNoMonth %}{%- set vars = { year: edition.year } %}
+{% include "partials/coming-soon.njk" %}
 {%- endif %}

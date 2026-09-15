@@ -1,3 +1,5 @@
+import { ordinal } from "../../lib/dates.js";
+
 /** Archived editions without an external archive URL render locally, one page per language. */
 export default {
   layout: "layouts/base.njk",
@@ -13,6 +15,6 @@ export default {
       return out;
     },
     metaTitle: (data) => `${data.db.copy.archive.title[data.ap.lang].replace("{year}", data.ap.edition.year)} – ${data.db.site.name}`,
-    metaDescription: (data) => data.db.copy.archive.description[data.ap.lang].replace("{n}", data.ap.lang === "cs" ? `${data.ap.edition.number}.` : `${data.ap.edition.number}th`),
+    metaDescription: (data) => data.db.copy.archive.description[data.ap.lang].replace("{n}", ordinal(data.ap.edition.number, data.ap.lang)),
   },
 };
