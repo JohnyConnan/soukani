@@ -1,0 +1,38 @@
+- id: 2027-directors
+  edition: 2027
+  published: true
+  kind: directors
+  title:
+    cs: Rozborový seminář
+    en: Analysis seminar
+  lecturer: null
+  bio: null
+  description:
+    cs: Rozbor zhlédnutých inscenací.
+    en: Analysis of the productions seen.
+- id: 2027-movement
+  edition: 2027
+  published: true
+  kind: actors
+  title:
+    cs: Pohyb
+    en: Movement
+  lecturer: Jana Nováková
+  bio:
+    cs: Tanečnice a pedagožka.
+    en: Dancer and teacher.
+  description:
+    cs: Práce s tělem.
+    en: Working with the body.
+- id: 2027-hidden
+  edition: 2027
+  published: false
+  kind: actors
+  title:
+    cs: Skryté
+    en: Hidden
+  lecturer: null
+  bio: null
+  description:
+    cs: x
+    en: y

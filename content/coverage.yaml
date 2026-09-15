@@ -1,0 +1,33 @@
+# Published coverage, links only (no quotes).
+- id: rozhlas-2025
+  edition: 2025
+  date: 2025-04-29
+  outlet: Český rozhlas Karlovy Vary
+  title:
+    cs: ZUŠ Ostrov pořádá 15. ročník mezinárodního dětského divadelního festivalu Soukání
+    en: ZUŠ Ostrov hosts the 15th international children's theatre festival Soukání (Czech)
+  url: https://vary.rozhlas.cz/zus-ostrov-porada-15-rocnik-mezinarodniho-detskeho-divadelniho-festivalu-soukani-9460600
+- id: amaterskedivadlo-2025
+  edition: 2025
+  date: 2025-05-03
+  outlet: Databáze českého amatérského divadla
+  title:
+    cs: Soukání Ostrov v Databázi českého amatérského divadla
+    en: Soukání Ostrov in the Czech Amateur Theatre Database (Czech)
+  url: https://www.amaterskedivadlo.cz/main.php?data=prehlidka&id=428
+- id: aita-2023
+  edition: 2023
+  date: 2022-12-01
+  outlet: AITA/IATA
+  title:
+    cs: Soukání Ostrov 2023 v přehledu festivalů AITA/IATA (PDF)
+    en: Soukání Ostrov 2023 in the AITA/IATA festival listing (PDF)
+  url: https://www.aitaiata.net/wp-content/uploads/2022/12/soukani_ostrov_2023.pdf
+- id: denik-2015
+  edition: 2015
+  date: 2015-05-06
+  outlet: Karlovarský deník
+  title:
+    cs: Desátému divadelnímu Soukání je už dvacet let
+    en: The tenth theatre Soukání is twenty years old (Czech)
+  url: https://karlovarsky.denik.cz/volny-cas/desatemu-divadelnimu-soukani-je-uz-dvacet-let-20150506.html

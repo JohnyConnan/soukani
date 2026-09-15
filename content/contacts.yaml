@@ -1,0 +1,23 @@
+# The four published contact roles. Flags: media (press contact), applications (call contact).
+- id: konyvkova
+  name: Mgr. Irena Konývková
+  role: { cs: ředitelka festivalu, en: festival director }
+  email: reditelka@zusostrov.cz
+  phone: "+420 776 080 097"
+  media: true
+- id: sulc
+  name: Ondřej Šulc
+  role: { cs: technický koordinátor, en: technical coordinator }
+  email: sulc@zusostrov.cz
+  phone: null
+- id: konyvka
+  name: Jonáš Konývka
+  role: { cs: "přihlášky, příjezdy a odjezdy souborů", en: "applications, arrivals and departures" }
+  email: konyvka@zusostrov.cz
+  phone: null
+  applications: true
+- id: kralova
+  name: Daniela Šulc Králová
+  role: { cs: semináře a dílny, en: workshops and seminars }
+  email: kralova@zusostrov.cz
+  phone: null

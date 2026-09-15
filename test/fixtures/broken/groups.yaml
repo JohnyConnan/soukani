@@ -1,0 +1,8 @@
+- id: it-broken
+  edition: 2027
+  country: XY
+  town: { cs: Brixen, en: Bressanone }
+  ensemble: Teatro
+  director: A. B.
+  title: { cs: Nit, en: Thread }
+  text: { cs: Jen česky }

@@ -1,0 +1,253 @@
+# Every visitor-facing UI string and page copy. Every leaf is a { cs, en } pair; values may be
+# lists of paragraphs. Tokens in braces ({year}, {month}, {n}…) are filled by the templates.
+site:
+  tagline:
+    cs: Mezinárodní divadelní festival dětí a mládeže
+    en: International Theatre Festival of Children and Youth
+nav:
+  menu: { cs: Menu, en: Menu }
+  switch: { cs: English, en: Česky }
+  skip: { cs: Přejít na obsah, en: Skip to content }
+hero:
+  edition:
+    cs: "{n}. mezinárodní divadelní festival dětí a mládeže"
+    en: "{n} International Theatre Festival of Children and Youth"
+  place: { cs: "Ostrov, Česká republika", en: "Ostrov, Czech Republic" }
+  datesTba: { cs: termín upřesníme, en: dates to be announced }
+  past: { cs: "Festival proběhl {dates}.", en: "The festival took place on {dates}." }
+  cta:
+    announced: { cs: Podmínky účasti, en: How to apply }
+    open: { cs: Přihlásit soubor, en: Apply now }
+    closed: { cs: Přihlášené soubory, en: Groups }
+    groupsKnown: { cs: Vybrané soubory, en: Selected groups }
+    programmeOut: { cs: Program festivalu, en: Festival programme }
+    running: { cs: Program festivalu, en: Festival programme }
+    past: { cs: Fotogalerie, en: Photos }
+    archived: { cs: Podmínky účasti, en: How to apply }
+facts:
+  dates: { cs: Termín, en: Dates }
+  edition: { cs: Ročník, en: Edition }
+  ordinal: { cs: "{n}.", en: "{n}" }
+  since: { cs: Bienále, en: Biennial }
+  sinceValue: { cs: "od roku {year}", en: "since {year}" }
+  age: { cs: Herci ve věku, en: Actors aged }
+  ageValue: { cs: "{min}–{max} let", en: "{min}–{max}" }
+  length: { cs: Inscenace do, en: Productions up to }
+  lengthValue: { cs: "{n} minut", en: "{n} minutes" }
+news:
+  heading: { cs: Aktuality, en: News }
+  more: { cs: Více, en: Read more }
+highlight:
+  heading: { cs: "Co chystáme na rok {year}", en: "What is new in {year}" }
+about:
+  heading: { cs: O festivalu, en: About the festival }
+  description:
+    cs:
+      - >-
+        Soukání Ostrov je mezinárodní divadelní festival dětí a mládeže, který jako bienále pořádá
+        Základní umělecká škola Ostrov. Hlásí se na něj prostřednictvím světové organizace
+        amatérského divadla AITA/IATA divadelní soubory mladých lidí z celého světa.
+      - >-
+        Soubory na festival vybírá umělecká komise na základě přihlášek a zaslaných videozáznamů
+        inscenací. Souběžně s představeními probíhají odborné semináře: rozborový seminář pro
+        vedoucí souborů a semináře pro mladé herce, které rozvíjejí dovednosti využitelné v divadle.
+      - >-
+        Festival má svou nezapomenutelnou atmosféru díky tomu, že je možné vše vidět, o všem
+        diskutovat a vyměňovat si zkušenosti i inscenační postupy. K tomu patří doprovodný program:
+        výlet po Karlovarském kraji, společný průvod městem, stánky jednotlivých zemí, akce Soubor
+        baví soubor a ochutnávky regionálních dobrot.
+      - >-
+        Semináře probíhají dopoledne, představení odpoledne a večer je připraven doprovodný program.
+        Předposlední den festivalu patří prezentacím seminářů, průvodu městem a stánkům zemí.
+    en:
+      - >-
+        Soukání Ostrov is a biennial international theatre festival of children and youth organized
+        by Základní umělecká škola Ostrov, the Ostrov school of arts. Youth theatre groups from all
+        over the world apply through AITA/IATA, the world organization of amateur theatre.
+      - >-
+        Groups are selected by the festival's artistic committee from the applications and the
+        videos of their productions. Alongside the performances the festival runs seminars: an
+        analysis seminar for group leaders and seminars for young actors that develop skills for
+        the stage.
+      - >-
+        The festival is known for its atmosphere: everyone can see every production, discuss it
+        and share experience and working methods. The side programme adds a trip around the
+        Karlovy Vary region, a parade through the town, country stands, the "Group entertains
+        group" evening and a tasting of regional food.
+      - >-
+        Seminars take place in the mornings, performances in the afternoons, and the evenings
+        belong to the side programme. The penultimate day is reserved for seminar presentations,
+        the parade and the country stands.
+  nameHeading: { cs: Odkud je název Soukání, en: Where the name comes from }
+  nameOrigin:
+    cs:
+      - >-
+        Název festivalu pochází z inscenace o malém pavoučkovi, který k sobě „soukal“ své kamarády
+        nitkami. Soubor HOP-HOP ji zahrál při prvním, ještě neformálním setkání s divadelním
+        souborem z italského Brixenu kolem roku 1995. Z tohoto setkání vyrostl festival, který se
+        od té doby koná jako bienále.
+    en:
+      - >-
+        The festival is named after a production about a little spider who pulled ("soukal" in
+        Czech) his friends to himself with threads. The HOP-HOP ensemble performed it at the first,
+        still informal meeting with a theatre group from Brixen (Bressanone) in Italy around 1995.
+        The festival grew out of that meeting and has been held every two years since.
+  countriesHeading: { cs: Kdo už na Soukání hrál, en: Who has performed at Soukání }
+  countries:
+    cs: >-
+      Na festivalu se za jeho historii představily soubory například z Itálie, Slovenska, Litvy,
+      Estonska, Jižní Koreje a řady dalších zemí Evropy i světa spolu s domácími soubory
+      z České republiky.
+    en: >-
+      Over the years the festival has hosted groups from Italy, Slovakia, Lithuania, Estonia,
+      South Korea and many other countries in Europe and beyond, alongside Czech ensembles.
+  venuesHeading: { cs: Kde se festival koná, en: Venues }
+  venues:
+    cs:
+      - "Představení: Kulturní a kreativní centrum Ostrov (Dům kultury Ostrov), Mírové nám. 733"
+      - "Semináře: Základní umělecká škola Ostrov, Masarykova 717"
+      - "Doprovodný program: město Ostrov a výlet po Karlovarském kraji"
+    en:
+      - "Performances: Kulturní a kreativní centrum Ostrov (the Ostrov house of culture), Mírové nám. 733"
+      - "Seminars: Základní umělecká škola Ostrov, Masarykova 717"
+      - "Side programme: the town of Ostrov and a trip around the Karlovy Vary region"
+  schoolsHeading: { cs: Festival a ostrovské školy, en: The festival and Ostrov schools }
+  schools:
+    cs:
+      - >-
+        Do festivalu se zapojují mladí lidé z ostrovských škol. V rámci výuky jazyků navštěvují
+        inscenace zahraničních souborů. Před představením je pro zájemce ze škol připraven seminář
+        „Než půjdeme do divadla“, ve kterém se mladí diváci s pedagogy dramatu připravují na
+        inscenaci, kterou vzápětí zhlédnou.
+    en:
+      - >-
+        Young people from Ostrov schools take part in the festival: as part of their language
+        classes they attend the performances of the foreign groups. Before a performance, the
+        seminar "Před tím, než půjdeme do divadla" ("Before we go to the theatre") prepares
+        the young audience for the production they are about to see, together with drama teachers.
+call:
+  heading: { cs: Výzva k přihlášení, en: Call for applications }
+  intro:
+    cs: >-
+      Zveme divadelní soubory mladých lidí z celého světa, aby se přihlásily na {n}. ročník
+      festivalu Soukání Ostrov. Soubory vybírá umělecká komise festivalu na základě přihlášky
+      a videozáznamu inscenace.
+    en: >-
+      We invite youth theatre groups from all over the world to apply for the {n} edition of
+      Soukání Ostrov. Groups are selected by the festival's artistic committee on the basis of
+      the application and a video of the production.
+  conditionsHeading: { cs: Podmínky účasti, en: Conditions }
+  conditions:
+    cs:
+      - "Herci ve věku {ageMin}–{ageMax} let."
+      - "Inscenace v délce do {maxMinutes} minut."
+      - "Soubor tvoří nejvýše {maxActors} herců a {adultsMin}–{adultsMax} dospělí (režisér, technik, překladatel); při příjezdu vlastním autobusem se počítá i s řidičem."
+      - "Pořadatel hradí ubytování a stravu pro {hosted} osob ({maxActors} herců a {adultsMax} dospělé) po dobu festivalu."
+      - "Soubory přilétající ze vzdálenějších zemí mohou přijet o den dříve."
+      - "Přihláška se podává online formulářem spolu s videozáznamem inscenace."
+    en:
+      - "Actors aged {ageMin}–{ageMax}."
+      - "Productions up to {maxMinutes} minutes long."
+      - "A group consists of up to {maxActors} actors and {adultsMin}–{adultsMax} accompanying adults (director, technician, interpreter); a driver is also counted when the group arrives by its own coach."
+      - "The organizer covers board and lodging for {hosted} people ({maxActors} actors and {adultsMax} adults) during the festival days."
+      - "Groups flying in from more distant countries may arrive one day early."
+      - "Applications are submitted through an online form together with a video of the production."
+  deadline: { cs: "Uzávěrka přihlášek: {date}", en: "Application deadline: {date}" }
+  opensOn: { cs: "Přihlašovací formulář zveřejníme na tomto místě {date}.", en: "The application form opens here on {date}." }
+  opensSoon: { cs: Přihlašovací formulář zveřejníme na tomto místě., en: The application form will be published here. }
+  apply: { cs: Vyplnit přihlášku, en: Open the application form }
+  closed: { cs: Příjem přihlášek byl uzavřen. Všechny přihlášené soubory informujeme e-mailem., en: Applications are closed. All applicants are notified by email. }
+  contact: { cs: "Dotazy k přihláškám:", en: "Questions about applications:" }
+groups:
+  heading: { cs: Soubory, en: Groups }
+  comingSoon:
+    cs: "Soubory pro ročník {year} vybere umělecká komise festivalu z přihlášek a zaslaných videozáznamů po uzávěrce přihlášek. Výběr zveřejníme v {month}."
+    en: "The groups for {year} will be selected by the festival's artistic committee from the applications and videos after the application deadline. The selection will be published in {month}."
+  comingSoonNoMonth:
+    cs: "Soubory pro ročník {year} vybere umělecká komise festivalu z přihlášek a zaslaných videozáznamů po uzávěrce přihlášek."
+    en: "The groups for {year} will be selected by the festival's artistic committee from the applications and videos after the application deadline."
+  more: { cs: Další soubory doplníme., en: More groups to be announced. }
+  host: { cs: pořádající soubor, en: host ensemble }
+  director: { cs: Režie, en: Directed by }
+programme:
+  heading: { cs: Program, en: Programme }
+  posterAlt: { cs: "Plakát Soukání Ostrov {year}", en: "Soukání Ostrov {year} poster" }
+  posterPlaceholder: { cs: "Plakát {year} připravujeme", en: "The {year} poster is in preparation" }
+  comingSoon: { cs: "Program festivalu zveřejníme v {month}.", en: "The festival programme will be published in {month}." }
+  comingSoonNoMonth: { cs: Program festivalu zveřejníme po výběru souborů., en: The festival programme will be published once the groups are selected. }
+  format:
+    cs: "Semináře probíhají dopoledne, představení odpoledne, večery patří doprovodnému programu. Po každém představení následuje diskuse."
+    en: "Seminars take place in the mornings and performances in the afternoons; the evenings belong to the side programme. Every performance is followed by a discussion."
+  pdf: { cs: Program ke stažení (PDF), en: Download the programme (PDF) }
+  ticketsHeading: { cs: Vstupenky, en: Tickets }
+  ticketsLink: { cs: Předprodej vstupenek, en: Buy tickets }
+  side: { cs: doprovodný program, en: side programme }
+workshops:
+  heading: { cs: Dílny a semináře, en: Workshops and seminars }
+  format:
+    cs:
+      - >-
+        Semináře jsou určeny účastníkům festivalu a probíhají každé dopoledne v Základní umělecké
+        škole Ostrov. Vedoucí souborů se scházejí v rozborovém semináři nad zhlédnutými inscenacemi;
+        pro mladé herce je připraveno sedm seminářů, které rozvíjejí dovednosti využitelné v divadle.
+      - >-
+        Předposlední den festivalu semináře představí výsledky své práce ostatním účastníkům.
+    en:
+      - >-
+        The seminars are for festival participants and take place every morning at Základní
+        umělecká škola Ostrov. Group leaders meet in the analysis seminar to discuss the productions
+        seen; young actors choose from seven seminars that develop skills for the stage.
+      - >-
+        On the penultimate day of the festival the seminars present their work to the other
+        participants.
+  comingSoon: { cs: "Seznam seminářů a lektorů zveřejníme v {month}.", en: "The list of seminars and lecturers will be published in {month}." }
+  comingSoonNoMonth: { cs: Seznam seminářů a lektorů zveřejníme před festivalem., en: The list of seminars and lecturers will be published before the festival. }
+  directors: { cs: Seminář pro vedoucí souborů, en: Seminar for group leaders }
+  actors: { cs: Semináře pro mladé herce, en: Seminars for young actors }
+  lecturer: { cs: Lektor, en: Lecturer }
+  lecturerTba: { cs: lektor bude upřesněn, en: lecturer TBA }
+photos:
+  heading: { cs: Fotogalerie, en: Photos }
+  currentEmpty: { cs: "Fotografie z ročníku {year} budeme přidávat během festivalu.", en: "Photos from the {year} festival will be added as the festival takes place." }
+  teaserHeading: { cs: "Ohlédnutí za Soukáním {year}", en: "Looking back at Soukání {year}" }
+  film: { cs: "Festivalový film {year} na YouTube", en: "Festival film {year} on YouTube" }
+  oldSiteHeading: { cs: Fotogalerie starších ročníků, en: Galleries from earlier editions }
+  oldSiteLink: { cs: "Soukání {year} na stránkách souboru HOP-HOP", en: "Soukání {year} on the HOP-HOP ensemble site" }
+  altFallback: { cs: "Fotografie z festivalu Soukání Ostrov {year}", en: "Photo from the Soukání Ostrov {year} festival" }
+  credit: { cs: "Foto: archiv festivalu", en: "Photos: festival archive" }
+press:
+  heading: { cs: Pro média, en: Press }
+  intro:
+    cs: "Loga a plakát festivalu jsou k volnému použití při informování o festivalu. Uvítáme, když nám dáte vědět, kde jste o festivalu psali."
+    en: "The festival logos and poster are free to use when reporting on the festival. We appreciate hearing where you have written about us."
+  downloadsHeading: { cs: Ke stažení, en: Downloads }
+  logoColor: { cs: "Logo {year} – barevné (PNG)", en: "Logo {year} – colour (PNG)" }
+  logoWhite: { cs: "Logo {year} – bílé (PNG)", en: "Logo {year} – white (PNG)" }
+  logoNegative: { cs: "Logo {year} – negativ (PNG)", en: "Logo {year} – negative (PNG)" }
+  poster: { cs: "Plakát {year} (JPG)", en: "Poster {year} (JPG)" }
+  programmePdf: { cs: "Program {year} (PDF)", en: "Programme {year} (PDF)" }
+  contactHeading: { cs: Kontakt pro média, en: Media contact }
+  coverageHeading: { cs: Napsali o nás, en: Coverage }
+  earlierCoverage: { cs: Starší ročníky, en: Earlier editions }
+footer:
+  organizer: { cs: Pořadatel, en: Organizer }
+  coOrganizer: { cs: ve spolupráci s, en: in cooperation with }
+  ico: { cs: IČO, en: Reg. no. (IČO) }
+  contacts: { cs: Kontakty, en: Contacts }
+  partners: { cs: Partneři, en: Partners }
+  facebook: { cs: Facebook festivalu, en: Festival on Facebook }
+  archive: { cs: Archiv ročníků, en: Past editions }
+  oldSite: { cs: Ročníky 2001–2025 na stránkách souboru HOP-HOP, en: Editions 2001–2025 on the HOP-HOP ensemble site }
+archive:
+  heading: { cs: Archiv ročníků, en: Past editions }
+  intro:
+    cs: "Festival Soukání Ostrov se koná od roku 1995 jako bienále. Starší ročníky jsou zdokumentovány na stránkách souboru HOP-HOP."
+    en: "Soukání Ostrov has been held every two years since 1995. Earlier editions are documented on the HOP-HOP ensemble site."
+  edition: { cs: "{n}. ročník", en: "{n} edition" }
+  external: { cs: na stránkách HOP-HOP, en: on the HOP-HOP site }
+  title: { cs: "Soukání Ostrov {year}", en: "Soukání Ostrov {year}" }
+  description: { cs: "Soubory, program, semináře a fotografie z {n}. ročníku festivalu Soukání Ostrov.", en: "Groups, programme, seminars and photos from the {n} edition of Soukání Ostrov." }
+notFound:
+  heading: { cs: Stránka nenalezena, en: Page not found }
+  text: { cs: Tato stránka neexistuje nebo byla přesunuta., en: This page does not exist or has moved. }
+  home: { cs: Na úvodní stránku, en: Go to the homepage }

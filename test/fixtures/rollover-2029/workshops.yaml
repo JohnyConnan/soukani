@@ -1,0 +1,12 @@
+- id: 2027-directors
+  edition: 2027
+  published: true
+  kind: directors
+  title:
+    cs: Rozborový seminář
+    en: Analysis seminar
+  lecturer: Marek K.
+  bio: null
+  description:
+    cs: Rozbor.
+    en: Analysis.

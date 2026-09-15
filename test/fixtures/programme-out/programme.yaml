@@ -1,0 +1,42 @@
+- id: 2027-05-06-1500
+  edition: 2027
+  published: true
+  day: 2027-05-06
+  time: 15:00
+  type: performance
+  venue:
+    cs: KKC Ostrov
+    en: KKC Ostrov
+  groupId: it-brixen
+  title: null
+  note:
+    cs: Příběh o přátelství.
+    en: A story about friendship.
+- id: 2027-05-05-1900
+  edition: 2027
+  published: true
+  day: 2027-05-05
+  time: 19:00
+  type: performance
+  venue:
+    cs: KKC Ostrov
+    en: KKC Ostrov
+  groupId: cz-ostrov-hop-hop
+  title: null
+  note:
+    cs: Zahajovací představení.
+    en: Opening performance.
+- id: 2027-05-05-1600
+  edition: 2027
+  published: true
+  day: 2027-05-05
+  time: 16:00
+  type: side
+  venue:
+    cs: KKC Ostrov
+    en: KKC Ostrov
+  groupId: null
+  title:
+    cs: Slavnostní zahájení
+    en: Opening ceremony
+  note: null

@@ -1,0 +1,13 @@
+# Programme slots. type: performance (linked to a group via groupId) | side (own title)
+# Example:
+# - id: 2027-05-05-1700
+#   edition: 2027
+#   published: true
+#   day: 2027-05-05
+#   time: "17:00"
+#   type: performance
+#   venue: { cs: KKC Ostrov, en: KKC Ostrov }
+#   groupId: it-brixen-example        # for performances
+#   title: null                       # side events: { cs: Zahájení festivalu, en: Opening ceremony }
+#   note: { cs: Jednořádková anotace., en: One-line annotation. }
+[]

@@ -1,0 +1,91 @@
+# One record per edition. The current edition is chosen in site.yaml (currentEdition).
+# status: upcoming | running | past | archived      call: announced | open | closed
+# Dates are ISO (YYYY-MM-DD) or null; announce* are YYYY-MM or null; paths are relative to src/.
+- year: 2027
+  number: 16
+  status: upcoming
+  call: announced
+  dateFrom: 2027-05-05
+  dateTo: 2027-05-09
+  applyUrl: null
+  applyOpensOn: null
+  applyDeadline: 2026-12-31
+  ageMin: 14
+  ageMax: 18
+  maxMinutes: 50
+  maxActors: 10
+  adultsMin: 2
+  adultsMax: 3
+  accent: "#FF6B2C"
+  logo:
+    color: assets/identity/2025/logo-barevne.png
+    white: assets/identity/2025/logo-bile.png
+    negative: assets/identity/2025/logo-negativ.png
+  logoYear: 2025
+  poster: null
+  programmePdf: null
+  tickets: null
+  ticketsUrl: null
+  filmUrl: null
+  announceGroups: 2027-02
+  announceWorkshops: 2027-03
+  announceProgramme: 2027-04
+  groupsComplete: false
+  externalArchiveUrl: null
+  highlight:
+    cs: >-
+      Velkým inspiračním zdrojem ročníku 2027 bude profesionální divadelní soubor z Jižní Koreje,
+      který do Karlovarského kraje přinese pohled do asijského divadla. Jeho členové společně
+      se souborem HOP-HOP připraví v rámci společného projektu inscenaci propojující prvky
+      asijského a evropského divadla.
+    en: >-
+      A major source of inspiration in 2027 will be a professional theatre company from
+      South Korea, bringing a view of Asian theatre to the Karlovy Vary region. Together with
+      the HOP-HOP ensemble, its members will create a joint production that links elements
+      of Asian and European theatre.
+
+- year: 2025
+  number: 15
+  status: archived
+  call: closed
+  dateFrom: 2025-04-30
+  dateTo: 2025-05-03
+  applyUrl: null
+  applyOpensOn: null
+  applyDeadline: null
+  ageMin: null
+  ageMax: null
+  maxMinutes: null
+  maxActors: null
+  adultsMin: null
+  adultsMax: null
+  accent: "#B0288F"
+  logo:
+    color: assets/identity/2025/logo-barevne.png
+    white: assets/identity/2025/logo-bile.png
+    negative: assets/identity/2025/logo-negativ.png
+  logoYear: 2025
+  poster: assets/posters/poster-2025.jpg
+  programmePdf: null
+  tickets: null
+  ticketsUrl: null
+  filmUrl: https://www.youtube.com/watch?v=auz9aV2gZgE
+  announceGroups: null
+  announceWorkshops: null
+  announceProgramme: null
+  groupsComplete: true
+  externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2025-cs.html
+  highlight: null
+
+- { year: 2023, number: 14, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2023-cs.html }
+- { year: 2021, number: 13, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2021-cs.html, poster: assets/posters/poster-2021.jpg }
+- { year: 2019, number: 12, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2019-cs.html }
+- { year: 2017, number: 11, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2017-cs.html }
+- { year: 2015, number: 10, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2015-cs.html }
+- { year: 2013, number: 9, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2013-cs.html }
+- { year: 2011, number: 8, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2011-cs.html }
+- { year: 2009, number: 7, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2009-cs.html }
+- { year: 2007, number: 6, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2007-cs.html }
+- { year: 2005, number: 5, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2005-cs.html }
+- { year: 2003, number: 4, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2003-cs.html }
+- { year: 2001, number: 3, status: archived, call: closed, externalArchiveUrl: https://hophop.zusostrov.cz/soukani-2001-cs.html }

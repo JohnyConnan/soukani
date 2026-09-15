@@ -1,0 +1,65 @@
+# Page registry. Order = menu order. Czech pages live at /<slug.cs>/, English at /en/<slug.en>/.
+- key: home
+  inMenu: true
+  slug: { cs: "", en: "" }
+  label: { cs: Úvod, en: Home }
+  title: { cs: Soukání Ostrov – mezinárodní divadelní festival dětí a mládeže, en: Soukání Ostrov – International Theatre Festival of Children and Youth }
+  description:
+    cs: Soukání Ostrov je mezinárodní bienále divadelních souborů mladých lidí ve věku 14–18 let, které pořádá ZUŠ Ostrov. Termín, výzva k přihlášení a aktuality.
+    en: Soukání Ostrov is a biennial international festival of theatre groups aged 14–18, organized by ZUŠ Ostrov. Dates, call for applications and news.
+- key: about
+  inMenu: true
+  slug: { cs: o-festivalu, en: about }
+  label: { cs: O festivalu, en: About }
+  title: { cs: O festivalu, en: About the festival }
+  description:
+    cs: Co je Soukání Ostrov, jak vznikl jeho název, kde se hraje a jak se přihlásit.
+    en: What Soukání Ostrov is, where its name comes from, where it takes place and how to apply.
+- key: groups
+  inMenu: true
+  slug: { cs: soubory, en: groups }
+  label: { cs: Soubory, en: Groups }
+  title: { cs: Soubory, en: Groups }
+  description:
+    cs: Divadelní soubory vybrané uměleckou komisí na aktuální ročník festivalu Soukání Ostrov.
+    en: Theatre groups selected by the artistic committee for the current Soukání Ostrov festival.
+- key: programme
+  inMenu: true
+  slug: { cs: program, en: programme }
+  label: { cs: Program, en: Programme }
+  title: { cs: Program, en: Programme }
+  description:
+    cs: Program představení a doprovodných akcí festivalu Soukání Ostrov, plakát a vstupenky.
+    en: Performances and side programme of the Soukání Ostrov festival, poster and tickets.
+- key: workshops
+  inMenu: true
+  slug: { cs: dilny, en: workshops }
+  label: { cs: Dílny, en: Workshops }
+  title: { cs: Dílny a semináře, en: Workshops and seminars }
+  description:
+    cs: Rozborový seminář pro vedoucí souborů a semináře pro mladé herce na festivalu Soukání Ostrov.
+    en: The directors' analysis seminar and the seminars for young actors at the Soukání Ostrov festival.
+- key: photos
+  inMenu: true
+  slug: { cs: fotogalerie, en: photos }
+  label: { cs: Fotogalerie, en: Photos }
+  title: { cs: Fotogalerie, en: Photos }
+  description:
+    cs: Fotografie a festivalový film z festivalu Soukání Ostrov.
+    en: Photos and the festival film from Soukání Ostrov.
+- key: press
+  inMenu: true
+  slug: { cs: pro-media, en: press }
+  label: { cs: Pro média, en: Press }
+  title: { cs: Pro média, en: Press }
+  description:
+    cs: Loga, plakát a program ke stažení, kontakt pro média a ohlasy na festival Soukání Ostrov.
+    en: Logos, poster and programme downloads, media contact and coverage of the Soukání Ostrov festival.
+- key: archive
+  inMenu: false
+  slug: { cs: archiv, en: archive }
+  label: { cs: Archiv ročníků, en: Past editions }
+  title: { cs: Archiv ročníků, en: Past editions }
+  description:
+    cs: Přehled všech ročníků festivalu Soukání Ostrov od roku 2001.
+    en: All editions of the Soukání Ostrov festival since 2001.

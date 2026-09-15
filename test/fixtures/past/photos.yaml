@@ -1,0 +1,64 @@
+- id: 2027-01
+  edition: 2027
+  file: assets/photos/2025/soukani-2025-02.jpg
+  width: 640
+  height: 426
+  caption: null
+- id: 2025-01
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-01.jpg
+  width: 640
+  height: 960
+  caption:
+    cs: "HOP-HOP Vlaštovky: :X"
+    en: "HOP-HOP Vlaštovky: :X"
+- id: 2025-02
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-02.jpg
+  width: 640
+  height: 426
+  caption:
+    cs: "HOP-HOP Vlaštovky: :X"
+    en: "HOP-HOP Vlaštovky: :X"
+- id: 2025-03
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-03.jpg
+  width: 640
+  height: 426
+  caption: null
+- id: 2025-04
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-04.jpg
+  width: 640
+  height: 960
+  caption: null
+- id: 2025-05
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-05.jpg
+  width: 640
+  height: 426
+  caption: null
+- id: 2025-06
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-06.jpg
+  width: 640
+  height: 426
+  caption:
+    cs: "HOP-HOP Dramlajf: Angatar"
+    en: "HOP-HOP Dramlajf: Angatar"
+- id: 2025-07
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-07.jpg
+  width: 640
+  height: 426
+  caption:
+    cs: "HOP-HOP Lišáci: Lišák v mé škole"
+    en: "HOP-HOP Lišáci: The Fox in My School"
+- id: 2025-08
+  edition: 2025
+  file: assets/photos/2025/soukani-2025-08.jpg
+  width: 640
+  height: 426
+  caption:
+    cs: "HOP-HOP Tornáda: To je můj život"
+    en: "HOP-HOP Tornáda: That's My Life"

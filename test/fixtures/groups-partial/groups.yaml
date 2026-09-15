@@ -1,0 +1,36 @@
+- id: it-brixen
+  edition: 2027
+  published: true
+  country: IT
+  town:
+    cs: Brixen
+    en: Bressanone
+  ensemble: Teatro Giovani Brixen
+  director: Anna Rossi
+  titleOriginal: Il filo
+  title:
+    cs: Nit
+    en: The Thread
+  text:
+    cs: Mladý soubor z Jižního Tyrolska hraje o přátelství.
+    en: A young ensemble from South Tyrol plays about friendship.
+  photo: null
+  host: false
+- id: cz-ostrov-hop-hop
+  edition: 2027
+  published: true
+  country: CZ
+  town:
+    cs: Ostrov
+    en: Ostrov
+  ensemble: HOP-HOP
+  director: Irena Konývková
+  titleOriginal: null
+  title:
+    cs: Pavouček
+    en: The Little Spider
+  text:
+    cs: Pořádající soubor ZUŠ Ostrov.
+    en: The host ensemble of ZUŠ Ostrov.
+  photo: assets/photos/2025/soukani-2025-06.jpg
+  host: true

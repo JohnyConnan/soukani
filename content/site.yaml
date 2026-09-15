@@ -1,0 +1,29 @@
+# Site-wide facts. Edition-specific facts live in editions.yaml.
+currentEdition: 2027
+name: Soukání Ostrov
+firstEditionYear: 1995
+organizer:
+  name:
+    cs: Základní umělecká škola Ostrov, příspěvková organizace
+    en: Základní umělecká škola Ostrov (Ostrov School of Arts)
+  shortName: ZUŠ Ostrov
+  street: Masarykova 717
+  city: 363 01 Ostrov
+  country:
+    cs: Česká republika
+    en: Czech Republic
+  ico: "49753606"
+  url: https://www.zusostrov.cz
+# Co-organizing association (set to null to drop the footer line).
+coOrganizer:
+  name: Minidiv, spolek
+  ico: "26595176"
+venue:
+  name: Kulturní a kreativní centrum Ostrov
+  street: Mírové nám. 733
+  city: 363 01 Ostrov
+  url: https://kkc-ostrov.cz
+facebook: https://www.facebook.com/SoukaniOstrov
+aitaUrl: https://www.aitaiata.net
+oldSite:
+  url: https://hophop.zusostrov.cz/soukani-cs.html
