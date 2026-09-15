@@ -127,6 +127,12 @@ Append to `content/programme.yaml`. A `performance` slot needs `groupId` matchin
 1. Put the three PNG variants into `src/assets/identity/2027/` (colour, white, negative).
 2. On the 2027 record in `content/editions.yaml` set `accent: "#RRGGBB"`, the three `logo` paths and `logoYear: 2027`.
 
+**Ask the designer for square PNGs, transparent background, cropped tight to the artwork — no empty
+margin around the badge — at 1200 × 1200 px or larger.** Every place the logo appears (the hero, the
+header and footer badges, the favicon, the Press downloads) fills its circle with the file as given,
+so a file with a transparent margin baked in simply renders smaller everywhere. The 2025 files in the
+repo were cropped from 1031 px to 809 px for exactly this reason.
+
 Every page, the favicon, the theme colour, the hero and the Press downloads follow. Add `poster: assets/posters/poster-2027.jpg` when the poster exists; the Programme and Press pages pick it up.
 
 ## Flip states

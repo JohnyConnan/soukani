@@ -1,7 +1,8 @@
 /* Landing hero, after the Claude Design draft: full-bleed accent band with ink text, two large outline
    circles and one soft disc off the edges, and the rings composition around the centred logo:
-   four concentric rings (dashed, solid, dotted, dashed), two orbits carrying dots and one spider.
-   CSS-only; every decorative node is aria-hidden and the animation stops under reduced motion. */
+   four concentric rings (dashed, solid, dotted, dashed), two orbits carrying dots and one carrying a
+   spider that changes ring. Every decorative node is aria-hidden and everything, the spider included,
+   holds still under reduced motion. The only script involved is the spider hop in the base layout. */
 .hero { position: relative; overflow: hidden; background: var(--accent); color: var(--on-accent); padding-block: var(--space-5) var(--space-6); }
 @media (min-width: 900px) { .hero { padding-block: 4.75rem 6.5rem; } }
 .hero-deco { position: absolute; inset: 0; pointer-events: none; }
@@ -11,7 +12,7 @@
 .deco.d3 { right: 60px; bottom: -200px; width: 380px; height: 380px; border: 0; background: var(--cream); opacity: 0.35; }
 
 .hero-inner { position: relative; display: grid; gap: var(--space-5); align-items: center; }
-@media (min-width: 900px) { .hero-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 3rem; } }
+@media (min-width: 900px) { .hero-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 3rem; } }
 
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--cream); font-size: var(--step--2); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 8px 18px; border-radius: var(--pill); margin: 0; }
 .hero-eyebrow .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: none; }
@@ -23,9 +24,10 @@
 .hero .button { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .hero .button:hover { background: var(--cream); color: var(--ink); }
 
-/* Rings. The outer ring is the reference size; the others are placed with inset percentages
-   taken from the draft (356 / 410 / 470 / 536 px, logo 330 px). */
-.rings { position: relative; width: min(100%, 33.5rem); aspect-ratio: 1; margin-inline: auto; }
+/* Rings. The outer ring is the reference size; the others are placed with the inset percentages
+   from the draft, scaled up here (400 / 463 / 531 / 608 px, logo 374 px) so the logo reads at arm's
+   length. Every inset is a percentage of .rings, so changing the cap below resizes the whole set. */
+.rings { position: relative; width: min(100%, 38rem); aspect-ratio: 1; margin-inline: auto; pointer-events: none; }
 .ring, .orbit { position: absolute; border-radius: 50%; }
 .ring { border: 2px solid var(--ink); }
 .ring.r1 { inset: 17%; border-style: dashed; opacity: 0.55; animation: spin 42s linear infinite; }
@@ -34,13 +36,18 @@
 .ring.r4 { inset: 0; opacity: 0.22; animation: spin 110s linear infinite; }
 .orbit.o1 { inset: 6.15%; animation: spin 26s linear infinite; }
 .orbit.o2 { inset: 11.75%; animation: spin 34s linear infinite reverse; }
+/* The spider rides its own orbit so it can change ring. --spider-ring holds the inset of the ring it
+   is on; the script swaps it between the three values below and the transition crawls it across. */
+.orbit.os { inset: var(--spider-ring, 6.15%); animation: spin 30s linear infinite; transition: inset 1.6s ease-in-out; }
 .orbit .dot { position: absolute; border-radius: 50%; background: var(--ink); }
 .o1 .dot.top { top: -9px; left: calc(50% - 9px); width: 18px; height: 18px; }
 .o1 .dot.bottom { bottom: -7px; left: calc(50% - 7px); width: 14px; height: 14px; background: var(--cream); }
 .o2 .dot.left { top: calc(50% - 6px); left: -6px; width: 12px; height: 12px; }
 
-/* The spider rides the second orbit: eight legs from one point, a body and a head. */
-.spider { position: absolute; top: calc(50% - 11px); right: -11px; width: 22px; height: 22px; }
+/* The spider: eight legs from one point, a body and a head. It is the one decorative node that takes
+   the pointer — hovering or tapping it sends it to the next ring — so it gets a hit area of its own. */
+.spider { position: absolute; top: calc(50% - 11px); right: -11px; width: 22px; height: 22px; pointer-events: auto; cursor: pointer; }
+.spider::after { content: ""; position: absolute; inset: -13px; border-radius: 50%; }
 .spider i { position: absolute; display: block; background: var(--ink); }
 .spider .leg { top: 11px; left: 11px; width: 12px; height: 1.5px; border-radius: 2px; transform-origin: 0 50%; }
 .spider .leg:nth-child(1) { transform: rotate(148deg); }
@@ -61,4 +68,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ring, .orbit { animation: none; }
+  .orbit.os { transition: none; }
+  .spider { pointer-events: none; cursor: default; }
 }

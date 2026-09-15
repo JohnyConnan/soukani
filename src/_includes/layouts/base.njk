@@ -25,6 +25,32 @@
   nav.addEventListener("click", function (e) { if (e.target.closest("a")) nav.open = false; });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.open) { nav.open = false; summary.focus(); } });
 })();
+(function () {
+  // The hero spider walks one of the three inner rings and moves to the next one every few seconds.
+  // Hovering or tapping it sends it across early. Decoration only: nothing here is focusable, and
+  // readers who asked for less motion get a spider that stays put.
+  var orbit = document.querySelector(".rings .orbit.os");
+  var spider = orbit && orbit.querySelector(".spider");
+  if (!spider) return;
+  var RINGS = ["6.15%", "11.75%", "17%"];   // the dotted, solid and dashed ring insets from hero.css
+  var DWELL = 9000;                          // how long it stays on a ring before moving on
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var at = 0, last = 0, timer;
+  var hop = function () {
+    if (still.matches || Date.now() - last < 1900) return;   // one crawl at a time
+    last = Date.now();
+    at = (at + 1) % RINGS.length;
+    orbit.style.setProperty("--spider-ring", RINGS[at]);
+    schedule();
+  };
+  var schedule = function () {
+    clearTimeout(timer);
+    if (!still.matches) timer = setTimeout(hop, DWELL);
+  };
+  spider.addEventListener("pointerenter", hop);
+  still.addEventListener("change", schedule);
+  schedule();
+})();
 </script>
 </body>
 </html>

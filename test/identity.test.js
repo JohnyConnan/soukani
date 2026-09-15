@@ -47,3 +47,27 @@ test("hero decoration is aria-hidden and the logo image is present", async () =>
   assert.match(home, /<div class="rings" aria-hidden="true">/);
   assert.match(home, /class="hero-logo"><img src="\/assets\/identity\/2025\/logo-barevne\.png" alt=""/);
 });
+
+test("the hero spider has its own orbit and the ring insets the script cycles exist in the CSS", async () => {
+  const home = (await build({ PATH_PREFIX: undefined, CONTENT_DIR: SEED })).get("/");
+  // The spider rides an orbit of its own so the script can move it between rings.
+  assert.match(home, /<div class="orbit os"><span class="spider">/);
+  assert.match(home, /--spider-ring/, "the hop script must ship with the page");
+  // Every inset the script cycles through has to be a ring that is actually drawn, or the spider
+  // walks on nothing. Keep these two lists in step when the ring sizes change.
+  const script = home.slice(home.indexOf("RINGS = ["));
+  const cycled = script.slice(0, script.indexOf("]")).match(/\d+(\.\d+)?%/g);
+  assert.equal(cycled.length, 3);
+  for (const inset of cycled) {
+    assert.match(css, new RegExp(`\\.ring\\.r\\d \\{ inset: ${inset.replace(".", "\\.")};`), inset);
+  }
+});
+
+test("only the spider takes the pointer inside the decorative rings", () => {
+  assert.match(css, /\.rings \{[^}]*pointer-events: none;/);
+  assert.match(css, /\.spider \{[^}]*pointer-events: auto;/);
+  // Reduced motion freezes the hop and takes the spider back out of the pointer's way.
+  const reduced = css.slice(css.indexOf("@media (prefers-reduced-motion: reduce)"));
+  assert.match(reduced, /\.orbit\.os \{ transition: none; \}/);
+  assert.match(reduced, /\.spider \{ pointer-events: none/);
+});
