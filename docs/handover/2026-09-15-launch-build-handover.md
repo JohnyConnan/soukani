@@ -143,9 +143,17 @@ Ten changes requested by Jonáš once the launch build was live. All ten shipped
 - **The coming-soon paragraph about the selection stays on Soubory only.** Přihlášky says the same
   thing in one sentence appended to the call intro (`call.intro` in `copy.yaml`, ending "Výběr
   zveřejníme koncem roku {yearBefore}") — the token is `edition.year - 1`, so 2029 needs no edit.
-- **A large colour logo sits beside the Přihlášky heading** (`.page-head` / `.page-head-logo` in
-  `components.css`): 15 rem on desktop, dropping under the heading below 700 px. It is decorative and
+- **A large colour badge sits beside the Přihlášky opening** (`.page-head` in `components.css`):
+  `clamp(15rem, 32vw, 27rem)` on desktop, 16 rem under the text below 900 px. It is decorative and
   `aria-hidden`; the page already names the festival and the year.
+  - The badge is taller than the heading, so the **text column holds the whole opening** — the page
+    heading, the call heading and the call intro — and the two are one grid row. `call.njk` therefore
+    renders only the conditions and the apply box, and `applications.njk` owns the heading and intro
+    (with `id="call"`, still only when the call is shown). This was arrived at the hard way: a badge
+    that stands beside the heading alone either leaves a hole under the heading or has to overflow
+    downward, and the overflow collides with the deadline callout as soon as the intro wraps to one
+    line fewer. In one grid row no overlap is representable. `test/call.test.js`'s `callSection`
+    helper now slices to `<footer`, because the call spans two sections.
 
 ## Content assumptions to confirm with Jonáš
 

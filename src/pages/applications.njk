@@ -3,19 +3,25 @@ pageKey: applications
 ---
 {#- The call for applications, on its own URL. The selected groups live on the Soubory page; this
     page never lists them, it only says when the selection comes (in the call intro). Once the call
-    closes, swap the two inMenu flags in content/pages.yaml – see the comment there. -#}
+    closes, swap the two inMenu flags in content/pages.yaml – see the comment there.
+
+    The head block holds the heading, the call's own heading and its intro in one column and the
+    festival badge in the other, because the badge is drawn large enough to stand beside all three.
+    Keeping them in one grid is what stops the badge from ever reaching the conditions below it. -#}
+{%- set cc = db.copy.call -%}
 {%- set callShown = edition.ageMin and edition.status == 'upcoming' -%}
-<section class="wrap section page-head">
+<section class="wrap section page-head"{% if callShown %} id="call"{% endif %}>
   <div class="page-head-text">
     <h1>{{ registry.title | t(lang) }} {{ edition.year }}</h1>
+    {%- if callShown %}
+    <h2>{{ cc.heading | t(lang) }}</h2>
+    <p class="lede call-intro">{{ cc.intro | t(lang) | fill({ n: edition.number | ordinal(lang), yearBefore: edition.year - 1 }) }}</p>
+    {%- else %}
+    <p class="lede call-intro">{{ cc.closed | t(lang) }}</p>
+    {%- endif %}
   </div>
   <div class="page-head-logo" aria-hidden="true">
-    <img src="/{{ edition.logo.color }}" alt="" width="300" height="300" fetchpriority="high">
+    <img src="/{{ edition.logo.color }}" alt="" width="809" height="809" fetchpriority="high">
   </div>
 </section>
 {% include "partials/call.njk" %}
-{%- if not callShown %}
-<section class="wrap section">
-  <p class="notice">{{ db.copy.call.closed | t(lang) }}</p>
-</section>
-{%- endif %}

@@ -92,24 +92,25 @@
 .callout { background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius); padding: var(--space-4); }
 .callout .button { margin-top: var(--space-2); }
 .notice { padding: var(--space-3); border: 2px dashed var(--ink); border-radius: var(--radius); max-width: 42em; margin-top: var(--space-3); }
-.call-intro { margin-bottom: var(--space-4); }
 .conditions { padding-left: 0; list-style: none; }
 .conditions li { position: relative; padding-left: 1.6em; margin-bottom: 0.6em; color: var(--ink-soft); }
 .conditions li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
 .two-col { display: grid; gap: var(--space-4); align-items: start; }
 @media (min-width: 900px) { .two-col { grid-template-columns: 1fr 1fr; } .two-col.narrow-first { grid-template-columns: minmax(0, 21.25rem) 1fr; } }
 
-/* Page head with the festival badge beside the title (Přihlášky). The logo is decorative – the
-   page already says which festival and year it is – so it is aria-hidden in the template and
-   simply drops below the heading on a narrow screen. */
+/* Page head with the festival badge beside the title (Přihlášky). The badge is drawn large, so the
+   text column holds the whole opening — heading, call heading and intro — and the two sit in one
+   grid row. That is deliberate: a badge that only stood beside the heading would either leave a
+   hole under it or have to overflow down into the conditions. The badge is decorative and
+   aria-hidden in the template, and it simply drops below the text on a narrow screen. */
 .page-head { display: grid; gap: var(--space-3); align-items: center; }
-.page-head-logo { justify-self: start; width: min(100%, 11rem); }
+.page-head h1 { margin-bottom: var(--space-4); }
+.page-head-text > :last-child { margin-bottom: 0; }
+.page-head-logo { justify-self: start; width: min(100%, 16rem); }
 .page-head-logo img { display: block; width: 100%; height: auto; }
-@media (min-width: 700px) {
-  /* The heading is centred against the circle, which leaves slack under it that the section's own
-     bottom padding would double. The badge itself is the spacing here, so the padding goes. */
-  section.page-head { grid-template-columns: 1fr auto; gap: var(--space-4); padding-bottom: 0; }
-  .page-head-logo { justify-self: end; width: 13.5rem; }
+@media (min-width: 900px) {
+  .page-head { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-5); }
+  .page-head-logo { justify-self: end; width: clamp(15rem, 32vw, 27rem); }
 }
 
 /* Schedule */

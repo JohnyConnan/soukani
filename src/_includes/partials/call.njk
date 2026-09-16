@@ -1,11 +1,11 @@
-{#- Call for applications. Expects: edition, lang. Hidden while the festival runs or is over,
-    and when the edition record carries no conditions yet. -#}
+{#- Conditions of the call for applications and the apply box. Expects: edition, lang. Hidden while
+    the festival runs or is over, and when the edition record carries no conditions yet. The call's
+    heading and intro are not here: they sit in the page head next to the festival badge, which is
+    tall enough to stand beside them (see src/pages/applications.njk). -#}
 {%- set cc = db.copy.call -%}
 {%- if edition.ageMin and edition.status == 'upcoming' %}
 {%- set vars = { ageMin: edition.ageMin, ageMax: edition.ageMax, maxMinutes: edition.maxMinutes, maxActors: edition.maxActors, adultsMin: edition.adultsMin, adultsMax: edition.adultsMax, hosted: edition.maxActors + edition.adultsMax } %}
-<section class="wrap section" id="call">
-  <h2>{{ cc.heading | t(lang) }}</h2>
-  <p class="lede call-intro">{{ cc.intro | t(lang) | fill({ n: edition.number | ordinal(lang), yearBefore: edition.year - 1 }) }}</p>
+<section class="wrap section">
   <div class="two-col">
     <div>
       <h3>{{ cc.conditionsHeading | t(lang) }}</h3>

@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { rmSync } from "node:fs";
 import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
-const callSection = (html) => html.slice(html.indexOf('id="call"'), html.indexOf("</section>", html.indexOf('id="call"')));
+// The call spans two sections now — the head block carries the heading and intro next to the
+// badge, the conditions and the apply box follow — so the slice runs to the end of the page.
+const callSection = (html) => html.slice(html.indexOf('id="call"'), html.indexOf("<footer"));
 
 test("AE3: without applyUrl the call section has no empty or # link and shows the opening text", async () => {
   const p = await fixture();
@@ -72,8 +74,8 @@ test("applyOpensOn with call announced prints the formatted date per language", 
 
 test("the #call anchor exists in both languages and the About page carries the brief's facts", async () => {
   const p = await fixture();
-  assert.match(p.get("/prihlasky/"), /<section class="wrap section" id="call">/);
-  assert.match(p.get("/en/applications/"), /<section class="wrap section" id="call">/);
+  assert.match(p.get("/prihlasky/"), /<section class="wrap section page-head" id="call">/);
+  assert.match(p.get("/en/applications/"), /<section class="wrap section page-head" id="call">/);
   // About keeps the festival's story; only the call moved.
   assert.doesNotMatch(p.get("/o-festivalu/"), /id="call"/);
   assert.doesNotMatch(p.get("/en/about/"), /id="call"/);
