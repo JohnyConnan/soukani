@@ -5,7 +5,7 @@
 {%- set vars = { ageMin: edition.ageMin, ageMax: edition.ageMax, maxMinutes: edition.maxMinutes, maxActors: edition.maxActors, adultsMin: edition.adultsMin, adultsMax: edition.adultsMax, hosted: edition.maxActors + edition.adultsMax } %}
 <section class="wrap section" id="call">
   <h2>{{ cc.heading | t(lang) }}</h2>
-  <p class="lede">{{ cc.intro | t(lang) | fill({ n: edition.number | ordinal(lang), yearBefore: edition.year - 1 }) }}</p>
+  <p class="lede call-intro">{{ cc.intro | t(lang) | fill({ n: edition.number | ordinal(lang), yearBefore: edition.year - 1 }) }}</p>
   <div class="two-col">
     <div>
       <h3>{{ cc.conditionsHeading | t(lang) }}</h3>

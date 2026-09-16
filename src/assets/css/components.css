@@ -92,6 +92,7 @@
 .callout { background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius); padding: var(--space-4); }
 .callout .button { margin-top: var(--space-2); }
 .notice { padding: var(--space-3); border: 2px dashed var(--ink); border-radius: var(--radius); max-width: 42em; margin-top: var(--space-3); }
+.call-intro { margin-bottom: var(--space-4); }
 .conditions { padding-left: 0; list-style: none; }
 .conditions li { position: relative; padding-left: 1.6em; margin-bottom: 0.6em; color: var(--ink-soft); }
 .conditions li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
@@ -105,8 +106,10 @@
 .page-head-logo { justify-self: start; width: min(100%, 11rem); }
 .page-head-logo img { display: block; width: 100%; height: auto; }
 @media (min-width: 700px) {
-  .page-head { grid-template-columns: 1fr auto; gap: var(--space-4); }
-  .page-head-logo { justify-self: end; width: 15rem; }
+  /* The heading is centred against the circle, which leaves slack under it that the section's own
+     bottom padding would double. The badge itself is the spacing here, so the padding goes. */
+  section.page-head { grid-template-columns: 1fr auto; gap: var(--space-4); padding-bottom: 0; }
+  .page-head-logo { justify-self: end; width: 13.5rem; }
 }
 
 /* Schedule */
