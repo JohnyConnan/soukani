@@ -2,7 +2,7 @@
 <header class="site-header">
   <div class="bar">
     <a class="brand" href="{{ db.pageUrl('home', lang) }}" aria-label="{{ db.site.name }} – {{ db.copy.hero.place | t(lang) }}">
-      <img class="brand-logo" src="/{{ edition.logo.negative }}" alt="" width="54" height="54">
+      <img class="brand-logo" src="/{{ edition.logo.color }}" alt="" width="54" height="54">
       <span class="brand-text">
         <span class="brand-name">{{ db.site.name }}</span>
         <span class="brand-dates">{% if edition.dateFrom %}{{ edition.dateFrom | range(edition.dateTo, lang) }}{% else %}{{ db.copy.hero.datesTba | t(lang) }}{% endif %}</span>

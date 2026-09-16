@@ -98,6 +98,17 @@
 .two-col { display: grid; gap: var(--space-4); align-items: start; }
 @media (min-width: 900px) { .two-col { grid-template-columns: 1fr 1fr; } .two-col.narrow-first { grid-template-columns: minmax(0, 21.25rem) 1fr; } }
 
+/* Page head with the festival badge beside the title (Přihlášky). The logo is decorative – the
+   page already says which festival and year it is – so it is aria-hidden in the template and
+   simply drops below the heading on a narrow screen. */
+.page-head { display: grid; gap: var(--space-3); align-items: center; }
+.page-head-logo { justify-self: start; width: min(100%, 11rem); }
+.page-head-logo img { display: block; width: 100%; height: auto; }
+@media (min-width: 700px) {
+  .page-head { grid-template-columns: 1fr auto; gap: var(--space-4); }
+  .page-head-logo { justify-self: end; width: 15rem; }
+}
+
 /* Schedule */
 .day { margin-bottom: var(--space-4); }
 .day h3 { display: flex; align-items: center; gap: 0.875rem; font-size: var(--step-2); margin-bottom: var(--space-2); }

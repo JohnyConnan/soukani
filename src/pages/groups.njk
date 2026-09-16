@@ -1,17 +1,12 @@
 ---
 pageKey: groups
 ---
-{#- While the call runs this page is the call: the registry title leads ("Přihlášky"), the call
-    section follows and the selected groups sit under it. Once the call closes call.njk renders
-    nothing, the "Soubory" sub-heading drops away and the page is the groups list again. -#}
-{%- set callShown = edition.ageMin and edition.status == 'upcoming' -%}
+{#- The groups selected by the artistic committee. Empty until the committee decides, when
+    groups-list.njk prints the coming-soon note instead; that is why this page stays out of the
+    menu while the call runs (see content/pages.yaml). -#}
 <section class="wrap section">
   <h1>{{ registry.title | t(lang) }} {{ edition.year }}</h1>
 </section>
-{% include "partials/call.njk" %}
 <section class="wrap section">
-  {%- if callShown %}
-  <h2>{{ db.copy.groups.heading | t(lang) }}</h2>
-  {%- endif %}
   {% include "partials/groups-list.njk" %}
 </section>

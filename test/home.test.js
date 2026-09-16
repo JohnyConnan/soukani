@@ -6,8 +6,8 @@ import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 test("seed (call announced, no URL): CTA links to the Přihlášky page's #call anchor", async () => {
   const p = await fixture();
-  assert.match(p.get("/"), /<a class="button" href="\/soubory\/#call">Podmínky účasti<\/a>/);
-  assert.match(p.get("/en/"), /<a class="button" href="\/en\/groups\/#call">How to apply<\/a>/);
+  assert.match(p.get("/"), /<a class="button" href="\/prihlasky\/#call">Podmínky účasti<\/a>/);
+  assert.match(p.get("/en/"), /<a class="button" href="\/en\/applications\/#call">How to apply<\/a>/);
 });
 
 test("call open: CTA is the apply URL with rel=noopener", async () => {
@@ -51,8 +51,8 @@ test("news: newest first, two launch items with resolved links; 2025 items absen
   const first = cs.indexOf("Výzva k přihlášení na Soukání Ostrov 2027");
   const second = cs.indexOf("Soukání Ostrov 2027 se koná");
   assert.ok(first > 0 && second > first, "call item precedes announcement item");
-  assert.match(cs, /<a href="\/soubory\/#call">Výzva k přihlášení/);
-  assert.match(p.get("/en/"), /<a href="\/en\/groups\/#call">Call for applications/);
+  assert.match(cs, /<a href="\/prihlasky\/#call">Výzva k přihlášení/);
+  assert.match(p.get("/en/"), /<a href="\/en\/applications\/#call">Call for applications/);
   assert.match(cs, /datetime="2026-09-15">15\. 9\. 2026</);
   assert.match(p.get("/en/"), /15 September 2026/);
   assert.equal((cs.match(/class="news-item"/g) || []).length, 2);

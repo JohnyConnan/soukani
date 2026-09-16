@@ -11,7 +11,7 @@ test("sitemap lists every registry page in both languages with absolute URLs and
   const xml = pages.get("/sitemap.xml");
   assert.ok(xml, "sitemap rendered");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  assert.equal(locs.length, 16, "eight registry pages × two languages");
+  assert.equal(locs.length, 18, "nine registry pages × two languages");
   assert.ok(locs.includes("https://johnyconnan.github.io/soukani/"));
   assert.ok(locs.includes("https://johnyconnan.github.io/soukani/en/workshops/"));
   assert.ok(locs.includes("https://johnyconnan.github.io/soukani/archiv/"));

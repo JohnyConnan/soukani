@@ -8,7 +8,8 @@ before(async () => {
 });
 
 const EXPECTED = {
-  home: ["/", "/en/"], about: ["/o-festivalu/", "/en/about/"], groups: ["/soubory/", "/en/groups/"],
+  home: ["/", "/en/"], about: ["/o-festivalu/", "/en/about/"],
+  applications: ["/prihlasky/", "/en/applications/"], groups: ["/soubory/", "/en/groups/"],
   programme: ["/program/", "/en/programme/"], workshops: ["/dilny/", "/en/workshops/"],
   photos: ["/fotogalerie/", "/en/photos/"], press: ["/pro-media/", "/en/press/"],
 };
@@ -21,7 +22,7 @@ test("AE1: the Czech workshops page switches to the English workshops page and b
 test("every registry page produces exactly its two permalinks", () => {
   for (const [key, urls] of Object.entries(EXPECTED)) for (const url of urls) assert.ok(pages.has(url), `${key} → ${url}`);
   const htmlPages = [...pages.keys()].filter((u) => u.endsWith("/") || u.endsWith(".html"));
-  assert.equal(htmlPages.length, 16 + 1, "eight registry pages × two languages + 404");
+  assert.equal(htmlPages.length, 18 + 1, "nine registry pages × two languages + 404");
 });
 
 test("each output carries lang, one canonical, two hreflang alternates and x-default → English", () => {
@@ -49,6 +50,17 @@ test("menu order follows R6 in both languages", () => {
   const labels = (html) => [...html.matchAll(/<nav class="menu"[\s\S]*?<\/nav>/g)][0][0].match(/>([^<]+)<\/a>/g).map((m) => m.slice(1, -4));
   assert.deepEqual(labels(pages.get("/")), ["Úvod", "O festivalu", "Přihlášky", "Program", "Dílny", "Fotogalerie", "Pro média"]);
   assert.deepEqual(labels(pages.get("/en/")), ["Home", "About", "Applications", "Programme", "Workshops", "Photos", "Press"]);
+});
+
+test("Přihlášky and Soubory are separate live pages; only Přihlášky is in the menu", () => {
+  for (const url of ["/prihlasky/", "/en/applications/", "/soubory/", "/en/groups/"]) assert.ok(pages.has(url), url);
+  const menu = (html) => [...html.matchAll(/<nav class="menu"[\s\S]*?<\/nav>/g)][0][0];
+  assert.match(menu(pages.get("/")), /href="\/prihlasky\/"/);
+  assert.doesNotMatch(menu(pages.get("/")), /href="\/soubory\/"/);
+  assert.match(menu(pages.get("/en/")), /href="\/en\/applications\/"/);
+  assert.doesNotMatch(menu(pages.get("/en/")), /href="\/en\/groups\/"/);
+  // The hidden page still switches language, so the pair stays usable when it is linked directly.
+  assert.match(pages.get("/soubory/"), /class="lang-switch" href="\/en\/groups\/"/);
 });
 
 test("footer holds IČO, four contact roles, Facebook, both logo tiers and the old-site link", () => {

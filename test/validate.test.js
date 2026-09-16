@@ -97,7 +97,7 @@ test("photo file problems name path, size and allowed formats", () => {
 });
 
 test("pages entry missing slug.en names the page key and field", () => {
-  const problems = seed((r) => delete r.pages[2].slug.en);
+  const problems = seed((r) => delete r.pages.find((p) => p.key === "groups").slug.en);
   assertProblem(problems, /pages\.yaml/, /groups/, /slug\.en/);
 });
 

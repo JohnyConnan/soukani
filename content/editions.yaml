@@ -21,10 +21,10 @@
   adultsMax: 3
   accent: "#FF6B2C"
   logo:
-    color: assets/identity/2025/logo-barevne.png
-    white: assets/identity/2025/logo-bile.png
-    negative: assets/identity/2025/logo-negativ.png
-  logoYear: 2025
+    color: assets/identity/2027/logo-barevne.png
+    white: assets/identity/2027/logo-bile.png
+    negative: assets/identity/2027/logo-negativ.png
+  logoYear: 2027
   poster: null
   programmePdf: null
   tickets: null

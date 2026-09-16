@@ -32,7 +32,9 @@
       <div class="orbit o1"><span class="dot top"></span><span class="dot bottom"></span></div>
       <div class="orbit o2"><span class="dot left"></span></div>
       <div class="orbit os"><span class="spider"><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="leg"></i><i class="body"></i><i class="head"></i></span></div>
-      <div class="hero-logo"><img src="/{{ edition.logo.color }}" alt="" width="374" height="374"></div>
+      {#- The band behind the rings is the accent colour, so the colour logo would sit orange on orange;
+          the negative (black) variant is the one that reads here. -#}
+      <div class="hero-logo"><img src="/{{ edition.logo.negative }}" alt="" width="374" height="374"></div>
     </div>
   </div>
 </section>

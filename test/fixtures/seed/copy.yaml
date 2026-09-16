@@ -131,11 +131,12 @@ call:
     cs: >-
       Zveme divadelní soubory mladých lidí z celého světa, aby se přihlásily na {n} ročník
       festivalu Soukání Ostrov. Soubory vybírá umělecká komise festivalu na základě přihlášky
-      a videozáznamu inscenace.
+      a videozáznamu inscenace. Výběr zveřejníme koncem roku {yearBefore}.
     en: >-
       We invite youth theatre groups from all over the world to apply for the {n} edition of
       Soukání Ostrov. Groups are selected by the festival's artistic committee on the basis of
-      the application and a video of the production.
+      the application and a video of the production. The selection will be published at the end
+      of {yearBefore}.
   conditionsHeading: { cs: Podmínky účasti, en: Conditions }
   conditions:
     cs:

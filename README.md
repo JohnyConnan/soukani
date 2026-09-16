@@ -66,7 +66,7 @@ Append to `content/news.yaml`:
   text:
     cs: Umělecká komise vybrala osm souborů z šesti zemí.
     en: The artistic committee selected eight groups from six countries.
-  link: { page: groups }               # a key from pages.yaml, optionally with anchor: call
+  link: { page: groups }               # a key from pages.yaml; applications takes anchor: call
   # or an external address: link: { url: https://... }
 ```
 
@@ -91,11 +91,22 @@ Append to `content/groups.yaml` (the file has a commented example):
   host: false                          # true only for HOP-HOP
 ```
 
-While `groupsComplete: false` on the edition record, the Groups page adds "more groups to be announced". Flip it to `true` when the list is final.
+While `groupsComplete: false` on the edition record, the Soubory page adds "more groups to be announced". Flip it to `true` when the list is final.
 
-### The Groups page while the call runs
+### Přihlášky and Soubory take turns in the menu
 
-The call for applications lives on this page, above the groups, and the page is therefore labelled **Přihlášky / Applications** in `content/pages.yaml`. When the call closes, change that page's `label`, `title` and `description` back to *Soubory / Groups*; the slugs (`soubory`, `groups`) never change, so no link or bookmark breaks. The "Soubory" sub-heading above the list appears only while the call section is there.
+They are two separate pages with two separate addresses:
+
+| Page | Czech | English | Holds |
+|---|---|---|---|
+| Přihlášky | `/prihlasky/` | `/en/applications/` | conditions, deadline, the application form |
+| Soubory | `/soubory/` | `/en/groups/` | the groups the committee selected |
+
+While the call runs, **Přihlášky** is in the menu and **Soubory** is hidden — it would only say that
+nothing is selected yet. When the committee has decided and the groups are in `content/groups.yaml`,
+swap the two `inMenu` flags in `content/pages.yaml`: set `inMenu: true` on `groups` and
+`inMenu: false` on `applications`. Nothing else moves; both pages stay live at their own address
+either way, so links and bookmarks keep working in both directions.
 
 ## Add press coverage
 
@@ -130,14 +141,28 @@ Append to `content/programme.yaml`. A `performance` slot needs `groupId` matchin
 
 ## Swap the identity (new logo and colour)
 
-1. Put the three PNG variants into `src/assets/identity/2027/` (colour, white, negative).
-2. On the 2027 record in `content/editions.yaml` set `accent: "#RRGGBB"`, the three `logo` paths and `logoYear: 2027`.
+**Done for 2027** — the files are in `src/assets/identity/2027/` and the record points at them. The
+steps are kept here for the 2029 rollover:
+
+1. Put the three PNG variants into `src/assets/identity/<year>/` as `logo-barevne.png` (colour),
+   `logo-bile.png` (white) and `logo-negativ.png` (black).
+2. On that edition's record in `content/editions.yaml` set `accent: "#RRGGBB"`, the three `logo`
+   paths and `logoYear: <year>`.
+
+Each variant has one job, and the templates pick it, not you:
+
+| Variant | Used by |
+|---|---|
+| colour | header badge, favicon and touch icon, the badge on Přihlášky, Open Graph preview |
+| negative (black) | the landing hero — its band is the accent colour, so a colour logo would sit orange on orange |
+| white | Press downloads only, for partners printing on a dark ground |
 
 **Ask the designer for square PNGs, transparent background, cropped tight to the artwork — no empty
 margin around the badge — at 1200 × 1200 px or larger.** Every place the logo appears (the hero, the
-header and footer badges, the favicon, the Press downloads) fills its circle with the file as given,
-so a file with a transparent margin baked in simply renders smaller everywhere. The 2025 files in the
-repo were cropped from 1031 px to 809 px for exactly this reason.
+header badge, the favicon, the Press downloads) fills its circle with the file as given, so a file
+with a transparent margin baked in simply renders smaller everywhere. The 2025 files in the repo were
+cropped from 1031 px to 809 px for exactly this reason; the 2027 files arrived at 809 px already
+cropped.
 
 Every page, the favicon, the theme colour, the hero and the Press downloads follow. Add `poster: assets/posters/poster-2027.jpg` when the poster exists; the Programme and Press pages pick it up.
 
@@ -155,7 +180,7 @@ All page states are flags on the edition record; nothing changes by itself with 
 
 Groups, programme and workshops pages switch from "coming soon" to lists as soon as the first record exists. While `call: open` the home page button always leads to the form, even after groups or a poster appear.
 
-When the festival starts (`status: running`) the call section disappears from the Groups page, so set `published: false` on the "call for applications" news item at the same time — its `#call` link would otherwise point at nothing.
+When the festival starts (`status: running`) the call section disappears from the Přihlášky page, so set `published: false` on the "call for applications" news item at the same time — its `#call` link would otherwise point at nothing.
 
 ## Archive an edition (2029 rollover)
 

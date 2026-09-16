@@ -1,0 +1,21 @@
+---
+pageKey: applications
+---
+{#- The call for applications, on its own URL. The selected groups live on the Soubory page; this
+    page never lists them, it only says when the selection comes (in the call intro). Once the call
+    closes, swap the two inMenu flags in content/pages.yaml – see the comment there. -#}
+{%- set callShown = edition.ageMin and edition.status == 'upcoming' -%}
+<section class="wrap section page-head">
+  <div class="page-head-text">
+    <h1>{{ registry.title | t(lang) }} {{ edition.year }}</h1>
+  </div>
+  <div class="page-head-logo" aria-hidden="true">
+    <img src="/{{ edition.logo.color }}" alt="" width="300" height="300" fetchpriority="high">
+  </div>
+</section>
+{% include "partials/call.njk" %}
+{%- if not callShown %}
+<section class="wrap section">
+  <p class="notice">{{ db.copy.call.closed | t(lang) }}</p>
+</section>
+{%- endif %}

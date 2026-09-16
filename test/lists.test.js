@@ -4,7 +4,7 @@ import { rmSync } from "node:fs";
 import { build, buildFixture as fixture, editionVariant } from "./helpers.js";
 
 
-test("AE2: with no 2027 groups the Přihlášky page explains when the selection comes, with no list markup", async () => {
+test("AE2: with no 2027 groups the Soubory page explains when the selection comes, with no list markup", async () => {
   const p = await fixture();
   const cs = p.get("/soubory/"), en = p.get("/en/groups/");
   assert.match(cs, /vybere umělecká komise festivalu[\s\S]*Výběr zveřejníme koncem roku 2026\./);
@@ -12,6 +12,10 @@ test("AE2: with no 2027 groups the Přihlášky page explains when the selection
   for (const html of [cs, en]) {
     assert.doesNotMatch(html, /class="card-grid"|group-card|lorem/i);
   }
+  // Přihlášky says when the selection comes in one sentence of the call intro; the full
+  // coming-soon paragraph with the list markup around it stays on Soubory.
+  assert.doesNotMatch(p.get("/prihlasky/"), /vybere umělecká komise festivalu z přihlášek/);
+  assert.doesNotMatch(p.get("/en/applications/"), /will be selected by the festival's artistic committee/);
 });
 
 test("AE5: with no 2027 poster the Programme page shows the labelled placeholder and never the 2025 poster", async () => {

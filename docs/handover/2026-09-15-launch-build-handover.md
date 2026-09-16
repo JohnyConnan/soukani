@@ -87,7 +87,8 @@ Ten changes requested by Jonáš once the launch build was live. All ten shipped
   Applications* (the direct equivalent; "Call for applications" in the title would have repeated the
   section heading right below it, and is long in the menu bar). The slugs stay `soubory` / `groups`, so the hero CTA, the news item's `#call`
   link and every bookmark keep working; when the call closes, only `label`, `title` and `description`
-  of that record in `pages.yaml` go back to *Soubory / Groups*.
+  of that record in `pages.yaml` go back to *Soubory / Groups*. **Superseded on 2026-09-16** — the two
+  are separate pages now; see the section below.
 - **The "Co chystáme na rok 2027" highlight left the home page** for a new *Další aktuality / Other news*
   section on the Press page (`press.otherNewsHeading` in `copy.yaml`). It is still the edition record's
   `highlight` field, so an edition without one renders no section.
@@ -115,6 +116,36 @@ Ten changes requested by Jonáš once the launch build was live. All ten shipped
   (poster and programme scans), 2005/2003/2001 their edition pages (8–11 photos each). **2011, 2009 and
   2007 carry `null`** — their gallery pages on the old site are empty and 2007's external link
   (soukani.wz.cz) is a dead domain — so they are listed in the archive but not in the gallery list.
+
+## 2027 identity and the Přihlášky page (2026-09-16)
+
+`npm test` → 118 passing.
+
+- **The 2027 logo landed.** `src/assets/identity/2027/` holds `logo-barevne.png`, `logo-bile.png` and
+  `logo-negativ.png` (809 px square, transparent, cropped tight — the shape the README asks for),
+  copied from `~/Documents/personal_jesus/soukani/s27/s27_logo` (`S27-logo-rgb`, `S27-white`,
+  `S27-black`). The 2027 record points at them with `logoYear: 2027`, so the Press downloads relabel
+  themselves. The accent stays `#FF6B2C`: the new colour logo is that same orange, so the provisional
+  value turned out to be the real one.
+- **Which variant goes where changed with it.** The hero takes the **negative** (black) logo — its band
+  is the accent colour and the colour logo sat orange on orange. The header badge takes the **colour**
+  logo (it sits on the dark bar, where the black variant was nearly invisible against the ink). The
+  favicon and touch icon keep the colour logo. `test/identity.test.js` pins all three.
+- **Přihlášky and Soubory are two pages now**, not one page wearing two labels. Přihlášky lives at
+  `/prihlasky/` and `/en/applications/` and carries only the call; Soubory keeps `/soubory/` and
+  `/en/groups/` and carries only the selected groups. The old arrangement put the call at a URL saying
+  *soubory*, which read wrong to anyone looking at the address bar.
+  - Only Přihlášky is `inMenu` while the call runs; when the committee decides, swap the two flags in
+    `pages.yaml` (README › *Přihlášky and Soubory take turns in the menu*). Both pages stay live and
+    reachable either way, so neither switch breaks a link.
+  - The home CTA and the call news item point at `applications` + `#call`. `lib/validate.js` now
+    requires both keys in the registry.
+- **The coming-soon paragraph about the selection stays on Soubory only.** Přihlášky says the same
+  thing in one sentence appended to the call intro (`call.intro` in `copy.yaml`, ending "Výběr
+  zveřejníme koncem roku {yearBefore}") — the token is `edition.year - 1`, so 2029 needs no edit.
+- **A large colour logo sits beside the Přihlášky heading** (`.page-head` / `.page-head-logo` in
+  `components.css`): 15 rem on desktop, dropping under the heading below 700 px. It is decorative and
+  `aria-hidden`; the page already names the festival and the year.
 
 ## Content assumptions to confirm with Jonáš
 

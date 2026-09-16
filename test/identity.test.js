@@ -11,7 +11,8 @@ test("AE4: accent and logo come from the edition record on every page", async ()
   const seed = await build({ PATH_PREFIX: undefined, CONTENT_DIR: SEED });
   for (const url of ["/", "/en/", "/dilny/", "/en/press/", "/404.html"]) {
     assert.match(seed.get(url), /--accent: #FF6B2C;/, url);
-    // Header and footer carry the negative logo on the dark bars, the hero and press the colour one.
+    // The header badge, the favicon and the Přihlášky badge take the colour logo; the hero, whose
+    // band is the accent colour, takes the negative one.
     assert.match(seed.get(url), /src="\/assets\/identity\/2025\/logo-[a-z]+\.png"/, url);
     assert.match(seed.get(url), /href="\/assets\/identity\/2025\/logo-barevne\.png" type="image\/png"/, url);
   }
@@ -19,6 +20,16 @@ test("AE4: accent and logo come from the edition record on every page", async ()
   assert.match(rolled.get("/"), /--accent: #1B7F5C;/);
   assert.match(rolled.get("/"), /<meta name="theme-color" content="#1B7F5C">/);
   assert.match(rolled.get("/404.html"), /--accent: #1B7F5C;/);
+});
+
+test("each logo variant sits where it reads: colour in the header and on Přihlášky, negative on the accent band", async () => {
+  const pages = await build({ PATH_PREFIX: undefined, CONTENT_DIR: SEED });
+  const logo = (v) => new RegExp(`/assets/identity/2025/logo-${v}\\.png`);
+  assert.match(pages.get("/"), /class="brand-logo" src="\/assets\/identity\/2025\/logo-barevne\.png"/);
+  assert.match(pages.get("/"), /class="hero-logo"><img src="\/assets\/identity\/2025\/logo-negativ\.png"/);
+  assert.doesNotMatch(pages.get("/").slice(pages.get("/").indexOf('class="rings"')), logo("barevne"));
+  assert.match(pages.get("/prihlasky/"), /class="page-head-logo" aria-hidden="true">\s*<img src="\/assets\/identity\/2025\/logo-barevne\.png"/);
+  assert.match(pages.get("/en/applications/"), logo("barevne"));
 });
 
 test("CSS honours prefers-reduced-motion and defines focus-visible", () => {
@@ -45,7 +56,8 @@ test("hero decoration is aria-hidden and the logo image is present", async () =>
   const pages = await build({ PATH_PREFIX: undefined, CONTENT_DIR: SEED });
   const home = pages.get("/");
   assert.match(home, /<div class="rings" aria-hidden="true">/);
-  assert.match(home, /class="hero-logo"><img src="\/assets\/identity\/2025\/logo-barevne\.png" alt=""/);
+  // The hero band is the accent colour, so it takes the negative variant, not the colour one.
+  assert.match(home, /class="hero-logo"><img src="\/assets\/identity\/2025\/logo-negativ\.png" alt=""/);
 });
 
 test("the hero spider has its own orbit and the ring insets the script cycles exist in the CSS", async () => {
