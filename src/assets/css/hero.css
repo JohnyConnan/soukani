@@ -3,7 +3,8 @@
    around the centred logo:
    four concentric rings (dashed, solid, dotted, dashed), two orbits carrying dots and one carrying a
    spider that changes ring. Every decorative node is aria-hidden and everything, the spider included,
-   holds still under reduced motion. The only script involved is the spider hop in the base layout. */
+   holds still under reduced motion. Two scripts touch it: the spider hop in the base layout and the
+   crop pick at the top of hero.njk. */
 /* isolation keeps the photographs' blend inside the hero: they tint the accent band and nothing below it. */
 .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--accent); color: var(--on-accent); padding-block: var(--space-5) var(--space-6); }
 @media (min-width: 900px) { .hero { padding-block: 4.75rem 6.5rem; } }
@@ -18,7 +19,14 @@
 .deco::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background-position: center; background-size: cover; mix-blend-mode: soft-light; opacity: var(--stage-fade); }
 /* Each crop is composed for the slice of its circle that is actually on screen — the rest of the circle
    sits off the edge. d1 shows its lower left, d2 its upper right, d3 only its top. That is why the
-   figures sit off-centre in the files: centring them would push them out of view. */
+   figures sit off-centre in the files: centring them would push them out of view, and why a crop
+   belongs to one circle and cannot be shown in another.
+   So every circle keeps a pool of crops cut for its own position and draws one of them at random on
+   each load. The counts sit on :root because the pick in hero.njk runs before the circles are parsed —
+   it has to, or the browser fetches the default crop and then drops it. The bare rule is crop 1, the
+   data attributes below name the rest, and a reader without JS stays on crop 1. Adding one takes three
+   lines: the square JPEG into src/assets/hero/, the count here, the rule beside its circle. */
+:root { --stage-pool-d1: 1; --stage-pool-d2: 1; --stage-pool-d3: 1; }
 .deco.d1 { right: -180px; top: -160px; width: 620px; height: 620px; }
 .deco.d1::before { background-image: url("../hero/stage-04.jpg"); }
 .deco.d2 { left: -200px; bottom: -280px; width: 520px; height: 520px; }

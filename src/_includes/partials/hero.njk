@@ -1,5 +1,21 @@
 {#- Landing hero. Expects: edition, lang, cta ({ href, label, external }) and dates text. -#}
 <section class="hero">
+  {#- Every circle draws one crop from its own pool at random on each load; --stage-pool-d1/2/3 in
+      hero.css counts them and the data attributes below select them. This sits above the circles, not
+      with the scripts at the end of the body, because a circle that is already parsed has its default
+      crop fetched before the pick can land. The stylesheet in the head is loaded by the time an inline
+      script after it runs, so the counts are readable here. Without JS every circle keeps its crop 1. -#}
+  <script>
+  (function () {
+    var hero = document.currentScript.parentNode;
+    var pools = getComputedStyle(document.documentElement);
+    var circles = ["d1", "d2", "d3"];
+    for (var i = 0; i < circles.length; i++) {
+      var pool = parseInt(pools.getPropertyValue("--stage-pool-" + circles[i]), 10) || 1;
+      hero.dataset[circles[i]] = 1 + Math.floor(Math.random() * pool);
+    }
+  })();
+  </script>
   <div class="hero-deco" aria-hidden="true">
     <span class="deco d1"></span>
     <span class="deco d2"></span>

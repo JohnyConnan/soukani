@@ -226,6 +226,15 @@ black at the top to carry him down into the visible arc; black costs nothing und
 is a matter of re-exporting a square JPEG under the same name; nothing but `hero.css` refers to them.
 Together they add about 160 KB to the landing page and nothing to any other page.
 
+Each circle can hold more than one crop and then draws one of them at random on every page load, so the
+band is not the same picture twice. The pools are per circle, because a crop is composed for the slice
+of its own circle that is on screen and reads as an empty arc anywhere else — a set of three new
+photographs means one more crop for each circle, that is eight combinations, not two. Adding one takes
+three lines in `hero.css`: raise its circle's count in the `:root` rule, and give the file a
+`.hero[data-d1="2"] .deco.d1::before` rule beside the circle it belongs to. The pick itself is the short
+script at the top of `hero.njk`; it runs above the circles so only the chosen crop is ever fetched, and
+without JavaScript every circle simply keeps its first crop.
+
 ## Partner logos
 
 The footer shows logos in two groups. Each record in `content/partners.yaml` carries a `tier`:
