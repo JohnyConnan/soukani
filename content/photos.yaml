@@ -1,10 +1,11 @@
 # Gallery photos. Files live under src/assets/photos/<year>/, long edge ≤ 1600 px, ≤ 400 KB,
 # jpg/jpeg/png/webp. caption is optional; width/height avoid layout shift.
-- { id: 2025-01, edition: 2025, file: assets/photos/2025/soukani-2025-01.jpg, width: 640, height: 960, caption: { cs: "HOP-HOP Vlaštovky: :X", en: "HOP-HOP Vlaštovky: :X" } }
-- { id: 2025-02, edition: 2025, file: assets/photos/2025/soukani-2025-02.jpg, width: 640, height: 426, caption: { cs: "HOP-HOP Vlaštovky: :X", en: "HOP-HOP Vlaštovky: :X" } }
-- { id: 2025-03, edition: 2025, file: assets/photos/2025/soukani-2025-03.jpg, width: 640, height: 426, caption: null }
-- { id: 2025-04, edition: 2025, file: assets/photos/2025/soukani-2025-04.jpg, width: 640, height: 960, caption: null }
-- { id: 2025-05, edition: 2025, file: assets/photos/2025/soukani-2025-05.jpg, width: 640, height: 426, caption: null }
-- { id: 2025-06, edition: 2025, file: assets/photos/2025/soukani-2025-06.jpg, width: 640, height: 426, caption: { cs: "HOP-HOP Dramlajf: Angatar", en: "HOP-HOP Dramlajf: Angatar" } }
-- { id: 2025-07, edition: 2025, file: assets/photos/2025/soukani-2025-07.jpg, width: 640, height: 426, caption: { cs: "HOP-HOP Lišáci: Lišák v mé škole", en: "HOP-HOP Lišáci: The Fox in My School" } }
-- { id: 2025-08, edition: 2025, file: assets/photos/2025/soukani-2025-08.jpg, width: 640, height: 426, caption: { cs: "HOP-HOP Tornáda: To je můj život", en: "HOP-HOP Tornáda: That's My Life" } }
+- { id: 2025-01, edition: 2025, file: assets/photos/2025/soukani-2025-01.jpg, width: 640, height: 426, caption: { cs: "Three Loved Ones — Saula (Litva)", en: "Three Loved Ones — Saula (Lithuania)" } }
+- { id: 2025-02, edition: 2025, file: assets/photos/2025/soukani-2025-02.jpg, width: 640, height: 426, caption: { cs: "The Hole — Beoksugol (Jižní Korea)", en: "The Hole — Beoksugol (South Korea)" } }
+- { id: 2025-03, edition: 2025, file: assets/photos/2025/soukani-2025-03.jpg, width: 640, height: 426, caption: { cs: "Vrabce — Naboso (Slovensko)", en: "Vrabce — Naboso (Slovakia)" } }
+- { id: 2025-04, edition: 2025, file: assets/photos/2025/soukani-2025-04.jpg, width: 640, height: 426, caption: { cs: "Inside Alice — Flying Cow (Estonsko)", en: "Inside Alice — Flying Cow (Estonia)" } }
+- { id: 2025-05, edition: 2025, file: assets/photos/2025/soukani-2025-05.jpg, width: 640, height: 426, caption: { cs: "Čajka — DS ATĎ (Slovensko)", en: "Čajka — DS ATĎ (Slovakia)" } }
+- { id: 2025-06, edition: 2025, file: assets/photos/2025/soukani-2025-06.jpg, width: 640, height: 426, caption: { cs: ":X — HOP-HOP Vlaštovky (Česko)", en: ":X — HOP-HOP Vlaštovky (Czechia)" } }
+- { id: 2025-07, edition: 2025, file: assets/photos/2025/soukani-2025-07.jpg, width: 640, height: 426, caption: { cs: "Angatar — HOP-HOP Dramlajf (Česko)", en: "Angatar — HOP-HOP Dramlajf (Czechia)" } }
+- { id: 2025-08, edition: 2025, file: assets/photos/2025/soukani-2025-08.jpg, width: 640, height: 426, caption: { cs: "Lišák v mé škole — HOP-HOP Lišáci (Česko)", en: "Lišák v mé škole — HOP-HOP Lišáci (Czechia)" } }
+- { id: 2025-09, edition: 2025, file: assets/photos/2025/soukani-2025-09.jpg, width: 640, height: 426, caption: { cs: "To je můj život — HOP-HOP Tornáda (Česko)", en: "To je můj život — HOP-HOP Tornáda (Czechia)" } }
