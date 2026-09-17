@@ -26,7 +26,7 @@
    it has to, or the browser fetches the default crop and then drops it. The bare rule is crop 1, the
    data attributes below name the rest, and a reader without JS stays on crop 1. Adding one takes three
    lines: the square JPEG into src/assets/hero/, the count here, the rule beside its circle. */
-:root { --stage-pool-d1: 1; --stage-pool-d2: 1; --stage-pool-d3: 1; }
+:root { --stage-pool-d1: 2; --stage-pool-d2: 2; --stage-pool-d3: 2; }
 /* Every size and offset below is the desktop pixel value paired with the same value as a share of the
    viewport — the pixel figure divided by 8.5, so the two meet at a viewport of 850 px. Above that the
    pixels win and the composition is the drawn one; below it the whole set shrinks with the screen. Size
@@ -38,10 +38,13 @@
    that sum, and with it the divisor, has to be worked out again. */
 .deco.d1 { right: max(-180px, -21.2vw); top: max(-160px, -18.8vw); width: min(620px, 72.9vw); height: min(620px, 72.9vw); }
 .deco.d1::before { background-image: url("../hero/stage-04.jpg"); }
+.hero[data-d1="2"] .deco.d1::before { background-image: url("../hero/stage-04-2.jpg"); }
 .deco.d2 { left: max(-200px, -23.5vw); bottom: max(-280px, -32.9vw); width: min(520px, 61.2vw); height: min(520px, 61.2vw); }
 .deco.d2::before { background-image: url("../hero/stage-03.jpg"); }
+.hero[data-d2="2"] .deco.d2::before { background-image: url("../hero/stage-03-2.jpg"); }
 .deco.d3 { right: min(60px, 7.1vw); bottom: max(-200px, -23.5vw); width: min(380px, 44.7vw); height: min(380px, 44.7vw); }
 .deco.d3::before { background-image: url("../hero/stage-01.jpg"); }
+.hero[data-d3="2"] .deco.d3::before { background-image: url("../hero/stage-01-2.jpg"); }
 /* On a phone the circles still sit closer to the headline than they ever do on a desktop, so the
    photographs step back; the border thins with them. */
 @media (max-width: 899px) { .deco { --stage-fade: 0.34; border-width: 2px; } }
