@@ -217,6 +217,13 @@ colour. The CSS blends them with `soft-light`, so only the lit figures surface a
 hue. One dial controls how far forward they come: `--stage-fade` in `hero.css` (0.5 on desktop, lowered
 under 900 px, where the circles cover much more of the band).
 
+The circles are drawn at the sizes above for a viewport of 850 px and up; below that they shrink with
+the screen. Each size and offset in `hero.css` is written as the desktop pixel value against the same
+value divided by 8.5 in `vw`, so size and offset shrink by one factor and the arc a circle shows over
+the edge stays the slice its crop was composed for — a phone needs no crops of its own. The divisor also
+keeps the two bottom circles apart: they span 760 of the 850, leaving about a tenth of any screen open
+between them. Redrawing the composition means working that sum out again.
+
 `stage-01/03/04.jpg` are cut from `01/03/04.jpg` of the 2025 shoot and hang in the bottom-right,
 bottom-left and top-right circle. Each circle sits mostly off the edge of the band, so the crops are
 composed for the slice that is actually on screen: d1 shows its lower left, d2 its upper right, d3 only
