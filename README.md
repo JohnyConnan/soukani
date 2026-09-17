@@ -240,8 +240,14 @@ the circles draw independently that is eight combinations, not two sets of three
 lines in `hero.css`: the square JPEG into `src/assets/hero/` under the next `-N` suffix, its circle's
 count in the `:root` rule, and a `.hero[data-d1="2"] .deco.d1::before` rule beside the circle it belongs
 to. The pick itself is the short script at the top of `hero.njk`; it runs above the circles so only the
-crops actually drawn are fetched — three files on any load, between 165 and 355 KB depending on the
+crops actually drawn are fetched — three files on any load, between 165 and 295 KB depending on the
 draw, and nothing at all on any other page. Without JavaScript every circle keeps its first crop.
+
+All six are single-channel greyscale JPEGs at quality 80. The single channel is not what keeps them
+small — these frames are so close to neutral that the colour channels cost almost nothing, and a
+straight RGB-to-grey conversion at the same quality saves nothing at all. Quality is the dial that
+matters, and 80 is safe here because the crops are never shown at full strength: `--stage-fade` blends
+them into the accent at a third to a half, which hides far more than compression gives away.
 
 ## Partner logos
 
