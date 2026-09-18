@@ -18,6 +18,6 @@
   applications: true
 - id: kralova
   name: Daniela Šulc Králová
-  role: { cs: semináře a dílny, en: workshops and seminars }
+  role: { cs: ubytování a stravování, en: accommodations and meals }
   email: kralova@zusostrov.cz
   phone: null
