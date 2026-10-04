@@ -142,15 +142,15 @@ call:
     cs:
       - "Herci ve věku {ageMin}–{ageMax} let."
       - "Inscenace v délce do {maxMinutes} minut."
-      - "Soubor tvoří nejvýše {maxActors} herců a {adultsMin}–{adultsMax} dospělí (režisér, technik, překladatel); při příjezdu vlastním autobusem se počítá i s řidičem."
-      - "Pořadatel hradí ubytování a stravu pro {hosted} osob ({maxActors} herců a {adultsMax} dospělé) po dobu festivalu."
+      - "Soubor tvoří nejvýše {maxActors} herců a {adultsMin} dospělí (např. režisér a technik); třetím dospělým může být překladatel. Při příjezdu vlastním autobusem se počítá i s řidičem."
+      - "Pořadatel hradí po dobu festivalu ubytování a stravu pro {maxActors} herců a {adultsMin} dospělé, případně i pro překladatele."
       - "Soubory přilétající ze vzdálenějších zemí mohou přijet o den dříve."
       - "Přihláška se podává online formulářem spolu s videozáznamem inscenace."
     en:
       - "Actors aged {ageMin}–{ageMax}."
       - "Productions up to {maxMinutes} minutes long."
-      - "A group consists of up to {maxActors} actors and {adultsMin}–{adultsMax} accompanying adults (director, technician, interpreter); a driver is also counted when the group arrives by its own coach."
-      - "The organizer covers board and lodging for {hosted} people ({maxActors} actors and {adultsMax} adults) during the festival days."
+      - "A group consists of up to {maxActors} actors and {adultsMin} accompanying adults (e.g. director and technician); a third adult may come as the group interpreter. A driver is also counted when the group arrives by its own coach."
+      - "The organizer covers board and lodging for {maxActors} actors and {adultsMin} adults, plus the interpreter if the group brings one, during the festival days."
       - "Groups flying in from more distant countries may arrive one day early."
       - "Applications are submitted through an online form together with a video of the production."
   deadline: { cs: "Uzávěrka přihlášek: {date}", en: "Application deadline: {date}" }
