@@ -142,15 +142,15 @@ call:
     cs:
       - "Herci ve věku {ageMin}–{ageMax} let."
       - "Inscenace v délce do {maxMinutes} minut."
-      - "Soubor tvoří nejvýše {maxActors} herců a {adultsMax} dospělí: vedoucí, technik a řidič. Pokud soubor nepřijíždí vlastním autobusem, může místo řidiče přijet překladatel."
-      - "Pořadatel hradí po dobu festivalu ubytování a stravu až pro {hosted} osob ({maxActors} herců a {adultsMax} dospělí)."
+      - "Soubor tvoří nejvýše {maxActors} herců a {adultsMin} dospělí (+ 1 překladatel v případě potřeby, + 1 řidič při příjezdu vlastním autobusem)."
+      - "Pořadatel hradí po dobu festivalu ubytování a stravu celému souboru v tomto složení."
       - "Soubory přilétající ze vzdálenějších zemí mohou přijet o den dříve."
       - "Přihláška se podává online formulářem spolu s videozáznamem inscenace."
     en:
       - "Actors aged {ageMin}–{ageMax}."
       - "Productions up to {maxMinutes} minutes long."
-      - "A group consists of up to {maxActors} actors and {adultsMax} adults: a leader, a technician and a driver. A group that does not arrive by its own coach may bring an interpreter instead of the driver."
-      - "The organizer covers board and lodging for up to {hosted} people ({maxActors} actors and {adultsMax} adults) during the festival days."
+      - "A group consists of up to {maxActors} actors and {adultsMin} accompanying adults (+ 1 interpreter if needed, + 1 driver when arriving by own coach)."
+      - "The organizer covers board and lodging for the whole group within these numbers during the festival days."
       - "Groups flying in from more distant countries may arrive one day early."
       - "Applications are submitted through an online form together with a video of the production."
   deadline: { cs: "Uzávěrka přihlášek: {date}", en: "Application deadline: {date}" }
