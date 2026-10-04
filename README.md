@@ -207,6 +207,8 @@ When the IT admin has the DNS records ready at Forpsi:
    - Current values are always listed at https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 5. **Go-live check:** open https://soukani.cz, view the page source and confirm `<meta name="robots" content="noindex">` is **gone** (it is derived from `SITE_URL`; if it is still there the variable did not take). Then submit `https://soukani.cz/sitemap.xml` in Google Search Console. `robots.txt` and `llms.txt` only take effect at the domain root, so they become live with this step.
 
+Files that must sit at the site root unchanged (such as Google's `google….html` verification file) go in `static/`; never delete that verification file, or Search Console loses ownership.
+
 The domain must be live before the poster goes to print and before the AITA/IATA listing is submitted.
 
 ## Hero photographs

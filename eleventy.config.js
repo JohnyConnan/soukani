@@ -41,6 +41,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("where", (list, key, value) => (list ?? []).filter((i) => i[key] === value));
   eleventyConfig.addFilter("year", (iso) => String(iso ?? "").slice(0, 4));
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // Files that must sit at the site root unchanged (e.g. the Google Search Console verification file).
+  eleventyConfig.addPassthroughCopy({ static: "." });
   eleventyConfig.addWatchTarget("./content/");
   eleventyConfig.setServerOptions({ watch: ["content/**/*.yaml"] });
 
