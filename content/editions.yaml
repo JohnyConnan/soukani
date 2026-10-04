@@ -7,10 +7,10 @@
 - year: 2027
   number: 16
   status: upcoming
-  call: announced
+  call: open
   dateFrom: 2027-05-05
   dateTo: 2027-05-09
-  applyUrl: null
+  applyUrl: https://forms.gle/Ls3RVR6KAkLino8S7
   applyOpensOn: null
   applyDeadline: 2026-11-30
   ageMin: 14
