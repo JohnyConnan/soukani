@@ -29,7 +29,8 @@
       <p class="call-opens">{{ cc.opensSoon | t(lang) }}</p>
       {%- endif %}
       {%- set contact = db.applicationsContact %}
-      <p class="call-contact">{{ cc.contact | t(lang) }} {{ contact.name }}, <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% if contact.phone %}, <a href="tel:{{ contact.phone | replace(' ', '') }}">{{ contact.phone }}</a>{% endif %}
+      <p class="call-contact">{{ cc.contact | t(lang) }} {{ contact.name }}</p>
+      <p class="call-reach">{{ cc.email | t(lang) }} <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% if contact.phone %}, <a href="tel:{{ contact.phone | replace(' ', '') }}">{{ contact.phone }}</a>{% endif %}
       {%- if contact.whatsapp %}<br>{{ cc.whatsapp | t(lang) }} <a href="https://wa.me/{{ contact.whatsapp | replace(' ', '') | replace('+', '') }}" rel="noopener">{{ contact.whatsapp }}</a>{% endif %}</p>
     </div>
   </div>

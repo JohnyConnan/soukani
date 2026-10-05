@@ -159,6 +159,7 @@ call:
   apply: { cs: Vyplnit přihlášku, en: Open the application form }
   closed: { cs: Příjem přihlášek byl uzavřen. Všechny přihlášené soubory informujeme e-mailem., en: Applications are closed. All applicants are notified by email. }
   contact: { cs: "Dotazy k přihláškám:", en: "Questions about applications:" }
+  email: { cs: "E-mail pro rychlou komunikaci:", en: "E-mail for fast communication:" }
   whatsapp: { cs: "WhatsApp pro rychlejší komunikaci:", en: "WhatsApp for faster communication:" }
 groups:
   heading: { cs: Soubory, en: Groups }
