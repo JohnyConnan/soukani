@@ -22,7 +22,7 @@
   phone: null
 - id: konyvka
   name: Jonáš Konývka
-  role: { cs: "přihlášky, příjezdy a odjezdy souborů, web", en: "applications, arrivals and departures, website" }
+  role: { cs: "přihlášky, web", en: "applications, website" }
   email: festivalsoukani@gmail.com
   phone: null
   applications: true
