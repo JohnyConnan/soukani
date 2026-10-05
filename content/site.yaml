@@ -27,6 +27,10 @@ venue:
   town: Ostrov
   countryCode: CZ
   url: https://kkc-ostrov.cz
+# The organizing ensemble; it performs at every edition, so it is the Event performer until groups are published.
+hostEnsemble:
+  name: HOP-HOP
+  url: https://hophop.zusostrov.cz
 facebook: https://www.facebook.com/SoukaniOstrov
 aitaUrl: https://www.aitaiata.net
 oldSite:

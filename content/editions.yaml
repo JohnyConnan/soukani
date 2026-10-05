@@ -1,6 +1,8 @@
 # One record per edition. The current edition is chosen in site.yaml (currentEdition).
 # status: upcoming | running | past | archived      call: announced | open | closed
 # Dates are ISO (YYYY-MM-DD) or null; announce* are YYYY-MM or null; paths are relative to src/.
+# ticketPrice: public ticket price in CZK (whole number); participants get in free. Fills the offers
+#   field of the Event structured data for Google; null leaves it out.
 # externalArchiveUrl: the edition's page on the old HOP-HOP site (archive list).
 # externalPhotosUrl: the page there that actually shows photos of that edition; null when there
 #   are none, which keeps the edition out of the gallery list on the Fotogalerie page.
@@ -29,6 +31,7 @@
   programmePdf: null
   tickets: null
   ticketsUrl: null
+  ticketPrice: null
   filmUrl: null
   announceGroups: null
   announceWorkshops: null
@@ -73,6 +76,7 @@
   programmePdf: null
   tickets: null
   ticketsUrl: null
+  ticketPrice: null
   filmUrl: https://www.youtube.com/watch?v=auz9aV2gZgE
   announceGroups: null
   announceWorkshops: null

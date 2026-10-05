@@ -11,6 +11,14 @@
 } -%}
 <script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": organization["@type"], "name": organization.name, "alternateName": organization.alternateName, "url": organization.url, "address": organization.address, "sameAs": organization.sameAs } | dump | safe }}</script>
 {%- if (pageKey == 'home' or pageKey == 'programme') and edition.dateFrom %}
+{#- Performers: the edition's published groups, or the host ensemble until the selection is out. -#}
+{%- set performers = [] -%}
+{%- for g in db.forEdition('groups', edition.year) -%}
+{%- set performers = (performers.push({ "@type": "PerformingGroup", "name": g.ensemble }), performers) -%}
+{%- endfor -%}
+{%- if not performers.length -%}
+{%- set performers = [{ "@type": "PerformingGroup", "name": db.site.hostEnsemble.name, "url": db.site.hostEnsemble.url }] -%}
+{%- endif -%}
 {%- set event = {
   "@context": "https://schema.org",
   "@type": "Event",
@@ -22,9 +30,14 @@
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": { "@type": "Place", "name": venue.name, "url": venue.url, "address": { "@type": "PostalAddress", "streetAddress": venue.street, "postalCode": venue.postalCode, "addressLocality": venue.town, "addressCountry": venue.countryCode } },
   "organizer": organization,
+  "performer": performers,
   "inLanguage": db.languages,
   "image": build.absoluteUrl('/' + (edition.poster or edition.logo.color)),
   "url": build.absoluteUrl(db.pageUrl('home', lang))
 } -%}
+{#- Offers: the public ticket (participants get in free), once its price is known. -#}
+{%- if edition.ticketPrice != null -%}
+{%- set event = (event | merge({ "offers": { "@type": "Offer", "price": edition.ticketPrice, "priceCurrency": "CZK", "availability": "https://schema.org/InStock", "url": edition.ticketsUrl or build.absoluteUrl(db.pageUrl('programme', lang)) } })) -%}
+{%- endif %}
 <script type="application/ld+json">{{ event | dump | safe }}</script>
 {%- endif %}
