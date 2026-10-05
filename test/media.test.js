@@ -46,7 +46,7 @@ test("Press lists three 2025-labelled logo variants and no poster or PDF while u
   assert.match(cs, /Logo 2025 – negativ \(PNG\)/);
   assert.match(p.get("/en/press/"), /Logo 2025 – colour \(PNG\)/);
   assert.doesNotMatch(cs, /Plakát 20\d\d \(JPG\)|Program 20\d\d \(PDF\)/);
-  assert.match(cs, /media-contact"><strong>Mgr\. Irena Konývková<\/strong>, ředitelka festivalu/);
+  assert.match(cs, /media-contact"><strong>Irena Konývková<\/strong>, ředitelka festivalu/);
   assert.match(cs, /reditelka@zusostrov\.cz/);
   assert.match(cs, /tel:\+420776080097/);
   assert.match(cs, /<h3>Starší ročníky<\/h3>/);
