@@ -91,6 +91,7 @@
 .badge { display: inline-block; padding: 0.2em 0.8em; border-radius: var(--pill); background: var(--accent); color: var(--on-accent); font-size: var(--step--2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; vertical-align: middle; }
 .callout { background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius); padding: var(--space-4); }
 .callout .button { margin-top: var(--space-2); }
+.callout .call-contact { margin-top: var(--space-3); }
 .notice { padding: var(--space-3); border: 2px dashed var(--ink); border-radius: var(--radius); max-width: 42em; margin-top: var(--space-3); }
 .conditions { padding-left: 0; list-style: none; }
 .conditions li { position: relative; padding-left: 1.6em; margin-bottom: 0.6em; color: var(--ink-soft); }

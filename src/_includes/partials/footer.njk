@@ -23,7 +23,7 @@
       {%- for c in db.contacts %}
         <li>
           <strong>{{ c.name }}</strong> <span class="contact-role">– {{ c.role | t(lang) }}</span><br>
-          <a href="mailto:{{ c.email }}">{{ c.email }}</a>{% if c.phone %}, <a href="tel:{{ c.phone | replace(' ', '') }}">{{ c.phone }}</a>{% endif %}
+          <a href="mailto:{{ c.email }}">{{ c.email }}</a>
         </li>
       {%- endfor %}
       </ul>

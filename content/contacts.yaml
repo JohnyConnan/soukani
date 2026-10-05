@@ -1,4 +1,5 @@
 # The published contact roles. Flags: media (press contact), applications (call contact).
+# Phones show on the press page and call box only, not in the footer. whatsapp is optional.
 - id: konyvkova
   name: Irena Konývková
   role: { cs: ředitelka festivalu, en: festival director }
@@ -25,4 +26,5 @@
   role: { cs: "přihlášky, web", en: "applications, website" }
   email: festivalsoukani@gmail.com
   phone: null
+  whatsapp: "+420 728 242 611"
   applications: true
