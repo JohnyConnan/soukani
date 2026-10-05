@@ -10,12 +10,6 @@
   role: { cs: technický koordinátor, en: technical coordinator }
   email: sulc@zusostrov.cz
   phone: null
-- id: konyvka
-  name: Jonáš Konývka
-  role: { cs: "přihlášky, příjezdy a odjezdy souborů", en: "applications, arrivals and departures" }
-  email: festivalsoukani@gmail.com
-  phone: null
-  applications: true
 - id: kralova
   name: Daniela Šulc Králová
   role: { cs: ubytování a stravování, en: accommodations and meals }
@@ -26,3 +20,9 @@
   role: { cs: off program, en: off programme }
   email: novak@zusostrov.cz
   phone: null
+- id: konyvka
+  name: Jonáš Konývka
+  role: { cs: "přihlášky, příjezdy a odjezdy souborů, web", en: "applications, arrivals and departures, website" }
+  email: festivalsoukani@gmail.com
+  phone: null
+  applications: true
